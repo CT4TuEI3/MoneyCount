@@ -17,6 +17,8 @@ final class MainViewController: UIViewController {
     // MARK: - UI Elements
     
     private let moneyCountTableView = UITableView()
+    private let mainButton = UIButton()
+    private let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
     
     
     // MARK: - Life Cycle
@@ -32,16 +34,39 @@ final class MainViewController: UIViewController {
     private func setupUI() {
         title = "MoneyCount"
         view.backgroundColor = .systemBackground
+        
         view.addSubview(moneyCountTableView)
+        view.addSubview(mainButton)
+        
         settingsTable()
+        settingsMainButton()
+        settingsAlert()
         setConstraints()
     }
     
     private func settingsTable() {
         moneyCountTableView.delegate = self
         moneyCountTableView.dataSource = self
+        moneyCountTableView.rowHeight = 64
         moneyCountTableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifire)
         moneyCountTableView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private func settingsMainButton() {
+        mainButton.setImage(UIImage(named: "plusButton"), for: .normal)
+        mainButton.configuration?.imagePadding = 0
+        mainButton.translatesAutoresizingMaskIntoConstraints = false
+        mainButton.addTarget(self, action: #selector(pressedMainButton), for: .touchUpInside)
+    }
+    
+    private func settingsAlert() {
+        alert.addAction(UIAlertAction(title: "Create", style: .default, handler: { _ in
+            print("Crete")
+        }))
+        alert.addAction(UIAlertAction(title: "Join", style: .default, handler: { _ in
+            print("Join")
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
     }
     
     private func setConstraints() {
@@ -49,8 +74,17 @@ final class MainViewController: UIViewController {
             moneyCountTableView.topAnchor.constraint(equalTo: view.topAnchor),
             moneyCountTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             moneyCountTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            moneyCountTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            moneyCountTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            mainButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+            mainButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            mainButton.widthAnchor.constraint(equalToConstant: 56),
+            mainButton.heightAnchor.constraint(equalToConstant: 56)
         ])
+    }
+    
+    @objc private func pressedMainButton() {
+        present(alert, animated: true)
     }
 }
 
