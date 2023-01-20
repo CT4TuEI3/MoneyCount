@@ -60,8 +60,8 @@ final class MainViewController: UIViewController {
     }
     
     private func settingsAlert() {
-        alert.addAction(UIAlertAction(title: "Create", style: .default, handler: { _ in
-            print("Crete")
+        alert.addAction(UIAlertAction(title: "Create", style: .default, handler: { [weak self] _ in
+            self?.pressedCreateButton()
         }))
         alert.addAction(UIAlertAction(title: "Join", style: .default, handler: { _ in
             print("Join")
@@ -69,9 +69,13 @@ final class MainViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
     }
     
+    private func pressedCreateButton() {
+        navigationController?.pushViewController(CreateCountViewController(), animated: true)
+    }
+    
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            moneyCountTableView.topAnchor.constraint(equalTo: view.topAnchor),
+            moneyCountTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             moneyCountTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             moneyCountTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             moneyCountTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
