@@ -32,14 +32,11 @@ final class MainViewController: UIViewController {
     // MARK: - Private methods
     
     private func setupUI() {
-        title = "MoneyCount"
         view.backgroundColor = .systemBackground
         
         view.addSubview(moneyCountTableView)
-        view.addSubview(mainButton)
-        
         settingsTable()
-        settingsMainButton()
+        settingNavigationBar()
         settingsAlert()
         setConstraints()
     }
@@ -48,15 +45,18 @@ final class MainViewController: UIViewController {
         moneyCountTableView.delegate = self
         moneyCountTableView.dataSource = self
         moneyCountTableView.rowHeight = 64
-        moneyCountTableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifire)
+        moneyCountTableView.register(CustomMoneyCountCell.self, forCellReuseIdentifier: cellIdentifire)
         moneyCountTableView.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private func settingsMainButton() {
-        mainButton.setImage(UIImage(named: "plusButton"), for: .normal)
-        mainButton.configuration?.imagePadding = 0
-        mainButton.translatesAutoresizingMaskIntoConstraints = false
-        mainButton.addTarget(self, action: #selector(pressedMainButton), for: .touchUpInside)
+    
+    private func settingNavigationBar() {
+        title = "MoneyCount"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus.circle"),
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(pressedPlusButton))
+        
     }
     
     private func settingsAlert() {
@@ -75,15 +75,13 @@ final class MainViewController: UIViewController {
             moneyCountTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             moneyCountTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             moneyCountTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
-            mainButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
-            mainButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
-            mainButton.widthAnchor.constraint(equalToConstant: 56),
-            mainButton.heightAnchor.constraint(equalToConstant: 56)
         ])
     }
     
-    @objc private func pressedMainButton() {
+    
+    // MARK: - Actions
+    
+    @objc private func pressedPlusButton() {
         present(alert, animated: true)
     }
 }
@@ -97,8 +95,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifire, for: indexPath)
-        cell.backgroundColor = .systemBackground
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifire, for: indexPath) as? CustomMoneyCountCell
+        cell?.configure(title: "Title", discription: "Discription")
+        return cell ?? UITableViewCell()
     }
 }
