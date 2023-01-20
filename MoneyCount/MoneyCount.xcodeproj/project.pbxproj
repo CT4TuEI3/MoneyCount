@@ -13,6 +13,7 @@
 		326AB9242976EF48005EB02D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 326AB9232976EF48005EB02D /* Assets.xcassets */; };
 		326AB9272976EF48005EB02D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 326AB9252976EF48005EB02D /* LaunchScreen.storyboard */; };
 		3287BE6E297A93B1001D3920 /* CustomMoneyCountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3287BE6D297A93B1001D3920 /* CustomMoneyCountCell.swift */; };
+		3287BE70297AC4C2001D3920 /* CreateCountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3287BE6F297AC4C2001D3920 /* CreateCountViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		326AB9262976EF48005EB02D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		326AB9282976EF48005EB02D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3287BE6D297A93B1001D3920 /* CustomMoneyCountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMoneyCountCell.swift; sourceTree = "<group>"; };
+		3287BE6F297AC4C2001D3920 /* CreateCountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				326AB91C2976EF46005EB02D /* SceneDelegate.swift */,
 				326AB91E2976EF46005EB02D /* MainViewController.swift */,
 				3287BE6D297A93B1001D3920 /* CustomMoneyCountCell.swift */,
+				3287BE6F297AC4C2001D3920 /* CreateCountViewController.swift */,
 				326AB9232976EF48005EB02D /* Assets.xcassets */,
 				326AB9252976EF48005EB02D /* LaunchScreen.storyboard */,
 				326AB9282976EF48005EB02D /* Info.plist */,
@@ -140,6 +143,7 @@
 				326AB91F2976EF46005EB02D /* MainViewController.swift in Sources */,
 				3287BE6E297A93B1001D3920 /* CustomMoneyCountCell.swift in Sources */,
 				326AB91B2976EF46005EB02D /* AppDelegate.swift in Sources */,
+				3287BE70297AC4C2001D3920 /* CreateCountViewController.swift in Sources */,
 				326AB91D2976EF46005EB02D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
