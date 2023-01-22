@@ -11,8 +11,8 @@ final class CustomCurrencyCell: UITableViewCell {
     
     //MARK: - UI Elements
     
-    let currencyBoldLabel = UILabel()
-    let currencyNormalFullLabel = UILabel()
+    private let currencyBoldLabel = UILabel()
+    private let currencyNormalFullLabel = UILabel()
     
     
     //MARK: - Life Cycle
@@ -41,23 +41,16 @@ final class CustomCurrencyCell: UITableViewCell {
         addSubview(currencyBoldLabel)
         addSubview(currencyNormalFullLabel)
         settingsCurrencyBoldLabel()
-        settingsCurrencyNormalFullLabel()
         setConstraints()
     }
     
     private func settingsCurrencyBoldLabel() {
         currencyBoldLabel.translatesAutoresizingMaskIntoConstraints = false
-        currencyBoldLabel.text = "RUB"
         currencyBoldLabel.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        
-    }
-    
-    private func settingsCurrencyNormalFullLabel() {
-        currencyNormalFullLabel.translatesAutoresizingMaskIntoConstraints = false
-        currencyNormalFullLabel.text = "Russin ruble"
     }
     
     private func setConstraints() {
+        currencyNormalFullLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             currencyBoldLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             currencyBoldLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),

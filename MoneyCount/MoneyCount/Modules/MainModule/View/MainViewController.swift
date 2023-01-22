@@ -63,9 +63,11 @@ final class MainViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Create", style: .default, handler: { [weak self] _ in
             self?.pressedCreateButton()
         }))
+        
         alert.addAction(UIAlertAction(title: "Join", style: .default, handler: { _ in
             print("Join")
         }))
+        
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
     }
     

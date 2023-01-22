@@ -11,13 +11,13 @@ final class CreateCountViewController: UIViewController {
     
     //MARK: - UI Elements
     
-    let titleMCTextField = UITextField()
-    let discriptionMCTextField = UITextField()
-    let currencyContainer = UIView()
-    let currencyLabel = UILabel()
-    let currencyValueLabel = UILabel()
-    let currencyImageView = UIImageView(image: UIImage(systemName: "chevron.forward"))
-    let selectCurrencyButton = UIButton()
+    private let titleMCTextField = UITextField()
+    private let discriptionMCTextField = UITextField()
+    private let currencyContainer = UIView()
+    private let currencyLabel = UILabel()
+    private let currencyValueLabel = UILabel()
+    private let currencyImageView = UIImageView(image: UIImage(systemName: "chevron.forward"))
+    private let selectCurrencyButton = UIButton()
     
     
     //MARK: - Lifecycle
@@ -44,8 +44,6 @@ final class CreateCountViewController: UIViewController {
         settingsTextFields()
         settingsCurrencyContainer()
         settingsCurrencyLabel()
-        settingsCurrensyValueLabel()
-        settingsCurrencyImage()
         settingSelectCurrencyButton()
         settingsNavigationBar()
         settingsConstraints()
@@ -73,15 +71,6 @@ final class CreateCountViewController: UIViewController {
         currencyLabel.text = "Currency:"
     }
     
-    private func settingsCurrensyValueLabel() {
-        currencyValueLabel.translatesAutoresizingMaskIntoConstraints = false
-        currencyValueLabel.text = "Rub"
-    }
-    
-    private func settingsCurrencyImage() {
-        currencyImageView.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
     private func settingSelectCurrencyButton() {
         selectCurrencyButton.translatesAutoresizingMaskIntoConstraints = false
         selectCurrencyButton.addTarget(self, action: #selector(pressedCurrencyButton), for: .touchUpInside)
@@ -100,7 +89,16 @@ final class CreateCountViewController: UIViewController {
     
     @objc
     private func pressedCurrencyButton() {
-        navigationController?.pushViewController(SelectCurrencyViewController(), animated: true)
+        let vc = SelectCurrencyViewController()
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+
+extension CreateCountViewController: SelectCurrencyViewControllerDelegate {
+    func selectedCurrency(_ curency: CurrencyModel) {
+        currencyValueLabel.text = curency.shortName
     }
 }
 
@@ -109,6 +107,9 @@ final class CreateCountViewController: UIViewController {
 
 private extension CreateCountViewController {
     func settingsConstraints() {
+        currencyValueLabel.translatesAutoresizingMaskIntoConstraints = false
+        currencyImageView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             titleMCTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             titleMCTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
