@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32530EF6297D4F0700E1662A /* CustomCurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32530EF5297D4F0700E1662A /* CustomCurrencyCell.swift */; };
+		32530EF8297D5BF500E1662A /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32530EF7297D5BF500E1662A /* CurrencyModel.swift */; };
 		326AB91B2976EF46005EB02D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326AB91A2976EF46005EB02D /* AppDelegate.swift */; };
 		326AB91D2976EF46005EB02D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326AB91C2976EF46005EB02D /* SceneDelegate.swift */; };
 		326AB91F2976EF46005EB02D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326AB91E2976EF46005EB02D /* MainViewController.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		32530EF5297D4F0700E1662A /* CustomCurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCurrencyCell.swift; sourceTree = "<group>"; };
+		32530EF7297D5BF500E1662A /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
 		326AB9172976EF46005EB02D /* MoneyCount.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyCount.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		326AB91A2976EF46005EB02D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		326AB91C2976EF46005EB02D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +45,108 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32530EF9297D5E7100E1662A /* MainModule */ = {
+			isa = PBXGroup;
+			children = (
+				32530EFC297D5ED600E1662A /* View */,
+			);
+			path = MainModule;
+			sourceTree = "<group>";
+		};
+		32530EFC297D5ED600E1662A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				32530EFD297D5F0C00E1662A /* Cell */,
+				326AB91E2976EF46005EB02D /* MainViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		32530EFD297D5F0C00E1662A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3287BE6D297A93B1001D3920 /* CustomMoneyCountCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		32530EFE297D5F3C00E1662A /* CreateMoneyCountModule */ = {
+			isa = PBXGroup;
+			children = (
+				32530EFF297D5F5E00E1662A /* View */,
+			);
+			path = CreateMoneyCountModule;
+			sourceTree = "<group>";
+		};
+		32530EFF297D5F5E00E1662A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3287BE6F297AC4C2001D3920 /* CreateCountViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		32530F00297D5F8F00E1662A /* SelectCurrncyModule */ = {
+			isa = PBXGroup;
+			children = (
+				32530F03297D5FCB00E1662A /* Model */,
+				32530F01297D5FA300E1662A /* View */,
+			);
+			path = SelectCurrncyModule;
+			sourceTree = "<group>";
+		};
+		32530F01297D5FA300E1662A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				32DBBB63297C632200ECC129 /* SelectCurrencyViewController.swift */,
+				32530F02297D5FAA00E1662A /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		32530F02297D5FAA00E1662A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				32530EF5297D4F0700E1662A /* CustomCurrencyCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		32530F03297D5FCB00E1662A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				32530EF7297D5BF500E1662A /* CurrencyModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		32530F04297D601000E1662A /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				32530EF9297D5E7100E1662A /* MainModule */,
+				32530EFE297D5F3C00E1662A /* CreateMoneyCountModule */,
+				32530F00297D5F8F00E1662A /* SelectCurrncyModule */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		32530F05297D603F00E1662A /* Resoures */ = {
+			isa = PBXGroup;
+			children = (
+				326AB9232976EF48005EB02D /* Assets.xcassets */,
+			);
+			path = Resoures;
+			sourceTree = "<group>";
+		};
+		32530F06297D605500E1662A /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				326AB91A2976EF46005EB02D /* AppDelegate.swift */,
+				326AB91C2976EF46005EB02D /* SceneDelegate.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		326AB90E2976EF46005EB02D = {
 			isa = PBXGroup;
 			children = (
@@ -60,13 +166,9 @@
 		326AB9192976EF46005EB02D /* MoneyCount */ = {
 			isa = PBXGroup;
 			children = (
-				326AB91A2976EF46005EB02D /* AppDelegate.swift */,
-				326AB91C2976EF46005EB02D /* SceneDelegate.swift */,
-				326AB91E2976EF46005EB02D /* MainViewController.swift */,
-				3287BE6D297A93B1001D3920 /* CustomMoneyCountCell.swift */,
-				3287BE6F297AC4C2001D3920 /* CreateCountViewController.swift */,
-				32DBBB63297C632200ECC129 /* SelectCurrencyViewController.swift */,
-				326AB9232976EF48005EB02D /* Assets.xcassets */,
+				32530F06297D605500E1662A /* Core */,
+				32530F04297D601000E1662A /* Modules */,
+				32530F05297D603F00E1662A /* Resoures */,
 				326AB9252976EF48005EB02D /* LaunchScreen.storyboard */,
 				326AB9282976EF48005EB02D /* Info.plist */,
 			);
@@ -143,7 +245,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32530EF6297D4F0700E1662A /* CustomCurrencyCell.swift in Sources */,
 				326AB91F2976EF46005EB02D /* MainViewController.swift in Sources */,
+				32530EF8297D5BF500E1662A /* CurrencyModel.swift in Sources */,
 				3287BE6E297A93B1001D3920 /* CustomMoneyCountCell.swift in Sources */,
 				326AB91B2976EF46005EB02D /* AppDelegate.swift in Sources */,
 				32DBBB64297C632200ECC129 /* SelectCurrencyViewController.swift in Sources */,
