@@ -7,7 +7,14 @@
 
 import UIKit
 
-final class SelectCurrencyViewController: UIViewController, UISearchBarDelegate {
+protocol SelectCurrencyViewControllerDelegate: AnyObject {
+    func selectedCurrency(_ curency: CurrencyModel)
+}
+
+final class SelectCurrencyViewController: UIViewController {
+    
+    weak var delegate: SelectCurrencyViewControllerDelegate?
+    
     
     //MARK: - Private properties
     
@@ -22,6 +29,7 @@ final class SelectCurrencyViewController: UIViewController, UISearchBarDelegate 
     private let currencyTableView = UITableView()
     private let searchBarCurrency = UISearchBar()
     
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -33,8 +41,8 @@ final class SelectCurrencyViewController: UIViewController, UISearchBarDelegate 
     //MARK: - Private methods
     
     private func setupUI() {
-        view.addSubview(searchBarCurrency)
         view.backgroundColor = .systemBackground
+        view.addSubview(searchBarCurrency)
         view.addSubview(currencyTableView)
         settingsSearchbar()
         settingsCurrencyTableView()
@@ -44,10 +52,6 @@ final class SelectCurrencyViewController: UIViewController, UISearchBarDelegate 
     private func settingsSearchbar() {
         searchBarCurrency.translatesAutoresizingMaskIntoConstraints = false
         searchBarCurrency.delegate = self
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
     }
     
     private func settingsCurrencyTableView() {
@@ -72,6 +76,15 @@ final class SelectCurrencyViewController: UIViewController, UISearchBarDelegate 
 }
 
 
+//MARK: - UISearchBarDelegate
+
+extension SelectCurrencyViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchText)
+    }
+}
+
+
 //MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension SelectCurrencyViewController: UITableViewDelegate, UITableViewDataSource {
@@ -85,5 +98,10 @@ extension SelectCurrencyViewController: UITableViewDelegate, UITableViewDataSour
         cell?.configure(shortName: currencyArray[indexPath.row].shortName,
                         fullName: currencyArray[indexPath.row].fullName)
         return cell ?? UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.selectedCurrency(currencyArray[indexPath.row])
+        navigationController?.popViewController(animated: true)
     }
 }
