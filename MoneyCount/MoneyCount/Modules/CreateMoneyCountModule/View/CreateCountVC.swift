@@ -1,5 +1,5 @@
 //
-//  v2CreateCountVC.swift
+//  CreateCountVC.swift
 //  MoneyCount
 //
 //  Created by Алексей on 23.01.2023.
@@ -13,12 +13,13 @@ final class CreateCountVC: UIViewController {
     
     private let textFieldCellIdentifire = "textFieldCellIdentifire"
     private let selectCurrencyCellIdentifier = "selectCurrencyCellIdentifier"
+    private let addNamesIdentifier = "addNamesIdentifier"
     private let sections = SectionType.allCases
     
     
     // MARK: - UI Elements
     
-    private let table = UITableView(frame: .zero, style: .plain)
+    private let table = UITableView(frame: .zero, style: .grouped)
     
     
     //MARK: - Lifecycle
@@ -33,19 +34,21 @@ final class CreateCountVC: UIViewController {
     // MARK: - Private methods
     
     private func setupUI() {
+        title = "Create MoneyCount"
+        view.backgroundColor = .systemBackground
         view.addSubview(table)
         settingsTableView()
         setConstraints()
     }
     
     private func settingsTableView() {
-        title = "Create MoneyCount"
         table.translatesAutoresizingMaskIntoConstraints = false
+        table.backgroundColor = .systemGray5
         table.delegate = self
         table.dataSource = self
-        table.backgroundColor = .systemBackground
         table.register(TextFieldCell.self, forCellReuseIdentifier: textFieldCellIdentifire)
         table.register(SelectCurrencyCell.self, forCellReuseIdentifier: selectCurrencyCellIdentifier)
+        table.register(AddNamesCell.self, forCellReuseIdentifier: addNamesIdentifier)
     }
     
     private func setConstraints() {
@@ -71,33 +74,51 @@ extension CreateCountVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: textFieldCellIdentifire, for: indexPath) as? TextFieldCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: textFieldCellIdentifire,
+                                                 for: indexPath) as? TextFieldCell
         if indexPath.section == SectionType.title.rawValue {
-            cell?.configureV2(placeholder: indexPath.row == 0 ? "Title" : "Discription")
+            cell?.configure(placeholder: indexPath.row == 0 ? "Title" : "Discription")
             return cell ?? UITableViewCell()
         } else if indexPath.section == SectionType.currency.rawValue {
-            let cell = tableView.dequeueReusableCell(withIdentifier: selectCurrencyCellIdentifier, for: indexPath) as? SelectCurrencyCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: selectCurrencyCellIdentifier,
+                                                     for: indexPath) as? SelectCurrencyCell
             cell?.selectionStyle = .none
             return cell ?? UITableViewCell()
         } else {
-            cell?.configureV2(placeholder: "Name")
+            let cell = tableView.dequeueReusableCell(withIdentifier: addNamesIdentifier,
+                                                     for: indexPath) as? AddNamesCell
+            cell?.configure(placeholder: "Name")
+            cell?.delegate = self
             return cell ?? UITableViewCell()
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 1 {
+        if indexPath.section == SectionType.currency.rawValue {
             navigationController?.pushViewController(SelectCurrencyViewController(), animated: true)
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView()
+        header.backgroundColor = .systemGray4
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         44
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footer = UIView()
-        footer.backgroundColor = .systemGray5
-        return footer
+        nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        0
+    }
+}
+
+extension CreateCountVC: AddNamesCellDelegate {
+    func pressedAddNamesButton() {
     }
 }

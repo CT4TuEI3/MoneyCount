@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TextFieldCell: UITableViewCell {
+class TextFieldCell: UITableViewCell {
     
     //MARK: - UI Elements
     
@@ -27,6 +27,13 @@ final class TextFieldCell: UITableViewCell {
     }
     
     
+    //MARK: - Configure
+    
+    func configure(placeholder: String) {
+        titleMCTextField.placeholder = placeholder
+    }
+    
+    
     //MARK: - Private methods
     
     private func setupUI() {
@@ -37,10 +44,6 @@ final class TextFieldCell: UITableViewCell {
     
     private func settingsTextFields(){
         titleMCTextField.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    func configureV2(placeholder: String) {
-        titleMCTextField.placeholder = placeholder
     }
     
     private func setConstraints() {
