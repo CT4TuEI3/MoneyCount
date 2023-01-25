@@ -14,8 +14,9 @@ final class CreateCountVC: UIViewController {
     private let textFieldCellIdentifire = "textFieldCellIdentifire"
     private let selectCurrencyCellIdentifier = "selectCurrencyCellIdentifier"
     private let addNamesIdentifier = "addNamesIdentifier"
+    private let nameLabelCellIdentifier = "nameLabelCellIdentifier"
     private let sections = SectionType.allCases
-    
+    private var names: [String] = []
     
     // MARK: - UI Elements
     
@@ -43,12 +44,14 @@ final class CreateCountVC: UIViewController {
     
     private func settingsTableView() {
         table.translatesAutoresizingMaskIntoConstraints = false
+        table.keyboardDismissMode = .onDrag
         table.backgroundColor = .systemGray5
         table.delegate = self
         table.dataSource = self
         table.register(TextFieldCell.self, forCellReuseIdentifier: textFieldCellIdentifire)
         table.register(SelectCurrencyCell.self, forCellReuseIdentifier: selectCurrencyCellIdentifier)
         table.register(AddNamesCell.self, forCellReuseIdentifier: addNamesIdentifier)
+        table.register(NamesCell.self, forCellReuseIdentifier: nameLabelCellIdentifier)
     }
     
     private func setConstraints() {
@@ -70,26 +73,45 @@ extension CreateCountVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        section == SectionType.title.rawValue ? 2 : 1
+        let sectionType = sections[section]
+        switch sectionType {
+            case .title:
+                return 2
+            case .currency:
+                return 1
+            case .names:
+                return names.count + 1
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: textFieldCellIdentifire,
-                                                 for: indexPath) as? TextFieldCell
-        if indexPath.section == SectionType.title.rawValue {
-            cell?.configure(placeholder: indexPath.row == 0 ? "Title" : "Discription")
-            return cell ?? UITableViewCell()
-        } else if indexPath.section == SectionType.currency.rawValue {
-            let cell = tableView.dequeueReusableCell(withIdentifier: selectCurrencyCellIdentifier,
-                                                     for: indexPath) as? SelectCurrencyCell
-            cell?.selectionStyle = .none
-            return cell ?? UITableViewCell()
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: addNamesIdentifier,
-                                                     for: indexPath) as? AddNamesCell
-            cell?.configure(placeholder: "Name")
-            cell?.delegate = self
-            return cell ?? UITableViewCell()
+        let cellForSection = sections[indexPath.section]
+        switch cellForSection {
+            case .title:
+                let cell = tableView.dequeueReusableCell(withIdentifier: textFieldCellIdentifire,
+                                                         for: indexPath) as? TextFieldCell
+                cell?.configure(placeholder: indexPath.row == 0 ? "Title" : "Discription")
+                return cell ?? UITableViewCell()
+                
+            case .currency:
+                let cell = tableView.dequeueReusableCell(withIdentifier: selectCurrencyCellIdentifier,
+                                                         for: indexPath) as? SelectCurrencyCell
+                cell?.selectionStyle = .none
+                return cell ?? UITableViewCell()
+                
+            case .names:
+                if indexPath.row == 0 {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: addNamesIdentifier,
+                                                             for: indexPath) as? AddNamesCell
+                    cell?.configure(placeholder: "Name")
+                    cell?.delegate = self
+                    return cell ?? UITableViewCell()
+                } else {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: nameLabelCellIdentifier,
+                                                             for: indexPath) as? NamesCell
+                    cell?.configure(textLabel: names[indexPath.row - 1])
+                    return cell ?? UITableViewCell()
+                }
         }
     }
     
@@ -119,6 +141,10 @@ extension CreateCountVC: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension CreateCountVC: AddNamesCellDelegate {
-    func pressedAddNamesButton() {
+    func pressedAddNamesButton(name: String) {
+        names.append(name)
+        table.beginUpdates()
+        table.insertRows(at: [IndexPath(row: names.count, section: SectionType.names.rawValue)], with: .top)
+        table.endUpdates()
     }
 }

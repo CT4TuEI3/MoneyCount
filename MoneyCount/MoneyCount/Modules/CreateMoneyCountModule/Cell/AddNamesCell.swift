@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AddNamesCellDelegate: AnyObject {
-    func pressedAddNamesButton()
+    func pressedAddNamesButton(name: String)
 }
 
 final class AddNamesCell: UITableViewCell {
@@ -72,6 +72,8 @@ final class AddNamesCell: UITableViewCell {
     }
     
     @objc private func didPressedBtn() {
-        delegate?.pressedAddNamesButton()
+        guard let name = addNameTextField.text, !name.isEmpty else { return }
+        delegate?.pressedAddNamesButton(name: name)
+        addNameTextField.text = ""
     }
 }

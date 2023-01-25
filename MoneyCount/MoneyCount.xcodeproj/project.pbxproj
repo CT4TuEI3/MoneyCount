@@ -21,6 +21,7 @@
 		32E0B216297ECA3000EA5A9D /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E0B215297ECA3000EA5A9D /* TextFieldCell.swift */; };
 		32E0B2182980562400EA5A9D /* CreateMoneyCountEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E0B2172980562400EA5A9D /* CreateMoneyCountEntity.swift */; };
 		32F8F882298144490043AED3 /* AddNamesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F8F881298144490043AED3 /* AddNamesCell.swift */; };
+		32F8F884298196940043AED3 /* NamesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F8F883298196940043AED3 /* NamesCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		32E0B215297ECA3000EA5A9D /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		32E0B2172980562400EA5A9D /* CreateMoneyCountEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMoneyCountEntity.swift; sourceTree = "<group>"; };
 		32F8F881298144490043AED3 /* AddNamesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNamesCell.swift; sourceTree = "<group>"; };
+		32F8F883298196940043AED3 /* NamesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 				32E0B212297E9B5C00EA5A9D /* SelectCurrencyCell.swift */,
 				32E0B215297ECA3000EA5A9D /* TextFieldCell.swift */,
 				32F8F881298144490043AED3 /* AddNamesCell.swift */,
+				32F8F883298196940043AED3 /* NamesCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				326AB91F2976EF46005EB02D /* MainViewController.swift in Sources */,
 				32530EF8297D5BF500E1662A /* CurrencyModel.swift in Sources */,
 				3287BE6E297A93B1001D3920 /* CustomMoneyCountCell.swift in Sources */,
+				32F8F884298196940043AED3 /* NamesCell.swift in Sources */,
 				326AB91B2976EF46005EB02D /* AppDelegate.swift in Sources */,
 				32DBBB64297C632200ECC129 /* SelectCurrencyViewController.swift in Sources */,
 				32E0B213297E9B5C00EA5A9D /* SelectCurrencyCell.swift in Sources */,
