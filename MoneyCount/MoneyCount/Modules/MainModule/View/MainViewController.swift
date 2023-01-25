@@ -72,7 +72,7 @@ final class MainViewController: UIViewController {
     }
     
     private func pressedCreateButton() {
-        navigationController?.pushViewController(CreateCountViewController(), animated: true)
+        navigationController?.pushViewController(CreateCountVC(), animated: true)
     }
     
     private func setConstraints() {
