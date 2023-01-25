@@ -40,9 +40,10 @@ final class SelectCurrencyCell: UITableViewCell {
     
     private func settingsLabels() {
         normalLabel.text = "Currency"
-        tintLabel.text = "RUB"
+        tintLabel.text = "USD"
         tintLabel.textColor = .tintColor
     }
+    
     private func settings() {
         normalLabel.translatesAutoresizingMaskIntoConstraints = false
         tintLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -60,10 +61,4 @@ final class SelectCurrencyCell: UITableViewCell {
             currencyImageView.heightAnchor.constraint(equalToConstant: 16)
         ])
     }
-    
-    
-    
-    
-    
-    
 }

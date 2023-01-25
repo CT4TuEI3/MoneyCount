@@ -20,6 +20,7 @@
 		32E0B213297E9B5C00EA5A9D /* SelectCurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E0B212297E9B5C00EA5A9D /* SelectCurrencyCell.swift */; };
 		32E0B216297ECA3000EA5A9D /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E0B215297ECA3000EA5A9D /* TextFieldCell.swift */; };
 		32E0B2182980562400EA5A9D /* CreateMoneyCountEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E0B2172980562400EA5A9D /* CreateMoneyCountEntity.swift */; };
+		32F8F882298144490043AED3 /* AddNamesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F8F881298144490043AED3 /* AddNamesCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		32E0B212297E9B5C00EA5A9D /* SelectCurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyCell.swift; sourceTree = "<group>"; };
 		32E0B215297ECA3000EA5A9D /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		32E0B2172980562400EA5A9D /* CreateMoneyCountEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMoneyCountEntity.swift; sourceTree = "<group>"; };
+		32F8F881298144490043AED3 /* AddNamesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNamesCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +190,7 @@
 			children = (
 				32E0B212297E9B5C00EA5A9D /* SelectCurrencyCell.swift */,
 				32E0B215297ECA3000EA5A9D /* TextFieldCell.swift */,
+				32F8F881298144490043AED3 /* AddNamesCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			files = (
 				32530EF6297D4F0700E1662A /* CustomCurrencyCell.swift in Sources */,
 				32E0B216297ECA3000EA5A9D /* TextFieldCell.swift in Sources */,
+				32F8F882298144490043AED3 /* AddNamesCell.swift in Sources */,
 				32E0B211297E8D2800EA5A9D /* CreateCountVC.swift in Sources */,
 				326AB91F2976EF46005EB02D /* MainViewController.swift in Sources */,
 				32530EF8297D5BF500E1662A /* CurrencyModel.swift in Sources */,
