@@ -7,13 +7,21 @@
 
 import UIKit
 
+protocol TextFieldCellDelegate: AnyObject {
+    func pressedDoneBtn(title: String, text: String)
+}
+
 class TextFieldCell: UITableViewCell {
+    
+    weak var delegate: TextFieldCellDelegate?
+    private var title: String = ""
+    
     
     //MARK: - UI Elements
     
     private let titleMCTextField = UITextField()
     
-    
+
     //MARK: - Life Cycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -30,7 +38,9 @@ class TextFieldCell: UITableViewCell {
     //MARK: - Configure
     
     func configure(placeholder: String) {
+        title = placeholder
         titleMCTextField.placeholder = placeholder
+        titleMCTextField.delegate = self
     }
     
     
@@ -53,5 +63,13 @@ class TextFieldCell: UITableViewCell {
             titleMCTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             titleMCTextField.heightAnchor.constraint(equalToConstant: 40),
         ])
+    }
+}
+
+
+extension TextFieldCell: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard let text = textField.text else { return }
+        delegate?.pressedDoneBtn(title: title, text: text)
     }
 }

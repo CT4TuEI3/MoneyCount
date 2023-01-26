@@ -17,6 +17,8 @@ final class CreateCountVC: UIViewController {
     private let nameLabelCellIdentifier = "nameLabelCellIdentifier"
     private let sections = SectionType.allCases
     private var names: [String] = []
+    private var titleMonyCount = ""
+    
     
     // MARK: - UI Elements
     
@@ -28,6 +30,10 @@ final class CreateCountVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done",
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(pressedDoneButton))
         setupUI()
     }
     
@@ -62,6 +68,20 @@ final class CreateCountVC: UIViewController {
             table.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+    
+    
+    //MARK: - Actions
+    
+    @objc
+    private func pressedDoneButton() {
+        let alert = UIAlertController(title: "Title", message: "Message", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+        if titleMonyCount != "" && !names.isEmpty {
+            navigationController?.pushViewController(MainMoneyCountVC(), animated: true)
+        } else {
+            present(alert, animated: true)
+        }
+    }
 }
 
 
@@ -91,6 +111,7 @@ extension CreateCountVC: UITableViewDelegate, UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: textFieldCellIdentifire,
                                                          for: indexPath) as? TextFieldCell
                 cell?.configure(placeholder: indexPath.row == 0 ? "Title" : "Discription")
+                cell?.delegate = self
                 return cell ?? UITableViewCell()
                 
             case .currency:
@@ -168,5 +189,12 @@ extension CreateCountVC: AddNamesCellDelegate {
                                         section: SectionType.names.rawValue)],
                          with: .top)
         table.endUpdates()
+    }
+}
+
+
+extension CreateCountVC: TextFieldCellDelegate {
+    func pressedDoneBtn(title: String, text: String) {
+        titleMonyCount = text
     }
 }

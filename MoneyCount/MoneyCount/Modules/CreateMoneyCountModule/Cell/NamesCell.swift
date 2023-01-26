@@ -33,7 +33,6 @@ final class NamesCell: UITableViewCell {
     
     private func settings() {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.text = "Alexey"
     }
     
     private func setConstraint() {
@@ -42,7 +41,4 @@ final class NamesCell: UITableViewCell {
             nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16)
         ])
     }
-    
-    
-    
 }
