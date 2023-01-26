@@ -42,6 +42,7 @@ final class MainViewController: UIViewController {
     }
     
     private func settingsTable() {
+        moneyCountTableView.backgroundColor = .systemGray6
         moneyCountTableView.delegate = self
         moneyCountTableView.dataSource = self
         moneyCountTableView.rowHeight = 64
@@ -97,7 +98,7 @@ final class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
