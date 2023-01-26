@@ -45,7 +45,7 @@ final class CreateCountVC: UIViewController {
     private func settingsTableView() {
         table.translatesAutoresizingMaskIntoConstraints = false
         table.keyboardDismissMode = .onDrag
-        table.backgroundColor = .systemGray5
+        table.backgroundColor = .systemGray6
         table.delegate = self
         table.dataSource = self
         table.register(TextFieldCell.self, forCellReuseIdentifier: textFieldCellIdentifire)
@@ -121,9 +121,26 @@ extension CreateCountVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView,
+                   editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        guard indexPath.section == 2, indexPath.row != 0 else { return .none }
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            names.remove(at: indexPath.row - 1)
+            tableView.beginUpdates()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView()
-        header.backgroundColor = .systemGray4
+        header.backgroundColor = .systemGray6
         return header
     }
     
@@ -140,11 +157,16 @@ extension CreateCountVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+
+// MARK: - AddNamesCellDelegate
+
 extension CreateCountVC: AddNamesCellDelegate {
     func pressedAddNamesButton(name: String) {
         names.append(name)
         table.beginUpdates()
-        table.insertRows(at: [IndexPath(row: names.count, section: SectionType.names.rawValue)], with: .top)
+        table.insertRows(at: [IndexPath(row: names.count,
+                                        section: SectionType.names.rawValue)],
+                         with: .top)
         table.endUpdates()
     }
 }
