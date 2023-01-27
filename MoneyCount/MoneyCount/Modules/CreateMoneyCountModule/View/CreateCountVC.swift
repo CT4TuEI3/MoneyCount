@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol CreateCountVCDelegate: AnyObject {
+    func setInfoNewCount(title: String, discription: String)
+}
+
 final class CreateCountVC: UIViewController {
+    
+    weak var delegate: CreateCountVCDelegate?
     
     //MARK: - Private properties
     
@@ -18,6 +24,7 @@ final class CreateCountVC: UIViewController {
     private let sections = SectionType.allCases
     private var names: [String] = []
     private var titleMonyCount = ""
+    private var discriptionMoneyCount = ""
     
     
     // MARK: - UI Elements
@@ -77,7 +84,9 @@ final class CreateCountVC: UIViewController {
         let alert = UIAlertController(title: "Title", message: "Message", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel))
         if titleMonyCount != "" && !names.isEmpty {
+            navigationController?.popViewController(animated: true)
             navigationController?.pushViewController(MainMoneyCountVC(), animated: true)
+            delegate?.setInfoNewCount(title: titleMonyCount, discription: discriptionMoneyCount)
         } else {
             present(alert, animated: true)
         }
@@ -193,8 +202,14 @@ extension CreateCountVC: AddNamesCellDelegate {
 }
 
 
+//MARK: - TextFieldCellDelegate
+
 extension CreateCountVC: TextFieldCellDelegate {
     func pressedDoneBtn(title: String, text: String) {
-        titleMonyCount = text
+        if title == "Title" {
+            titleMonyCount = text
+        } else {
+            discriptionMoneyCount = text
+        }
     }
 }
