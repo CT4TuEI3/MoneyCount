@@ -14,8 +14,13 @@ final class MainMoneyCountVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"),
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(pressedBtn))
         
     }
     
-    
+    @objc func pressedBtn(){
+            }
 }

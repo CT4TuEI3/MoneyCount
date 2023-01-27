@@ -19,6 +19,8 @@ final class MainViewController: UIViewController {
     private let moneyCountTableView = UITableView()
     private let mainButton = UIButton()
     private let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    var moneyCountTitle = "Title"
+    var moneyCountDiscription = "Discription"
     
     
     // MARK: - Life Cycle
@@ -73,7 +75,9 @@ final class MainViewController: UIViewController {
     }
     
     private func pressedCreateButton() {
-        navigationController?.pushViewController(CreateCountVC(), animated: true)
+        let vc = CreateCountVC()
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func setConstraints() {
@@ -103,7 +107,17 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifire, for: indexPath) as? CustomMoneyCountCell
-        cell?.configure(title: "Title", discription: "Discription")
+        cell?.configure(title: moneyCountTitle, discription: moneyCountDiscription)
         return cell ?? UITableViewCell()
+    }
+}
+
+extension MainViewController: CreateCountVCDelegate {
+    func setInfoNewCount(title: String, discription: String) {
+        print(title, discription)
+        moneyCountTitle = title
+        moneyCountDiscription = discription
+        moneyCountTableView.reloadData()
+        
     }
 }
