@@ -36,11 +36,6 @@ final class CreateCountVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done",
-                                                            style: .done,
-                                                            target: self,
-                                                            action: #selector(pressedDoneButton))
         setupUI()
     }
     
@@ -50,6 +45,11 @@ final class CreateCountVC: UIViewController {
     private func setupUI() {
         title = "Create MoneyCount"
         view.backgroundColor = .systemBackground
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done",
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(pressedDoneButton))
+        navigationItem.rightBarButtonItem?.isEnabled = false
         view.addSubview(table)
         settingsTableView()
         setConstraints()
@@ -81,15 +81,7 @@ final class CreateCountVC: UIViewController {
     
     @objc
     private func pressedDoneButton() {
-        let alert = UIAlertController(title: "Title", message: "Message", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
-        if titleMonyCount != "" && !names.isEmpty {
-            navigationController?.popViewController(animated: true)
-            navigationController?.pushViewController(MainMoneyCountVC(), animated: true)
-            delegate?.setInfoNewCount(title: titleMonyCount, discription: discriptionMoneyCount)
-        } else {
-            present(alert, animated: true)
-        }
+        navigationController?.pushViewController(MainMoneyCountVC(), animated: true)
     }
 }
 
@@ -165,6 +157,12 @@ extension CreateCountVC: UITableViewDelegate, UITableViewDataSource {
             tableView.beginUpdates()
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
+            if !titleMonyCount.isEmpty && !names.isEmpty {
+                navigationItem.rightBarButtonItem?.isEnabled = true
+            } else {
+                navigationItem.rightBarButtonItem?.isEnabled = false
+            }
+            
         }
     }
     
@@ -198,6 +196,12 @@ extension CreateCountVC: AddNamesCellDelegate {
                                         section: SectionType.names.rawValue)],
                          with: .top)
         table.endUpdates()
+        if !titleMonyCount.isEmpty {
+            navigationItem.rightBarButtonItem?.isEnabled = true
+        } else {
+            navigationItem.rightBarButtonItem?.isEnabled = false
+        }
+        
     }
 }
 
@@ -211,5 +215,11 @@ extension CreateCountVC: TextFieldCellDelegate {
         } else {
             discriptionMoneyCount = text
         }
+        if !titleMonyCount.isEmpty && !names.isEmpty {
+            navigationItem.rightBarButtonItem?.isEnabled = true
+        } else {
+            navigationItem.rightBarButtonItem?.isEnabled = false
+        }
     }
 }
+
