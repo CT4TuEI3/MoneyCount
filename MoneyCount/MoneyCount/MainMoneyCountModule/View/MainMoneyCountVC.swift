@@ -22,5 +22,6 @@ final class MainMoneyCountVC: UIViewController {
     }
     
     @objc func pressedBtn(){
-            }
+        navigationController?.pushViewController(MainViewController(), animated: true)
+    }
 }
