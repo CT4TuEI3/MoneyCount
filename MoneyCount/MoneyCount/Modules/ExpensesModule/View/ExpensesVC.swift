@@ -9,6 +9,11 @@ import UIKit
 
 final class ExpensesVC: UIViewController {
     
+    // MARK: - Private propertyes
+    
+    private let expensesIdentifire = "expensesIdentifire"
+    
+    
     // MARK: - UI Elements
     
     private let expensesTableView = UITableView()
@@ -19,7 +24,7 @@ final class ExpensesVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemPink
+        view.backgroundColor = .systemBackground
         setupUI()
         searchBarSettings()
         settingsTableView()
@@ -39,6 +44,8 @@ final class ExpensesVC: UIViewController {
         expensesSearchBar.translatesAutoresizingMaskIntoConstraints = false
         expensesTableView.delegate = self
         expensesTableView.dataSource = self
+        expensesTableView.rowHeight = 64
+        expensesTableView.register(ExpensesCell.self, forCellReuseIdentifier: expensesIdentifire)
     }
     
     private func searchBarSettings() {
@@ -73,12 +80,12 @@ extension ExpensesVC: UISearchBarDelegate {
 
 extension ExpensesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
+        1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.backgroundColor = .green
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: expensesIdentifire,
+                                                 for: indexPath) as? ExpensesCell
+        return cell ?? UITableViewCell()
     }
 }
