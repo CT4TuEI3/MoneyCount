@@ -30,13 +30,12 @@ final class MainMoneyCountVC: UITabBarController {
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(pressedBtn))
-        
     }
     
     private func settingsTabBar() {
         tabBar.backgroundColor = .systemGray4
         tabBar.barStyle = .default
-        let expensesVC = UIViewController()
+        let expensesVC = ExpensesVC()
         expensesVC.view.backgroundColor = .systemGray5
         
         let item = UITabBarItem(title: "Expenses",

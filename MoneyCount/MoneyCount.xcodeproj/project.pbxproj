@@ -14,6 +14,7 @@
 		326AB91F2976EF46005EB02D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326AB91E2976EF46005EB02D /* MainViewController.swift */; };
 		326AB9242976EF48005EB02D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 326AB9232976EF48005EB02D /* Assets.xcassets */; };
 		326AB9272976EF48005EB02D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 326AB9252976EF48005EB02D /* LaunchScreen.storyboard */; };
+		32737DF82987F72A00819369 /* ExpensesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32737DF72987F72A00819369 /* ExpensesVC.swift */; };
 		32748CA229830EEB002CCCB3 /* MainMoneyCountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32748CA129830EEB002CCCB3 /* MainMoneyCountVC.swift */; };
 		3287BE6E297A93B1001D3920 /* CustomMoneyCountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3287BE6D297A93B1001D3920 /* CustomMoneyCountCell.swift */; };
 		32DBBB64297C632200ECC129 /* SelectCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DBBB63297C632200ECC129 /* SelectCurrencyViewController.swift */; };
@@ -35,6 +36,7 @@
 		326AB9232976EF48005EB02D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		326AB9262976EF48005EB02D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		326AB9282976EF48005EB02D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		32737DF72987F72A00819369 /* ExpensesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesVC.swift; sourceTree = "<group>"; };
 		32748CA129830EEB002CCCB3 /* MainMoneyCountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMoneyCountVC.swift; sourceTree = "<group>"; };
 		3287BE6D297A93B1001D3920 /* CustomMoneyCountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMoneyCountCell.swift; sourceTree = "<group>"; };
 		32DBBB63297C632200ECC129 /* SelectCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 		32530F04297D601000E1662A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				32737DF52987F6E200819369 /* ExpensesModule */,
 				32748C9F29830E22002CCCB3 /* MainMoneyCountModule */,
 				32530EF9297D5E7100E1662A /* MainModule */,
 				32530EFE297D5F3C00E1662A /* CreateMoneyCountModule */,
@@ -188,6 +191,22 @@
 				326AB9282976EF48005EB02D /* Info.plist */,
 			);
 			path = MoneyCount;
+			sourceTree = "<group>";
+		};
+		32737DF52987F6E200819369 /* ExpensesModule */ = {
+			isa = PBXGroup;
+			children = (
+				32737DF62987F71100819369 /* View */,
+			);
+			path = ExpensesModule;
+			sourceTree = "<group>";
+		};
+		32737DF62987F71100819369 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				32737DF72987F72A00819369 /* ExpensesVC.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		32748C9F29830E22002CCCB3 /* MainMoneyCountModule */ = {
@@ -298,6 +317,7 @@
 				3287BE6E297A93B1001D3920 /* CustomMoneyCountCell.swift in Sources */,
 				32F8F884298196940043AED3 /* NamesCell.swift in Sources */,
 				326AB91B2976EF46005EB02D /* AppDelegate.swift in Sources */,
+				32737DF82987F72A00819369 /* ExpensesVC.swift in Sources */,
 				32DBBB64297C632200ECC129 /* SelectCurrencyViewController.swift in Sources */,
 				32E0B213297E9B5C00EA5A9D /* SelectCurrencyCell.swift in Sources */,
 				32E0B2182980562400EA5A9D /* CreateMoneyCountEntity.swift in Sources */,
