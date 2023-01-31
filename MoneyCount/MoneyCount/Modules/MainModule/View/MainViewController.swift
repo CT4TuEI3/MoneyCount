@@ -55,7 +55,7 @@ final class MainViewController: UIViewController {
     
     private func settingNavigationBar() {
         title = "MoneyCount"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus.circle"),
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"),
                                                             style: .plain,
                                                             target: self,
                                                             action: #selector(pressedPlusButton))
@@ -113,11 +113,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MainViewController: CreateCountVCDelegate {
-    func setInfoNewCount(title: String, discription: String) {
-        print(title, discription)
+    func setInfoNewCount(title: String, discription: String, names: [String]) {
         moneyCountTitle = title
         moneyCountDiscription = discription
         moneyCountTableView.reloadData()
-        
     }
 }

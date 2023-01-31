@@ -14,7 +14,7 @@ final class ExpensesCell: UITableViewCell {
     private let titleExpensesLabel = UILabel()
     private let paidNameExpensesLabel = UILabel()
     private let dateExpensesLabel = UILabel()
-    private let sumExpensesLabel = UILabel()
+    private let amountExpensesLabel = UILabel()
     
     
     //MARK: - Life cycle
@@ -22,7 +22,7 @@ final class ExpensesCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
-        settingsLabel()
+        settingsLabels()
         setConstraints()
     }
 
@@ -37,19 +37,19 @@ final class ExpensesCell: UITableViewCell {
         addSubview(titleExpensesLabel)
         addSubview(paidNameExpensesLabel)
         addSubview(dateExpensesLabel)
-        addSubview(sumExpensesLabel)
+        addSubview(amountExpensesLabel)
     }
     
-    private func settingsLabel() {
+    private func settingsLabels() {
         titleExpensesLabel.translatesAutoresizingMaskIntoConstraints = false
         paidNameExpensesLabel.translatesAutoresizingMaskIntoConstraints = false
         dateExpensesLabel.translatesAutoresizingMaskIntoConstraints = false
-        sumExpensesLabel.translatesAutoresizingMaskIntoConstraints = false
+        amountExpensesLabel.translatesAutoresizingMaskIntoConstraints = false
         
         titleExpensesLabel.text = "Pomelo"
         paidNameExpensesLabel.text = "Valeri"
         dateExpensesLabel.text = "30.01"
-        sumExpensesLabel.text = "10 TL"
+        amountExpensesLabel.text = "10 TL"
         
         titleExpensesLabel.textColor = .tintColor
         
@@ -59,7 +59,7 @@ final class ExpensesCell: UITableViewCell {
         dateExpensesLabel.font = UIFont.systemFont(ofSize: 16)
         dateExpensesLabel.textColor = .gray
         
-        sumExpensesLabel.textColor = .tintColor
+        amountExpensesLabel.textColor = .tintColor
     }
     
     private func setConstraints() {
@@ -67,14 +67,16 @@ final class ExpensesCell: UITableViewCell {
             titleExpensesLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             titleExpensesLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             
+            paidNameExpensesLabel.topAnchor.constraint(equalTo: titleExpensesLabel.bottomAnchor, constant: 8),
             paidNameExpensesLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             paidNameExpensesLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             
+            dateExpensesLabel.topAnchor.constraint(equalTo: amountExpensesLabel.bottomAnchor, constant: 8),
             dateExpensesLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             dateExpensesLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
 
-            sumExpensesLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            sumExpensesLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
+            amountExpensesLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            amountExpensesLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
         ])
     }
 }

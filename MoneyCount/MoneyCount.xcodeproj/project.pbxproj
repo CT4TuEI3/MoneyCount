@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		321CE50A2989222600C438CA /* AddExpenseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321CE5092989222600C438CA /* AddExpenseVC.swift */; };
+		321CE50D2989285F00C438CA /* TitleExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321CE50C2989285F00C438CA /* TitleExpenseCell.swift */; };
+		321CE50F29892EDB00C438CA /* AmountExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321CE50E29892EDB00C438CA /* AmountExpenseCell.swift */; };
+		321CE5112989318E00C438CA /* DateExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321CE5102989318E00C438CA /* DateExpenseCell.swift */; };
+		321CE5132989328C00C438CA /* NamePaidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321CE5122989328C00C438CA /* NamePaidCell.swift */; };
+		321CE5152989331300C438CA /* AddExpenseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321CE5142989331300C438CA /* AddExpenseEntity.swift */; };
 		32530EF6297D4F0700E1662A /* CustomCurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32530EF5297D4F0700E1662A /* CustomCurrencyCell.swift */; };
 		32530EF8297D5BF500E1662A /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32530EF7297D5BF500E1662A /* CurrencyModel.swift */; };
 		326AB91B2976EF46005EB02D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326AB91A2976EF46005EB02D /* AppDelegate.swift */; };
@@ -28,6 +34,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		321CE5092989222600C438CA /* AddExpenseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseVC.swift; sourceTree = "<group>"; };
+		321CE50C2989285F00C438CA /* TitleExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleExpenseCell.swift; sourceTree = "<group>"; };
+		321CE50E29892EDB00C438CA /* AmountExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountExpenseCell.swift; sourceTree = "<group>"; };
+		321CE5102989318E00C438CA /* DateExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExpenseCell.swift; sourceTree = "<group>"; };
+		321CE5122989328C00C438CA /* NamePaidCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamePaidCell.swift; sourceTree = "<group>"; };
+		321CE5142989331300C438CA /* AddExpenseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseEntity.swift; sourceTree = "<group>"; };
 		32530EF5297D4F0700E1662A /* CustomCurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCurrencyCell.swift; sourceTree = "<group>"; };
 		32530EF7297D5BF500E1662A /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
 		326AB9172976EF46005EB02D /* MoneyCount.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyCount.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,6 +73,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		321CE507298921F300C438CA /* AddExpensModule */ = {
+			isa = PBXGroup;
+			children = (
+				321CE5142989331300C438CA /* AddExpenseEntity.swift */,
+				321CE5082989220F00C438CA /* View */,
+				321CE50B2989264F00C438CA /* Cell */,
+			);
+			path = AddExpensModule;
+			sourceTree = "<group>";
+		};
+		321CE5082989220F00C438CA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				321CE5092989222600C438CA /* AddExpenseVC.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		321CE50B2989264F00C438CA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				321CE50C2989285F00C438CA /* TitleExpenseCell.swift */,
+				321CE50E29892EDB00C438CA /* AmountExpenseCell.swift */,
+				321CE5102989318E00C438CA /* DateExpenseCell.swift */,
+				321CE5122989328C00C438CA /* NamePaidCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		32530EF9297D5E7100E1662A /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +182,7 @@
 		32530F04297D601000E1662A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				321CE507298921F300C438CA /* AddExpensModule */,
 				32737DF52987F6E200819369 /* ExpensesModule */,
 				32748C9F29830E22002CCCB3 /* MainMoneyCountModule */,
 				32530EF9297D5E7100E1662A /* MainModule */,
@@ -325,15 +367,21 @@
 				32E0B211297E8D2800EA5A9D /* CreateCountVC.swift in Sources */,
 				326AB91F2976EF46005EB02D /* MainViewController.swift in Sources */,
 				32530EF8297D5BF500E1662A /* CurrencyModel.swift in Sources */,
+				321CE50F29892EDB00C438CA /* AmountExpenseCell.swift in Sources */,
 				3287BE6E297A93B1001D3920 /* CustomMoneyCountCell.swift in Sources */,
 				32737DFC29881CEE00819369 /* ExpensesCell.swift in Sources */,
 				32F8F884298196940043AED3 /* NamesCell.swift in Sources */,
 				326AB91B2976EF46005EB02D /* AppDelegate.swift in Sources */,
 				32737DF82987F72A00819369 /* ExpensesVC.swift in Sources */,
 				32DBBB64297C632200ECC129 /* SelectCurrencyViewController.swift in Sources */,
+				321CE50D2989285F00C438CA /* TitleExpenseCell.swift in Sources */,
 				32E0B213297E9B5C00EA5A9D /* SelectCurrencyCell.swift in Sources */,
 				32E0B2182980562400EA5A9D /* CreateMoneyCountEntity.swift in Sources */,
+				321CE5152989331300C438CA /* AddExpenseEntity.swift in Sources */,
 				326AB91D2976EF46005EB02D /* SceneDelegate.swift in Sources */,
+				321CE5112989318E00C438CA /* DateExpenseCell.swift in Sources */,
+				321CE50A2989222600C438CA /* AddExpenseVC.swift in Sources */,
+				321CE5132989328C00C438CA /* NamePaidCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
