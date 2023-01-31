@@ -8,12 +8,13 @@
 import UIKit
 
 protocol CreateCountVCDelegate: AnyObject {
-    func setInfoNewCount(title: String, discription: String)
+    func setInfoNewCount(title: String, discription: String, names: [String])
 }
 
 final class CreateCountVC: UIViewController {
     
     weak var delegate: CreateCountVCDelegate?
+    
     
     //MARK: - Private properties
     
@@ -81,7 +82,7 @@ final class CreateCountVC: UIViewController {
     
     @objc
     private func pressedDoneButton() {
-        navigationController?.pushViewController(MainMoneyCountVC(), animated: true)
+        navigationController?.pushViewController(MainMoneyCountVC(names: names), animated: true)
     }
 }
 
@@ -201,7 +202,6 @@ extension CreateCountVC: AddNamesCellDelegate {
         } else {
             navigationItem.rightBarButtonItem?.isEnabled = false
         }
-        
     }
 }
 

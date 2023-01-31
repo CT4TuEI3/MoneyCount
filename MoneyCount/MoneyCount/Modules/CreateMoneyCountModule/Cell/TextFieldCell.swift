@@ -11,7 +11,7 @@ protocol TextFieldCellDelegate: AnyObject {
     func pressedDoneBtn(title: String, text: String)
 }
 
-class TextFieldCell: UITableViewCell {
+final class TextFieldCell: UITableViewCell {
     
     weak var delegate: TextFieldCellDelegate?
     private var title: String = ""
@@ -48,15 +48,11 @@ class TextFieldCell: UITableViewCell {
     
     private func setupUI() {
         contentView.addSubview(titleMCTextField)
-        settingsTextFields()
         setConstraints()
     }
     
-    private func settingsTextFields(){
-        titleMCTextField.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
     private func setConstraints() {
+        titleMCTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             titleMCTextField.centerYAnchor.constraint(equalTo: centerYAnchor),
             titleMCTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),

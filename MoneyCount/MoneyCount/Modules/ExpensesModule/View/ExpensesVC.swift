@@ -24,7 +24,6 @@ final class ExpensesVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
         setupUI()
         searchBarSettings()
         settingsTableView()
@@ -41,14 +40,13 @@ final class ExpensesVC: UIViewController {
     
     private func settingsTableView() {
         expensesTableView.translatesAutoresizingMaskIntoConstraints = false
-        expensesSearchBar.translatesAutoresizingMaskIntoConstraints = false
         expensesTableView.delegate = self
         expensesTableView.dataSource = self
-        expensesTableView.rowHeight = 64
         expensesTableView.register(ExpensesCell.self, forCellReuseIdentifier: expensesIdentifire)
     }
     
     private func searchBarSettings() {
+        expensesSearchBar.translatesAutoresizingMaskIntoConstraints = false
         expensesSearchBar.delegate = self
     }
     
@@ -61,7 +59,7 @@ final class ExpensesVC: UIViewController {
             expensesTableView.topAnchor.constraint(equalTo: expensesSearchBar.bottomAnchor),
             expensesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             expensesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            expensesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40)
+            expensesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
@@ -71,7 +69,7 @@ final class ExpensesVC: UIViewController {
 
 extension ExpensesVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        
     }
 }
 
@@ -80,7 +78,7 @@ extension ExpensesVC: UISearchBarDelegate {
 
 extension ExpensesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        100
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
