@@ -17,13 +17,15 @@
 		32530EF8297D5BF500E1662A /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32530EF7297D5BF500E1662A /* CurrencyModel.swift */; };
 		326AB91B2976EF46005EB02D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326AB91A2976EF46005EB02D /* AppDelegate.swift */; };
 		326AB91D2976EF46005EB02D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326AB91C2976EF46005EB02D /* SceneDelegate.swift */; };
-		326AB91F2976EF46005EB02D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326AB91E2976EF46005EB02D /* MainViewController.swift */; };
+		326AB91F2976EF46005EB02D /* StartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326AB91E2976EF46005EB02D /* StartVC.swift */; };
 		326AB9242976EF48005EB02D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 326AB9232976EF48005EB02D /* Assets.xcassets */; };
 		326AB9272976EF48005EB02D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 326AB9252976EF48005EB02D /* LaunchScreen.storyboard */; };
 		32737DF82987F72A00819369 /* ExpensesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32737DF72987F72A00819369 /* ExpensesVC.swift */; };
 		32737DFC29881CEE00819369 /* ExpensesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32737DFB29881CEE00819369 /* ExpensesCell.swift */; };
 		32748CA229830EEB002CCCB3 /* MainMoneyCountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32748CA129830EEB002CCCB3 /* MainMoneyCountVC.swift */; };
 		3287BE6E297A93B1001D3920 /* CustomMoneyCountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3287BE6D297A93B1001D3920 /* CustomMoneyCountCell.swift */; };
+		32D45F0A298A8A1100AD6756 /* BalancesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D45F09298A8A1100AD6756 /* BalancesVC.swift */; };
+		32D45F0D298A9D4F00AD6756 /* BalacesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D45F0C298A9D4F00AD6756 /* BalacesCell.swift */; };
 		32DBBB64297C632200ECC129 /* SelectCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DBBB63297C632200ECC129 /* SelectCurrencyViewController.swift */; };
 		32E0B211297E8D2800EA5A9D /* CreateCountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E0B210297E8D2800EA5A9D /* CreateCountVC.swift */; };
 		32E0B213297E9B5C00EA5A9D /* SelectCurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E0B212297E9B5C00EA5A9D /* SelectCurrencyCell.swift */; };
@@ -45,7 +47,7 @@
 		326AB9172976EF46005EB02D /* MoneyCount.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyCount.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		326AB91A2976EF46005EB02D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		326AB91C2976EF46005EB02D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		326AB91E2976EF46005EB02D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		326AB91E2976EF46005EB02D /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
 		326AB9232976EF48005EB02D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		326AB9262976EF48005EB02D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		326AB9282976EF48005EB02D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,6 +55,8 @@
 		32737DFB29881CEE00819369 /* ExpensesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesCell.swift; sourceTree = "<group>"; };
 		32748CA129830EEB002CCCB3 /* MainMoneyCountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMoneyCountVC.swift; sourceTree = "<group>"; };
 		3287BE6D297A93B1001D3920 /* CustomMoneyCountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMoneyCountCell.swift; sourceTree = "<group>"; };
+		32D45F09298A8A1100AD6756 /* BalancesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalancesVC.swift; sourceTree = "<group>"; };
+		32D45F0C298A9D4F00AD6756 /* BalacesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalacesCell.swift; sourceTree = "<group>"; };
 		32DBBB63297C632200ECC129 /* SelectCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyViewController.swift; sourceTree = "<group>"; };
 		32E0B210297E8D2800EA5A9D /* CreateCountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCountVC.swift; sourceTree = "<group>"; };
 		32E0B212297E9B5C00EA5A9D /* SelectCurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyCell.swift; sourceTree = "<group>"; };
@@ -102,18 +106,18 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		32530EF9297D5E7100E1662A /* MainModule */ = {
+		32530EF9297D5E7100E1662A /* StartModule */ = {
 			isa = PBXGroup;
 			children = (
 				32530EFC297D5ED600E1662A /* View */,
 			);
-			path = MainModule;
+			path = StartModule;
 			sourceTree = "<group>";
 		};
 		32530EFC297D5ED600E1662A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				326AB91E2976EF46005EB02D /* MainViewController.swift */,
+				326AB91E2976EF46005EB02D /* StartVC.swift */,
 				32530EFD297D5F0C00E1662A /* Cell */,
 			);
 			path = View;
@@ -182,12 +186,13 @@
 		32530F04297D601000E1662A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				321CE507298921F300C438CA /* AddExpensModule */,
-				32737DF52987F6E200819369 /* ExpensesModule */,
-				32748C9F29830E22002CCCB3 /* MainMoneyCountModule */,
-				32530EF9297D5E7100E1662A /* MainModule */,
+				32530EF9297D5E7100E1662A /* StartModule */,
 				32530EFE297D5F3C00E1662A /* CreateMoneyCountModule */,
 				32530F00297D5F8F00E1662A /* SelectCurrncyModule */,
+				32748C9F29830E22002CCCB3 /* MainMoneyCountModule */,
+				32737DF52987F6E200819369 /* ExpensesModule */,
+				321CE507298921F300C438CA /* AddExpensModule */,
+				32D45F07298A899700AD6756 /* BalancesModule */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -279,6 +284,31 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		32D45F07298A899700AD6756 /* BalancesModule */ = {
+			isa = PBXGroup;
+			children = (
+				32D45F08298A89B500AD6756 /* View */,
+				32D45F0B298A9C9500AD6756 /* Cell */,
+			);
+			path = BalancesModule;
+			sourceTree = "<group>";
+		};
+		32D45F08298A89B500AD6756 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				32D45F09298A8A1100AD6756 /* BalancesVC.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		32D45F0B298A9C9500AD6756 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				32D45F0C298A9D4F00AD6756 /* BalacesCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		32E0B214297E9B6600EA5A9D /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,15 +395,17 @@
 				32748CA229830EEB002CCCB3 /* MainMoneyCountVC.swift in Sources */,
 				32F8F882298144490043AED3 /* AddNamesCell.swift in Sources */,
 				32E0B211297E8D2800EA5A9D /* CreateCountVC.swift in Sources */,
-				326AB91F2976EF46005EB02D /* MainViewController.swift in Sources */,
+				326AB91F2976EF46005EB02D /* StartVC.swift in Sources */,
 				32530EF8297D5BF500E1662A /* CurrencyModel.swift in Sources */,
 				321CE50F29892EDB00C438CA /* AmountExpenseCell.swift in Sources */,
+				32D45F0A298A8A1100AD6756 /* BalancesVC.swift in Sources */,
 				3287BE6E297A93B1001D3920 /* CustomMoneyCountCell.swift in Sources */,
 				32737DFC29881CEE00819369 /* ExpensesCell.swift in Sources */,
 				32F8F884298196940043AED3 /* NamesCell.swift in Sources */,
 				326AB91B2976EF46005EB02D /* AppDelegate.swift in Sources */,
 				32737DF82987F72A00819369 /* ExpensesVC.swift in Sources */,
 				32DBBB64297C632200ECC129 /* SelectCurrencyViewController.swift in Sources */,
+				32D45F0D298A9D4F00AD6756 /* BalacesCell.swift in Sources */,
 				321CE50D2989285F00C438CA /* TitleExpenseCell.swift in Sources */,
 				32E0B213297E9B5C00EA5A9D /* SelectCurrencyCell.swift in Sources */,
 				32E0B2182980562400EA5A9D /* CreateMoneyCountEntity.swift in Sources */,

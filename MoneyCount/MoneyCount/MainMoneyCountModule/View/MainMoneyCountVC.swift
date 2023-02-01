@@ -56,7 +56,7 @@ final class MainMoneyCountVC: UITabBarController {
                                 image: UIImage(systemName: "doc.text"),
                                 selectedImage: nil)
         expensesVC.tabBarItem = item
-        let balancesVC = UIViewController()
+        let balancesVC = BalancesVC()
         let itemsec = UITabBarItem(title: "Balances",
                                    image: UIImage(systemName: "arrow.left.arrow.right"),
                                    selectedImage: nil)
@@ -69,7 +69,7 @@ final class MainMoneyCountVC: UITabBarController {
     
     @objc
     private func pressedBtn(){
-        navigationController?.pushViewController(MainViewController(), animated: true)
+        navigationController?.pushViewController(StartVC(), animated: true)
     }
     
     @objc

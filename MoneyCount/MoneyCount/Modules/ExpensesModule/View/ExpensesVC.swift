@@ -42,6 +42,7 @@ final class ExpensesVC: UIViewController {
         expensesTableView.translatesAutoresizingMaskIntoConstraints = false
         expensesTableView.delegate = self
         expensesTableView.dataSource = self
+        expensesTableView.keyboardDismissMode = .onDrag
         expensesTableView.register(ExpensesCell.self, forCellReuseIdentifier: expensesIdentifire)
     }
     
@@ -78,7 +79,7 @@ extension ExpensesVC: UISearchBarDelegate {
 
 extension ExpensesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        100
+        1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

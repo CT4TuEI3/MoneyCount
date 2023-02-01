@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MainViewController: UIViewController {
+final class StartVC: UIViewController {
     
     // MARK: - Private propertyes
     
@@ -100,7 +100,7 @@ final class MainViewController: UIViewController {
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
-extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+extension StartVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -112,7 +112,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension MainViewController: CreateCountVCDelegate {
+extension StartVC: CreateCountVCDelegate {
     func setInfoNewCount(title: String, discription: String, names: [String]) {
         moneyCountTitle = title
         moneyCountDiscription = discription
