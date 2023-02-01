@@ -9,8 +9,12 @@ enum AddExpenseSectionType: CaseIterable {
     /// Наименование расхода
     case title
     
-    /// 
+    ///  Сумма расхода
     case amount
+    
+    /// Дата расхода
     case date
+    
+    /// Имя платившего
     case name
 }
