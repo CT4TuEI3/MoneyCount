@@ -21,7 +21,10 @@ final class SelectCurrencyViewController: UIViewController {
     private let currencyCellIdentifier = "currencyCell"
     private let currencyArray = [CurrencyModel(shortName: "RUB", fullName: "Russian ruble"),
                                  CurrencyModel(shortName: "USD", fullName: "US Dollar"),
-                                 CurrencyModel(shortName: "EUR", fullName: "Euro")]
+                                 CurrencyModel(shortName: "EUR", fullName: "Euro"),
+                                 CurrencyModel(shortName: "GBR", fullName: "British pounds"),
+                                 CurrencyModel(shortName: "TL", fullName: "Turkish Lira")]
+    private var filtredData = [CurrencyModel]()
     
     
     //MARK: - UI elements
@@ -50,6 +53,7 @@ final class SelectCurrencyViewController: UIViewController {
     }
     
     private func settingsSearchbar() {
+        filtredData = currencyArray
         searchBarCurrency.translatesAutoresizingMaskIntoConstraints = false
         searchBarCurrency.delegate = self
     }
@@ -76,32 +80,44 @@ final class SelectCurrencyViewController: UIViewController {
 }
 
 
-//MARK: - UISearchBarDelegate
-
-extension SelectCurrencyViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
-    }
-}
-
-
 //MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension SelectCurrencyViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        currencyArray.count
+        filtredData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: currencyCellIdentifier,
                                                  for: indexPath) as? CustomCurrencyCell
-        cell?.configure(shortName: currencyArray[indexPath.row].shortName,
-                        fullName: currencyArray[indexPath.row].fullName)
+        cell?.configure(shortName: filtredData[indexPath.row].shortName,
+                        fullName: filtredData[indexPath.row].fullName)
         return cell ?? UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.selectedCurrency(currencyArray[indexPath.row])
         navigationController?.popViewController(animated: true)
+    }
+}
+
+
+//MARK: - UISearchBarDelegate
+
+extension SelectCurrencyViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filtredData = []
+        
+        if searchText == "" {
+            filtredData = currencyArray
+        }
+        
+        for word in currencyArray {
+            if word.fullName.lowercased().contains(searchText.lowercased()) ||
+                word.shortName.lowercased().contains(searchText.lowercased()) {
+                filtredData.append(word)
+            }
+        }
+        self.currencyTableView.reloadData()
     }
 }
