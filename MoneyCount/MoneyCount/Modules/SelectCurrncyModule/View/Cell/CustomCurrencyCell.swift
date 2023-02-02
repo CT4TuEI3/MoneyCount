@@ -12,7 +12,7 @@ final class CustomCurrencyCell: UITableViewCell {
     //MARK: - UI Elements
     
     private let currencyBoldLabel = UILabel()
-    private let currencyNormalFullLabel = UILabel()
+     let currencyNormalFullLabel = UILabel()
     
     
     //MARK: - Life Cycle
