@@ -7,7 +7,16 @@
 
 import UIKit
 
+protocol BalancesVCDelegate: AnyObject {
+    func updateNavBar()
+}
+
 final class BalancesVC: UIViewController {
+    
+    // MARK: - Internal propertyes
+    
+    weak var delegate: BalancesVCDelegate?
+    
     
     // MARK: - Private propertyes
 
@@ -26,6 +35,11 @@ final class BalancesVC: UIViewController {
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        delegate?.updateNavBar()
+    }
+    
     
     // MARK: - Private Methods
 
@@ -34,7 +48,6 @@ final class BalancesVC: UIViewController {
         view.addSubview(balanceNamesTable)
         settingsTable()
         setConstraints()
-        
     }
     
     private func settingsTable() {

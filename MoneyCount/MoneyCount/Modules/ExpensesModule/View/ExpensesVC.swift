@@ -7,7 +7,16 @@
 
 import UIKit
 
+protocol ExpensesVCDelegate: AnyObject {
+    func updatedNavBarBtn()
+}
+
 final class ExpensesVC: UIViewController {
+    
+    // MARK: - Internal propertyes
+    
+    weak var delegate: ExpensesVCDelegate?
+    
     
     // MARK: - Private propertyes
     
@@ -30,6 +39,11 @@ final class ExpensesVC: UIViewController {
         setConstrains()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        delegate?.updatedNavBarBtn()
+    }
+    
     
     // MARK: - Private Methods
     
@@ -43,6 +57,7 @@ final class ExpensesVC: UIViewController {
         expensesTableView.delegate = self
         expensesTableView.dataSource = self
         expensesTableView.keyboardDismissMode = .onDrag
+        expensesTableView.backgroundColor = .systemGray6
         expensesTableView.register(ExpensesCell.self, forCellReuseIdentifier: expensesIdentifire)
     }
     
