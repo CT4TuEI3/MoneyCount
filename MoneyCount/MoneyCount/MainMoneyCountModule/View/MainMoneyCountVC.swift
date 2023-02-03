@@ -9,7 +9,10 @@ import UIKit
 
 final class MainMoneyCountVC: UITabBarController {
     
-    let names: [String]
+    // MARK: - Private propertyes
+    
+    private let names: [String]
+    
     
     // MARK: - Life Cycle
     
@@ -41,22 +44,20 @@ final class MainMoneyCountVC: UITabBarController {
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(pressedBtn))
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"),
-                                                            style: .plain,
-                                                            target: self,
-                                                            action: #selector(pressedAddExpensButton))
     }
     
     private func settingsTabBar() {
         tabBar.backgroundColor = .systemBackground
         tabBar.barStyle = .default
         let expensesVC = ExpensesVC()
+        expensesVC.delegate = self
         let item = UITabBarItem(title: "Expenses",
                                 image: UIImage(systemName: "doc.text"),
                                 selectedImage: nil)
         expensesVC.tabBarItem = item
+        
         let balancesVC = BalancesVC()
+        balancesVC.delegate = self
         let itemsec = UITabBarItem(title: "Balances",
                                    image: UIImage(systemName: "arrow.left.arrow.right"),
                                    selectedImage: nil)
@@ -76,6 +77,33 @@ final class MainMoneyCountVC: UITabBarController {
     private func pressedAddExpensButton() {
         navigationController?.pushViewController(AddExpenseVC(names: names), animated: true)
     }
+    
+    @objc
+    private func pressedBtnBalance() {
+        
+    }
 }
 
 
+//MARK: - ExpensesVCDelegate
+
+extension MainMoneyCountVC: ExpensesVCDelegate {
+    func updatedNavBarBtn() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"),
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(pressedAddExpensButton))
+    }
+}
+
+
+//MARK: - BalancesVCDelegate
+
+extension MainMoneyCountVC: BalancesVCDelegate {
+    func updateNavBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"),
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(pressedBtnBalance))
+    }
+}
