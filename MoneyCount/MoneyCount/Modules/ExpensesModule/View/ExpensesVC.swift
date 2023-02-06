@@ -102,4 +102,8 @@ extension ExpensesVC: UITableViewDelegate, UITableViewDataSource {
                                                  for: indexPath) as? ExpensesCell
         return cell ?? UITableViewCell()
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        navigationController?.pushViewController(CardExpense(), animated: true)
+    }
 }
