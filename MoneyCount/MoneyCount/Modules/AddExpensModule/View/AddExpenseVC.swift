@@ -116,9 +116,19 @@ extension AddExpenseVC: UITableViewDelegate, UITableViewDataSource {
             case .name:
                 let cell = addExpenseTable.dequeueReusableCell(withIdentifier: paidNameExpenseIdentifire,
                                                                for: indexPath) as? NamePaidCell
-                cell?.accessoryType = .checkmark
                 cell?.configure(textLabel: names[indexPath.row])
                 return cell ?? UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cellForSection = sections[indexPath.section]
+        if cellForSection == .name {
+            if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark {
+                tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
+            } else {
+                tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+            }
         }
     }
     

@@ -27,7 +27,7 @@ final class SelectCurrencyViewController: UIViewController {
                                  CurrencyModel(shortName: "CHF", fullName: "Swiss Franc"),
                                  CurrencyModel(shortName: "CZK", fullName: "Czech Koruna"),
                                  CurrencyModel(shortName: "HKD", fullName: "Hong Kong Dollar"),
-                                 CurrencyModel(shortName: "IQDD", fullName: "Iraqi Dinar"),
+                                 CurrencyModel(shortName: "IQcheD", fullName: "Iraqi Dinar"),
                                  CurrencyModel(shortName: "JPY", fullName: "Japanese Yen"),
                                  CurrencyModel(shortName: "LKR", fullName: "Sri Lankan Rupee"),
                                  CurrencyModel(shortName: "SEK", fullName: "Swedish Krona"),
