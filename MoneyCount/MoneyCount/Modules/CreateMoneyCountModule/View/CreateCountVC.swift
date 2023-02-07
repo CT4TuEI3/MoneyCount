@@ -215,7 +215,7 @@ extension CreateCountVC: TextFieldCellDelegate {
         } else {
             discriptionMoneyCount = text
         }
-        if !titleMonyCount.isEmpty && !names.isEmpty {
+        if titleMonyCount.count != 0 && names.count != 0 {
             navigationItem.rightBarButtonItem?.isEnabled = true
         } else {
             navigationItem.rightBarButtonItem?.isEnabled = false

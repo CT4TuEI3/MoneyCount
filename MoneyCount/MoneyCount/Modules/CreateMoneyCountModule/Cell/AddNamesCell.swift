@@ -72,7 +72,8 @@ final class AddNamesCell: UITableViewCell {
     }
     
     @objc private func didPressedBtn() {
-        guard let name = addNameTextField.text, !name.isEmpty else { return }
+        guard let name = addNameTextField.text?.replacingOccurrences(of: " ", with: ""),
+                name.count != 0 else { return }
         delegate?.pressedAddNamesButton(name: name)
         addNameTextField.text = ""
     }
