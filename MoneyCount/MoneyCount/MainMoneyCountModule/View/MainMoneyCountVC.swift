@@ -35,15 +35,7 @@ final class MainMoneyCountVC: UITabBarController {
     
     private func setupUI() {
         view.backgroundColor = .systemBackground
-        settingsNavigationBar()
         settingsTabBar()
-    }
-    
-    private func settingsNavigationBar() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"),
-                                                           style: .plain,
-                                                           target: self,
-                                                           action: #selector(pressedBtn))
     }
     
     private func settingsTabBar() {
@@ -67,11 +59,6 @@ final class MainMoneyCountVC: UITabBarController {
     
     
     // MARK: - Actions
-    
-    @objc
-    private func pressedBtn(){
-        navigationController?.pushViewController(StartVC(), animated: true)
-    }
     
     @objc
     private func pressedAddExpensButton() {

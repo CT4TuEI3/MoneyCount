@@ -19,11 +19,24 @@ final class SelectCurrencyViewController: UIViewController {
     //MARK: - Private properties
     
     private let currencyCellIdentifier = "currencyCell"
-    private let currencyArray = [CurrencyModel(shortName: "RUB", fullName: "Russian ruble"),
+    private let currencyArray = [CurrencyModel(shortName: "AED", fullName: "United Arab Emirates Dirham"),
+                                 CurrencyModel(shortName: "ARS", fullName: "Argentine Peso"),
+                                 CurrencyModel(shortName: "AUD", fullName: "Australian Dollar"),
+                                 CurrencyModel(shortName: "BYN", fullName: "Belarussian Ruble"),
+                                 CurrencyModel(shortName: "CAD", fullName: "Canadian Dollar"),
+                                 CurrencyModel(shortName: "CHF", fullName: "Swiss Franc"),
+                                 CurrencyModel(shortName: "CZK", fullName: "Czech Koruna"),
+                                 CurrencyModel(shortName: "HKD", fullName: "Hong Kong Dollar"),
+                                 CurrencyModel(shortName: "IQDD", fullName: "Iraqi Dinar"),
+                                 CurrencyModel(shortName: "JPY", fullName: "Japanese Yen"),
+                                 CurrencyModel(shortName: "LKR", fullName: "Sri Lankan Rupee"),
+                                 CurrencyModel(shortName: "SEK", fullName: "Swedish Krona"),
+                                 CurrencyModel(shortName: "SGD", fullName: "Singapore Dollar"),
+                                 CurrencyModel(shortName: "RUB", fullName: "Russian ruble"),
                                  CurrencyModel(shortName: "USD", fullName: "US Dollar"),
                                  CurrencyModel(shortName: "EUR", fullName: "Euro"),
                                  CurrencyModel(shortName: "GBR", fullName: "British pounds"),
-                                 CurrencyModel(shortName: "TL", fullName: "Turkish Lira")]
+                                 CurrencyModel(shortName: "TRY", fullName: "Turkish Lira")]
     private var filtredData = [CurrencyModel]()
     
     
