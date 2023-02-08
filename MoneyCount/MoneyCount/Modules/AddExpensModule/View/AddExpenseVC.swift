@@ -62,7 +62,10 @@ final class AddExpenseVC: UIViewController {
         addExpenseTable.register(AmountExpenseCell.self, forCellReuseIdentifier: amountExpenseIdentifire)
         addExpenseTable.register(DateExpenseCell.self, forCellReuseIdentifier: dateExpenseIdentifire)
         addExpenseTable.register(NamePaidCell.self, forCellReuseIdentifier: paidNameExpenseIdentifire)
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"),
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(pressedAddExpenceBtn))
     }
     
     private func setConstraints() {
@@ -72,6 +75,12 @@ final class AddExpenseVC: UIViewController {
             addExpenseTable.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             addExpenseTable.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    
+    //MARK: - Actions
+    @objc private func pressedAddExpenceBtn() {
+        navigationController?.popViewController(animated: true)
     }
 }
 
@@ -106,6 +115,7 @@ extension AddExpenseVC: UITableViewDelegate, UITableViewDataSource {
                 let cell = addExpenseTable.dequeueReusableCell(withIdentifier: amountExpenseIdentifire,
                                                                for: indexPath) as? AmountExpenseCell
                 cell?.configure(placeholder: "Amount")
+                cell?.delegate = self
                 return cell ?? UITableViewCell()
                 
             case .date:
@@ -148,5 +158,14 @@ extension AddExpenseVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         0
+    }
+}
+
+
+//MARK: - AmountExpenseCellDelegate
+
+extension AddExpenseVC: AmountExpenseCellDelegate {
+    func pressedCurrencyBtn() {
+        navigationController?.pushViewController(SelectCurrencyViewController(), animated: true)
     }
 }
