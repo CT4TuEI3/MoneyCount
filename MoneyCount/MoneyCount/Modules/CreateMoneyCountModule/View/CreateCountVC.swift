@@ -16,7 +16,7 @@ final class CreateCountVC: UIViewController {
     weak var delegate: CreateCountVCDelegate?
     
     
-    //MARK: - Private properties
+    // MARK: - Private properties
     
     private let textFieldCellIdentifire = "textFieldCellIdentifire"
     private let selectCurrencyCellIdentifier = "selectCurrencyCellIdentifier"
@@ -26,6 +26,7 @@ final class CreateCountVC: UIViewController {
     private var names: [String] = []
     private var titleMonyCount = ""
     private var discriptionMoneyCount = ""
+    private var shortNameCurrency = ""
     
     
     // MARK: - UI Elements
@@ -33,7 +34,7 @@ final class CreateCountVC: UIViewController {
     private let table = UITableView(frame: .zero, style: .grouped)
     
     
-    //MARK: - Lifecycle
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +79,7 @@ final class CreateCountVC: UIViewController {
     }
     
     
-    //MARK: - Actions
+    // MARK: - Actions
     
     @objc
     private func pressedDoneButton() {
@@ -119,7 +120,7 @@ extension CreateCountVC: UITableViewDelegate, UITableViewDataSource {
             case .currency:
                 let cell = tableView.dequeueReusableCell(withIdentifier: selectCurrencyCellIdentifier,
                                                          for: indexPath) as? SelectCurrencyCell
-                cell?.selectionStyle = .none
+                cell?.configure(shortName: shortNameCurrency)
                 return cell ?? UITableViewCell()
                 
             case .names:
@@ -140,7 +141,9 @@ extension CreateCountVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == SectionType.currency.rawValue {
-            navigationController?.pushViewController(SelectCurrencyViewController(), animated: true)
+            let vc = SelectCurrencyViewController()
+            vc.delegate = self
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -206,7 +209,7 @@ extension CreateCountVC: AddNamesCellDelegate {
 }
 
 
-//MARK: - TextFieldCellDelegate
+// MARK: - TextFieldCellDelegate
 
 extension CreateCountVC: TextFieldCellDelegate {
     func pressedDoneBtn(title: String, text: String) {
@@ -223,3 +226,12 @@ extension CreateCountVC: TextFieldCellDelegate {
     }
 }
 
+
+// MARK: - SelectCurrencyViewControllerDelegate
+
+extension CreateCountVC: SelectCurrencyViewControllerDelegate {
+    func selectedCurrency(_ curency: CurrencyModel) {
+        shortNameCurrency = curency.shortName
+        table.reloadData()
+    }
+}
