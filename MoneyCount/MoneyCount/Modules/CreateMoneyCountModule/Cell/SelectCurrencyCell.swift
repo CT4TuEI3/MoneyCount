@@ -28,9 +28,17 @@ final class SelectCurrencyCell: UITableViewCell {
     }
     
     
+    // MARK: - Configure
+    
+    func configure(shortName: String) {
+        tintLabel.text = shortName
+    }
+    
+    
     //MARK: - Private methods
     
     private func setupUI() {
+        selectionStyle = .none
         contentView.addSubview(normalLabel)
         contentView.addSubview(tintLabel)
         contentView.addSubview(currencyImageView)
@@ -43,7 +51,7 @@ final class SelectCurrencyCell: UITableViewCell {
         tintLabel.text = "USD"
         tintLabel.textColor = .tintColor
     }
-    
+        
     private func settings() {
         normalLabel.translatesAutoresizingMaskIntoConstraints = false
         tintLabel.translatesAutoresizingMaskIntoConstraints = false

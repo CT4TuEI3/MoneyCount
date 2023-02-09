@@ -16,7 +16,7 @@ final class SelectCurrencyViewController: UIViewController {
     weak var delegate: SelectCurrencyViewControllerDelegate?
     
     
-    //MARK: - Private properties
+    // MARK: - Private properties
     
     private let currencyCellIdentifier = "currencyCell"
     private let currencyArray = [CurrencyModel(shortName: "AED", fullName: "United Arab Emirates Dirham"),
@@ -27,7 +27,7 @@ final class SelectCurrencyViewController: UIViewController {
                                  CurrencyModel(shortName: "CHF", fullName: "Swiss Franc"),
                                  CurrencyModel(shortName: "CZK", fullName: "Czech Koruna"),
                                  CurrencyModel(shortName: "HKD", fullName: "Hong Kong Dollar"),
-                                 CurrencyModel(shortName: "IQcheD", fullName: "Iraqi Dinar"),
+                                 CurrencyModel(shortName: "IQD", fullName: "Iraqi Dinar"),
                                  CurrencyModel(shortName: "JPY", fullName: "Japanese Yen"),
                                  CurrencyModel(shortName: "LKR", fullName: "Sri Lankan Rupee"),
                                  CurrencyModel(shortName: "SEK", fullName: "Swedish Krona"),
@@ -37,16 +37,16 @@ final class SelectCurrencyViewController: UIViewController {
                                  CurrencyModel(shortName: "EUR", fullName: "Euro"),
                                  CurrencyModel(shortName: "GBR", fullName: "British pounds"),
                                  CurrencyModel(shortName: "TRY", fullName: "Turkish Lira")]
-    private var filtredData = [CurrencyModel]()
+    private var filtredData: [CurrencyModel] = []
     
     
-    //MARK: - UI elements
+    // MARK: - UI elements
     
     private let currencyTableView = UITableView()
     private let searchBarCurrency = UISearchBar()
     
     
-    //MARK: - Lifecycle
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +54,7 @@ final class SelectCurrencyViewController: UIViewController {
     }
     
     
-    //MARK: - Private methods
+    // MARK: - Private methods
     
     private func setupUI() {
         view.backgroundColor = .systemBackground
@@ -93,7 +93,7 @@ final class SelectCurrencyViewController: UIViewController {
 }
 
 
-//MARK: - UITableViewDelegate, UITableViewDataSource
+// MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension SelectCurrencyViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -109,13 +109,14 @@ extension SelectCurrencyViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.selectedCurrency(currencyArray[indexPath.row])
+        delegate?.selectedCurrency(filtredData[indexPath.row])
+
         navigationController?.popViewController(animated: true)
     }
 }
 
 
-//MARK: - UISearchBarDelegate
+// MARK: - UISearchBarDelegate
 
 extension SelectCurrencyViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
