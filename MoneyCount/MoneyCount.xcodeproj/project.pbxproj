@@ -27,6 +27,9 @@
 		327DD5E329910E94009FA313 /* CardExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327DD5E229910E94009FA313 /* CardExpenseCell.swift */; };
 		327DD5E529913871009FA313 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327DD5E429913871009FA313 /* CustomHeader.swift */; };
 		3287BE6E297A93B1001D3920 /* CustomMoneyCountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3287BE6D297A93B1001D3920 /* CustomMoneyCountCell.swift */; };
+		32C16FBC2996429C00B4EBBE /* PresentationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C16FBB2996429C00B4EBBE /* PresentationVC.swift */; };
+		32C16FBF29967DC600B4EBBE /* PresentationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C16FBE29967DC600B4EBBE /* PresentationCell.swift */; };
+		32C16FC129968E6E00B4EBBE /* PresentationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C16FC029968E6E00B4EBBE /* PresentationModel.swift */; };
 		32D45F0A298A8A1100AD6756 /* BalancesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D45F09298A8A1100AD6756 /* BalancesVC.swift */; };
 		32D45F0D298A9D4F00AD6756 /* BalacesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D45F0C298A9D4F00AD6756 /* BalacesCell.swift */; };
 		32DBBB64297C632200ECC129 /* SelectCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DBBB63297C632200ECC129 /* SelectCurrencyViewController.swift */; };
@@ -61,6 +64,9 @@
 		327DD5E229910E94009FA313 /* CardExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardExpenseCell.swift; sourceTree = "<group>"; };
 		327DD5E429913871009FA313 /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
 		3287BE6D297A93B1001D3920 /* CustomMoneyCountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMoneyCountCell.swift; sourceTree = "<group>"; };
+		32C16FBB2996429C00B4EBBE /* PresentationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationVC.swift; sourceTree = "<group>"; };
+		32C16FBE29967DC600B4EBBE /* PresentationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationCell.swift; sourceTree = "<group>"; };
+		32C16FC029968E6E00B4EBBE /* PresentationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationModel.swift; sourceTree = "<group>"; };
 		32D45F09298A8A1100AD6756 /* BalancesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalancesVC.swift; sourceTree = "<group>"; };
 		32D45F0C298A9D4F00AD6756 /* BalacesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalacesCell.swift; sourceTree = "<group>"; };
 		32DBBB63297C632200ECC129 /* SelectCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyViewController.swift; sourceTree = "<group>"; };
@@ -192,6 +198,7 @@
 		32530F04297D601000E1662A /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				32C16FB92996423D00B4EBBE /* PresentModule */,
 				32530EF9297D5E7100E1662A /* StartModule */,
 				32530EFE297D5F3C00E1662A /* CreateMoneyCountModule */,
 				32530F00297D5F8F00E1662A /* SelectCurrncyModule */,
@@ -317,6 +324,40 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		32C16FB92996423D00B4EBBE /* PresentModule */ = {
+			isa = PBXGroup;
+			children = (
+				32C16FC2299698E100B4EBBE /* Model */,
+				32C16FBA2996425000B4EBBE /* View */,
+				32C16FBD29967DAC00B4EBBE /* Cell */,
+			);
+			path = PresentModule;
+			sourceTree = "<group>";
+		};
+		32C16FBA2996425000B4EBBE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				32C16FBB2996429C00B4EBBE /* PresentationVC.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		32C16FBD29967DAC00B4EBBE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				32C16FBE29967DC600B4EBBE /* PresentationCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		32C16FC2299698E100B4EBBE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				32C16FC029968E6E00B4EBBE /* PresentationModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		32D45F07298A899700AD6756 /* BalancesModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,8 +474,10 @@
 				32530EF8297D5BF500E1662A /* CurrencyModel.swift in Sources */,
 				321CE50F29892EDB00C438CA /* AmountExpenseCell.swift in Sources */,
 				32D45F0A298A8A1100AD6756 /* BalancesVC.swift in Sources */,
+				32C16FBF29967DC600B4EBBE /* PresentationCell.swift in Sources */,
 				327DD5E329910E94009FA313 /* CardExpenseCell.swift in Sources */,
 				3287BE6E297A93B1001D3920 /* CustomMoneyCountCell.swift in Sources */,
+				32C16FBC2996429C00B4EBBE /* PresentationVC.swift in Sources */,
 				32737DFC29881CEE00819369 /* ExpensesCell.swift in Sources */,
 				32F8F884298196940043AED3 /* NamesCell.swift in Sources */,
 				326AB91B2976EF46005EB02D /* AppDelegate.swift in Sources */,
@@ -446,6 +489,7 @@
 				32E0B213297E9B5C00EA5A9D /* SelectCurrencyCell.swift in Sources */,
 				32E0B2182980562400EA5A9D /* CreateMoneyCountEntity.swift in Sources */,
 				321CE5152989331300C438CA /* AddExpenseEntity.swift in Sources */,
+				32C16FC129968E6E00B4EBBE /* PresentationModel.swift in Sources */,
 				326AB91D2976EF46005EB02D /* SceneDelegate.swift in Sources */,
 				321CE5112989318E00C438CA /* DateExpenseCell.swift in Sources */,
 				321CE50A2989222600C438CA /* AddExpenseVC.swift in Sources */,
