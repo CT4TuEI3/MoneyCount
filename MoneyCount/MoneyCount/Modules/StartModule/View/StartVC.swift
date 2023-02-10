@@ -34,6 +34,7 @@ final class StartVC: UIViewController {
     // MARK: - Private methods
     
     private func setupUI() {
+        present(PresentationVC(), animated: true)
         view.backgroundColor = .systemBackground
         
         view.addSubview(moneyCountTableView)
