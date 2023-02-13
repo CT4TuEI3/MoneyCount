@@ -24,7 +24,7 @@ final class CreateCountVC: UIViewController {
     private let nameLabelCellIdentifier = "nameLabelCellIdentifier"
     private let sections = SectionType.allCases
     private var names: [String] = []
-    private var titleMonyCount = ""
+    private var titleMoneyCount = ""
     private var discriptionMoneyCount = ""
     private var shortNameCurrency = ""
     
@@ -83,7 +83,10 @@ final class CreateCountVC: UIViewController {
     
     @objc
     private func pressedDoneButton() {
-        navigationController?.pushViewController(MainMoneyCountVC(names: names), animated: true)
+        delegate?.setInfoNewCount(title: titleMoneyCount, discription: discriptionMoneyCount, names: names)
+        navigationController?.pushViewController(MainMoneyCountVC(names: names,
+                                                                  titleMoneyCount: titleMoneyCount),
+                                                 animated: true)
     }
 }
 
@@ -161,7 +164,7 @@ extension CreateCountVC: UITableViewDelegate, UITableViewDataSource {
             tableView.beginUpdates()
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
-            if !titleMonyCount.isEmpty && !names.isEmpty {
+            if !titleMoneyCount.isEmpty && !names.isEmpty {
                 navigationItem.rightBarButtonItem?.isEnabled = true
             } else {
                 navigationItem.rightBarButtonItem?.isEnabled = false
@@ -200,7 +203,7 @@ extension CreateCountVC: AddNamesCellDelegate {
                                         section: SectionType.names.rawValue)],
                          with: .top)
         table.endUpdates()
-        if !titleMonyCount.isEmpty {
+        if !titleMoneyCount.isEmpty {
             navigationItem.rightBarButtonItem?.isEnabled = true
         } else {
             navigationItem.rightBarButtonItem?.isEnabled = false
@@ -214,11 +217,11 @@ extension CreateCountVC: AddNamesCellDelegate {
 extension CreateCountVC: TextFieldCellDelegate {
     func pressedDoneBtn(title: String, text: String) {
         if title == "Title" {
-            titleMonyCount = text
+            titleMoneyCount = text
         } else {
             discriptionMoneyCount = text
         }
-        if titleMonyCount.count != 0 && names.count != 0 {
+        if titleMoneyCount.count != 0 && names.count != 0 {
             navigationItem.rightBarButtonItem?.isEnabled = true
         } else {
             navigationItem.rightBarButtonItem?.isEnabled = false

@@ -20,6 +20,7 @@ final class BalancesVC: UIViewController {
     
     // MARK: - Private propertyes
 
+    private let names: [String]
     private let balancesCellIddentifire = "balancesCellIddentifire"
     
     
@@ -30,6 +31,15 @@ final class BalancesVC: UIViewController {
     
     // MARK: - Life cycle
 
+    init(names: [String]) {
+        self.names = names
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -72,12 +82,13 @@ final class BalancesVC: UIViewController {
 
 extension BalancesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        names.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: balancesCellIddentifire,
                                                  for: indexPath) as? BalacesCell
+        cell?.configure(names: names[indexPath.row])
         return cell ?? UITableViewCell()
     }
     

@@ -12,12 +12,14 @@ final class MainMoneyCountVC: UITabBarController {
     // MARK: - Private propertyes
     
     private let names: [String]
+    private let titleMoneyCount: String
     
     
     // MARK: - Life Cycle
     
-    init(names: [String]) {
+    init(names: [String], titleMoneyCount: String) {
         self.names = names
+        self.titleMoneyCount = titleMoneyCount
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -34,6 +36,11 @@ final class MainMoneyCountVC: UITabBarController {
     // MARK: - Private Methods
     
     private func setupUI() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back",
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(backBtn))
+        title = titleMoneyCount
         view.backgroundColor = .systemBackground
         settingsTabBar()
     }
@@ -47,8 +54,7 @@ final class MainMoneyCountVC: UITabBarController {
                                 image: UIImage(systemName: "doc.text"),
                                 selectedImage: nil)
         expensesVC.tabBarItem = item
-        
-        let balancesVC = BalancesVC()
+        let balancesVC = BalancesVC(names: names)
         balancesVC.delegate = self
         let itemsec = UITabBarItem(title: "Balances",
                                    image: UIImage(systemName: "arrow.left.arrow.right"),
@@ -68,6 +74,11 @@ final class MainMoneyCountVC: UITabBarController {
     @objc
     private func pressedBtnBalance() {
         
+    }
+    
+    @objc
+    private func backBtn() {
+        navigationController?.popToRootViewController(animated: true)
     }
 }
 
