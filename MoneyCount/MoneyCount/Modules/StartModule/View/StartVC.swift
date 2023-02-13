@@ -113,6 +113,9 @@ extension StartVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+
+// MARK: - CreateCountVCDelegate
+
 extension StartVC: CreateCountVCDelegate {
     func setInfoNewCount(title: String, discription: String, names: [String]) {
         moneyCountTitle = title

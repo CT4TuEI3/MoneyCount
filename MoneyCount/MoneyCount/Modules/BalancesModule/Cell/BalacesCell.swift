@@ -27,6 +27,13 @@ final class BalacesCell: UITableViewCell {
     }
     
     
+    // MARK: - Configure
+    
+    func configure(names: String) {
+        namesLabel.text = names
+    }
+
+    
     // MARK: - Private Methods
 
     private func setupUI() {

@@ -146,7 +146,7 @@
 		32530EFE297D5F3C00E1662A /* CreateMoneyCountModule */ = {
 			isa = PBXGroup;
 			children = (
-				32E0B2172980562400EA5A9D /* CreateMoneyCountEntity.swift */,
+				32F075B52997C34C002B4778 /* Model */,
 				32530EFF297D5F5E00E1662A /* View */,
 				32E0B214297E9B6600EA5A9D /* Cell */,
 			);
@@ -392,6 +392,14 @@
 				32F8F883298196940043AED3 /* NamesCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		32F075B52997C34C002B4778 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				32E0B2172980562400EA5A9D /* CreateMoneyCountEntity.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
