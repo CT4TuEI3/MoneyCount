@@ -29,6 +29,8 @@
 		327DD5E529913871009FA313 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327DD5E429913871009FA313 /* CustomHeader.swift */; };
 		3287BE6E297A93B1001D3920 /* CustomMoneyCountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3287BE6D297A93B1001D3920 /* CustomMoneyCountCell.swift */; };
 		32AAD137299E247B003106F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32AAD136299E247B003106F5 /* GoogleService-Info.plist */; };
+		32AAD13A299E47E3003106F5 /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AAD139299E47E3003106F5 /* FireBaseService.swift */; };
+		32AAD13D299E505F003106F5 /* MoneyCountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AAD13C299E505F003106F5 /* MoneyCountModel.swift */; };
 		32C16FBC2996429C00B4EBBE /* PresentationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C16FBB2996429C00B4EBBE /* PresentationVC.swift */; };
 		32C16FBF29967DC600B4EBBE /* PresentationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C16FBE29967DC600B4EBBE /* PresentationCell.swift */; };
 		32C16FC129968E6E00B4EBBE /* PresentationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C16FC029968E6E00B4EBBE /* PresentationModel.swift */; };
@@ -67,6 +69,8 @@
 		327DD5E429913871009FA313 /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
 		3287BE6D297A93B1001D3920 /* CustomMoneyCountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMoneyCountCell.swift; sourceTree = "<group>"; };
 		32AAD136299E247B003106F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		32AAD139299E47E3003106F5 /* FireBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseService.swift; sourceTree = "<group>"; };
+		32AAD13C299E505F003106F5 /* MoneyCountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyCountModel.swift; sourceTree = "<group>"; };
 		32C16FBB2996429C00B4EBBE /* PresentationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationVC.swift; sourceTree = "<group>"; };
 		32C16FBE29967DC600B4EBBE /* PresentationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationCell.swift; sourceTree = "<group>"; };
 		32C16FC029968E6E00B4EBBE /* PresentationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationModel.swift; sourceTree = "<group>"; };
@@ -153,7 +157,8 @@
 		32530EFE297D5F3C00E1662A /* CreateMoneyCountModule */ = {
 			isa = PBXGroup;
 			children = (
-				32F075B52997C34C002B4778 /* Model */,
+				32AAD13B299E504B003106F5 /* Model */,
+				32F075B52997C34C002B4778 /* Entity */,
 				32530EFF297D5F5E00E1662A /* View */,
 				32E0B214297E9B6600EA5A9D /* Cell */,
 			);
@@ -258,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				32530F06297D605500E1662A /* Core */,
+				32AAD138299E4777003106F5 /* Services */,
 				32530F04297D601000E1662A /* Modules */,
 				32530F05297D603F00E1662A /* Resoures */,
 				326AB9252976EF48005EB02D /* LaunchScreen.storyboard */,
@@ -334,6 +340,22 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		32AAD138299E4777003106F5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				32AAD139299E47E3003106F5 /* FireBaseService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		32AAD13B299E504B003106F5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				32AAD13C299E505F003106F5 /* MoneyCountModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		32C16FB92996423D00B4EBBE /* PresentModule */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,12 +426,12 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		32F075B52997C34C002B4778 /* Model */ = {
+		32F075B52997C34C002B4778 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				32E0B2172980562400EA5A9D /* CreateMoneyCountEntity.swift */,
 			);
-			path = Model;
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		8D0669E5273CB465163B54CB /* Pods */ = {
@@ -562,6 +584,7 @@
 				32F8F884298196940043AED3 /* NamesCell.swift in Sources */,
 				326AB91B2976EF46005EB02D /* AppDelegate.swift in Sources */,
 				32737DF82987F72A00819369 /* ExpensesVC.swift in Sources */,
+				32AAD13D299E505F003106F5 /* MoneyCountModel.swift in Sources */,
 				32DBBB64297C632200ECC129 /* SelectCurrencyViewController.swift in Sources */,
 				327DD5E529913871009FA313 /* CustomHeader.swift in Sources */,
 				32D45F0D298A9D4F00AD6756 /* BalacesCell.swift in Sources */,
@@ -572,6 +595,7 @@
 				32C16FC129968E6E00B4EBBE /* PresentationModel.swift in Sources */,
 				326AB91D2976EF46005EB02D /* SceneDelegate.swift in Sources */,
 				321CE5112989318E00C438CA /* DateExpenseCell.swift in Sources */,
+				32AAD13A299E47E3003106F5 /* FireBaseService.swift in Sources */,
 				321CE50A2989222600C438CA /* AddExpenseVC.swift in Sources */,
 				321CE5132989328C00C438CA /* NamePaidCell.swift in Sources */,
 			);
@@ -727,9 +751,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Alexey-Statiev.MoneyCount";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -755,9 +782,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Alexey-Statiev.MoneyCount";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
