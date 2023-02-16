@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>760889437384-qisicdtt7deqf0mqc065ke2acmuk58q2.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.760889437384-qisicdtt7deqf0mqc065ke2acmuk58q2</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBLZ_Dkqar4hHHnAUk2o8q7Pt8oryPvDEk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>760889437384</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Alexey-Statiev.MoneyCount</string>
+	<key>PROJECT_ID</key>
+	<string>moneycount-58cd6</string>
+	<key>STORAGE_BUCKET</key>
+	<string>moneycount-58cd6.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:760889437384:ios:46cd69bc67a23882ae49fd</string>
+</dict>
+</plist>
