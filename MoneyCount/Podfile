@@ -8,5 +8,6 @@ target 'MoneyCount' do
   # Pods for MoneyCount
 pod 'Firebase/Core'
 pod 'Firebase/Firestore'	
+pod 'FirebaseFirestoreSwift'
 
 end

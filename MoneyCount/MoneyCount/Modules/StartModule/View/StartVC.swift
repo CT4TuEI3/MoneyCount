@@ -16,6 +16,7 @@ final class StartVC: UIViewController {
     
     // MARK: - UI Elements
     
+    private let service = FireBaseService()
     private let moneyCountTableView = UITableView()
     private let mainButton = UIButton()
     private let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -27,6 +28,14 @@ final class StartVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        service.getData { result in
+            switch result {
+                case .success(let data):
+                    print(data)
+                case .failure(let error):
+                    print(error)
+            }
+        }
         setupUI()
     }
     

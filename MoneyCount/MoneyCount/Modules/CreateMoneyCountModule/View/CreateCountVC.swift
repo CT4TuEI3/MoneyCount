@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseCore
+import FirebaseFirestore
 
 protocol CreateCountVCDelegate: AnyObject {
     func setInfoNewCount(title: String, discription: String, names: [String])
@@ -13,11 +15,14 @@ protocol CreateCountVCDelegate: AnyObject {
 
 final class CreateCountVC: UIViewController {
     
+    // MARK: - Properties
+
     weak var delegate: CreateCountVCDelegate?
-    
+
     
     // MARK: - Private properties
     
+    private let service = FireBaseService()
     private let textFieldCellIdentifire = "textFieldCellIdentifire"
     private let selectCurrencyCellIdentifier = "selectCurrencyCellIdentifier"
     private let addNamesIdentifier = "addNamesIdentifier"
@@ -78,12 +83,37 @@ final class CreateCountVC: UIViewController {
         ])
     }
     
+    private func sendData() {
+        service.saveData(moneyCount: MoneyCountModel(title: titleMoneyCount,
+                                                     description: discriptionMoneyCount,
+                                                     names: convertNameForMoneyCountModel(names: names),
+                                                     currency: shortNameCurrency,
+                                                     expence: []), { error in
+            if let error = error {
+                print("Error writing document: \(error)")
+            } else {
+                print("Document successfully written!")
+            }
+        })
+    }
+    
+    private func convertNameForMoneyCountModel(names: [String]) -> [NameBalanceModel] {
+        var convertedNames: [NameBalanceModel] = []
+        names.forEach {
+            convertedNames.append(NameBalanceModel(name: $0, balance: 0.0))
+        }
+        return convertedNames
+    }
+    
     
     // MARK: - Actions
     
     @objc
     private func pressedDoneButton() {
-        delegate?.setInfoNewCount(title: titleMoneyCount, discription: discriptionMoneyCount, names: names)
+        sendData() 
+        delegate?.setInfoNewCount(title: titleMoneyCount,
+                                  discription: discriptionMoneyCount,
+                                  names: names)
         navigationController?.pushViewController(MainMoneyCountVC(names: names,
                                                                   titleMoneyCount: titleMoneyCount),
                                                  animated: true)
