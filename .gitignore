@@ -89,3 +89,4 @@ fastlane/test_output
 
 iOSInjectionProject/
 MoneyCount/MoneyCount.xcodeproj/project.xcworkspace/xcuserdata/CT4TuEI3.xcuserdatad/UserInterfaceState.xcuserstate
+.DS_Store
