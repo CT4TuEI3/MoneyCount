@@ -46,15 +46,15 @@ final class PresentationVC: UIViewController {
     }
     
     private func setData() {
+        presentationData.append(PresentationModel(imageName: "dollarsign.circle",
+                                                  titleText: "Your personal helper",
+                                                  discriptionText: "You paid for a hotel, Timur covered the fuel costs and Dmitry ddid some shoping. MoneyCount does the math for you"))
         presentationData.append(PresentationModel(imageName: "doc.text",
                                                   titleText: "Add expenses",
                                                   discriptionText: "Create your MoneyCount. Let everyone add their expenses and then view the total cost"))
         presentationData.append(PresentationModel(imageName: "arrow.left.arrow.right",
                                                   titleText: "Balance",
                                                   discriptionText: "Everyone can check their current balance on their iPhone at anytime"))
-        presentationData.append(PresentationModel(imageName: "a.circle.fill",
-                                                  titleText: "First title",
-                                                  discriptionText: "First Discription"))
     }
     private func textWelcomeSettings() {
         welcomeText.text = "Welcome to\nMoneyCount"

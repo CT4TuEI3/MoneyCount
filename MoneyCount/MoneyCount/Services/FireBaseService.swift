@@ -17,8 +17,7 @@ protocol FireBaseServiceProtocol {
     func saveData(moneyCount: MoneyCountModel, _ completion: @escaping (Error?) -> Void)
     
     /// Получение данных из базы данных
-    /// - Returns: Полученная модель
-    func getData(completion: @escaping (Result<MoneyCountModel, Error>) -> Void) -> MoneyCountModel?
+    func getData(completion: @escaping (Result<MoneyCountModel, Error>) -> Void)
 }
 
 
@@ -41,15 +40,13 @@ final class FireBaseService: FireBaseServiceProtocol {
         }
     }
 
-    func getData(completion: @escaping (Result<MoneyCountModel, Error>) -> Void) -> MoneyCountModel? {
-        var moneyCount: MoneyCountModel?
+    func getData(completion: @escaping (Result<MoneyCountModel, Error>) -> Void) {
         let docRef = dataBase.collection("Counts").document("MoneyCounts")
         docRef.getDocument(as: MoneyCountModel.self) { result in
             completion(result)
         }
-        return moneyCount
     }
-    
+
     
     // MARK: - Private methods
     
