@@ -9,7 +9,7 @@ import UIKit
 
 final class AddExpenseVC: UIViewController {
     
-    private let names: [String]
+    private let names: [NameBalanceModel]
     
     
     //MARK: - Private properties
@@ -28,7 +28,7 @@ final class AddExpenseVC: UIViewController {
     
     //MARK: - Lifecycle
     
-    init(names: [String]) {
+    init(names: [NameBalanceModel]) {
         self.names = names
         super.init(nibName: nil, bundle: nil)
     }
@@ -126,7 +126,7 @@ extension AddExpenseVC: UITableViewDelegate, UITableViewDataSource {
             case .name:
                 let cell = addExpenseTable.dequeueReusableCell(withIdentifier: paidNameExpenseIdentifire,
                                                                for: indexPath) as? NamePaidCell
-                cell?.configure(textLabel: names[indexPath.row])
+                cell?.configure(textLabel: names[indexPath.row].name)
                 return cell ?? UITableViewCell()
         }
     }

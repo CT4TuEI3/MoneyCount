@@ -15,6 +15,7 @@ final class StartVC: UIViewController {
     private let cellIdentifire = "Title"
     private var moneyCountTitle = ""
     private var moneyCountDiscription = ""
+    private var names: [NameBalanceModel] = []
     
     
     // MARK: - UI Elements
@@ -47,6 +48,7 @@ final class StartVC: UIViewController {
                     self?.loadingIndicator.stopAnimating()
                     self?.moneyCountTitle = data.title
                     self?.moneyCountDiscription = data.description
+                    self?.names = data.names
                     self?.moneyCountTableView.reloadData()
                 case .failure(let error):
                     let errorAlert = UIAlertController(title: "Eror",
@@ -117,7 +119,6 @@ final class StartVC: UIViewController {
             
             loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-            
         ])
     }
     
@@ -142,5 +143,11 @@ extension StartVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifire, for: indexPath) as? CustomMoneyCountCell
         cell?.configure(title: moneyCountTitle, discription: moneyCountDiscription)
         return cell ?? UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        navigationController?.pushViewController(MainMoneyCountVC(names: names,
+                                                                  titleMoneyCount: moneyCountTitle),
+                                                 animated: true)
     }
 }
