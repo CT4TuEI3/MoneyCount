@@ -11,13 +11,13 @@ final class MainMoneyCountVC: UITabBarController {
     
     // MARK: - Private propertyes
     
-    private let names: [String]
+    private let names: [NameBalanceModel]
     private let titleMoneyCount: String
     
     
     // MARK: - Life Cycle
     
-    init(names: [String], titleMoneyCount: String) {
+    init(names: [NameBalanceModel], titleMoneyCount: String) {
         self.names = names
         self.titleMoneyCount = titleMoneyCount
         super.init(nibName: nil, bundle: nil)

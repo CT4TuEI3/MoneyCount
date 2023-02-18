@@ -10,7 +10,7 @@ import FirebaseCore
 import FirebaseFirestore
 
 protocol CreateCountVCDelegate: AnyObject {
-    func setInfoNewCount(title: String, discription: String, names: [String])
+    func setInfoNewCount(title: String, discription: String, names: [NameBalanceModel])
 }
 
 final class CreateCountVC: UIViewController {
@@ -28,7 +28,7 @@ final class CreateCountVC: UIViewController {
     private let addNamesIdentifier = "addNamesIdentifier"
     private let nameLabelCellIdentifier = "nameLabelCellIdentifier"
     private let sections = SectionType.allCases
-    private var names: [String] = []
+    private var names: [NameBalanceModel] = []
     private var titleMoneyCount = ""
     private var discriptionMoneyCount = ""
     private var shortNameCurrency = ""
@@ -86,7 +86,7 @@ final class CreateCountVC: UIViewController {
     private func sendData() {
         service.saveData(moneyCount: MoneyCountModel(title: titleMoneyCount,
                                                      description: discriptionMoneyCount,
-                                                     names: convertNameForMoneyCountModel(names: names),
+                                                     names: names,
                                                      currency: shortNameCurrency,
                                                      expence: []), { error in
             if let error = error {
@@ -95,14 +95,6 @@ final class CreateCountVC: UIViewController {
                 print("Document successfully written!")
             }
         })
-    }
-    
-    private func convertNameForMoneyCountModel(names: [String]) -> [NameBalanceModel] {
-        var convertedNames: [NameBalanceModel] = []
-        names.forEach {
-            convertedNames.append(NameBalanceModel(name: $0, balance: 0.0))
-        }
-        return convertedNames
     }
     
     
@@ -166,7 +158,7 @@ extension CreateCountVC: UITableViewDelegate, UITableViewDataSource {
                 } else {
                     let cell = tableView.dequeueReusableCell(withIdentifier: nameLabelCellIdentifier,
                                                              for: indexPath) as? NamesCell
-                    cell?.configure(textLabel: names[indexPath.row - 1])
+                    cell?.configure(textLabel: names[indexPath.row - 1].name)
                     return cell ?? UITableViewCell()
                 }
         }
@@ -227,7 +219,7 @@ extension CreateCountVC: UITableViewDelegate, UITableViewDataSource {
 
 extension CreateCountVC: AddNamesCellDelegate {
     func pressedAddNamesButton(name: String) {
-        names.append(name)
+        names.append(NameBalanceModel(name: name, balance: 0.0))
         table.beginUpdates()
         table.insertRows(at: [IndexPath(row: names.count,
                                         section: SectionType.names.rawValue)],
