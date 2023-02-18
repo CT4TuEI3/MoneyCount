@@ -45,11 +45,11 @@ final class BalacesCell: UITableViewCell {
     }
     
     private func settingsNameLabel() {
-        namesLabel.text = "Alex"
+        namesLabel.text = ""
     }
     
     private func settingsAmountLabel() {
-        amountLabel.text = "500 RUB."
+        amountLabel.text = ""
     }
 
     

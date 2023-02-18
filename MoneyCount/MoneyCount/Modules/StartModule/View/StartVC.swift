@@ -11,42 +11,59 @@ final class StartVC: UIViewController {
     
     // MARK: - Private propertyes
     
+    private let service = FireBaseService()
     private let cellIdentifire = "Title"
+    private var moneyCountTitle = ""
+    private var moneyCountDiscription = ""
     
     
     // MARK: - UI Elements
     
-    private let service = FireBaseService()
     private let moneyCountTableView = UITableView()
     private let mainButton = UIButton()
+    private let loadingIndicator = UIActivityIndicatorView(style: .medium)
     private let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-    var moneyCountTitle = "Title"
-    var moneyCountDiscription = "Discription"
-    
+    private var rightBarButtonItem = UIBarButtonItem()
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        service.getData { result in
-            switch result {
-                case .success(let data):
-                    print(data)
-                case .failure(let error):
-                    print(error)
-            }
-        }
+        view.isUserInteractionEnabled = false
+        setData()
         setupUI()
     }
     
     
     // MARK: - Private methods
     
+    private func setData() {
+        loadingIndicator.startAnimating()
+        service.getData { [weak self] result in
+            self?.view.isUserInteractionEnabled = true
+            self?.rightBarButtonItem.isEnabled = true
+            switch result {
+                case .success(let data):
+                    self?.loadingIndicator.stopAnimating()
+                    self?.moneyCountTitle = data.title
+                    self?.moneyCountDiscription = data.description
+                    self?.moneyCountTableView.reloadData()
+                case .failure(let error):
+                    let errorAlert = UIAlertController(title: "Eror",
+                                                       message: error.localizedDescription,
+                                                       preferredStyle: .alert )
+                    errorAlert.addAction(UIAlertAction(title: "Cancel", style: .destructive))
+                    self?.present(errorAlert, animated: true)
+                    print(error)
+            }
+        }
+    }
+    
     private func setupUI() {
         present(PresentationVC(), animated: true)
         view.backgroundColor = .systemBackground
-        
         view.addSubview(moneyCountTableView)
+        view.addSubview(loadingIndicator)
         settingsTable()
         settingNavigationBar()
         settingsAlert()
@@ -59,17 +76,17 @@ final class StartVC: UIViewController {
         moneyCountTableView.dataSource = self
         moneyCountTableView.rowHeight = 64
         moneyCountTableView.register(CustomMoneyCountCell.self, forCellReuseIdentifier: cellIdentifire)
-        moneyCountTableView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     
     private func settingNavigationBar() {
         title = "MoneyCount"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"),
-                                                            style: .plain,
-                                                            target: self,
-                                                            action: #selector(pressedPlusButton))
-        
+        rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"),
+                                             style: .plain,
+                                             target: self,
+                                             action: #selector(pressedPlusButton))
+        rightBarButtonItem.isEnabled = false
+        navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
     private func settingsAlert() {
@@ -86,23 +103,29 @@ final class StartVC: UIViewController {
     
     private func pressedCreateButton() {
         let vc = CreateCountVC()
-        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
     
     private func setConstraints() {
+        moneyCountTableView.translatesAutoresizingMaskIntoConstraints = false
+        loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             moneyCountTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             moneyCountTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             moneyCountTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             moneyCountTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            
         ])
     }
     
     
     // MARK: - Actions
     
-    @objc private func pressedPlusButton() {
+    @objc
+    private func pressedPlusButton() {
         present(alert, animated: true)
     }
 }
@@ -119,16 +142,5 @@ extension StartVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifire, for: indexPath) as? CustomMoneyCountCell
         cell?.configure(title: moneyCountTitle, discription: moneyCountDiscription)
         return cell ?? UITableViewCell()
-    }
-}
-
-
-// MARK: - CreateCountVCDelegate
-
-extension StartVC: CreateCountVCDelegate {
-    func setInfoNewCount(title: String, discription: String, names: [String]) {
-        moneyCountTitle = title
-        moneyCountDiscription = discription
-        moneyCountTableView.reloadData()
     }
 }
