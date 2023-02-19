@@ -28,6 +28,8 @@
 		327DD5E329910E94009FA313 /* CardExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327DD5E229910E94009FA313 /* CardExpenseCell.swift */; };
 		327DD5E529913871009FA313 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327DD5E429913871009FA313 /* CustomHeader.swift */; };
 		3287BE6E297A93B1001D3920 /* CustomMoneyCountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3287BE6D297A93B1001D3920 /* CustomMoneyCountCell.swift */; };
+		328931F829A2247C008D9182 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328931F729A2247C008D9182 /* UserDefaultsService.swift */; };
+		328931FB29A224B0008D9182 /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 328931FA29A224B0008D9182 /* UserDefaultsKeys.swift */; };
 		32AAD137299E247B003106F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32AAD136299E247B003106F5 /* GoogleService-Info.plist */; };
 		32AAD13A299E47E3003106F5 /* FireBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AAD139299E47E3003106F5 /* FireBaseService.swift */; };
 		32AAD13D299E505F003106F5 /* MoneyCountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AAD13C299E505F003106F5 /* MoneyCountModel.swift */; };
@@ -68,6 +70,8 @@
 		327DD5E229910E94009FA313 /* CardExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardExpenseCell.swift; sourceTree = "<group>"; };
 		327DD5E429913871009FA313 /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
 		3287BE6D297A93B1001D3920 /* CustomMoneyCountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMoneyCountCell.swift; sourceTree = "<group>"; };
+		328931F729A2247C008D9182 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		328931FA29A224B0008D9182 /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		32AAD136299E247B003106F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		32AAD139299E47E3003106F5 /* FireBaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseService.swift; sourceTree = "<group>"; };
 		32AAD13C299E505F003106F5 /* MoneyCountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyCountModel.swift; sourceTree = "<group>"; };
@@ -340,10 +344,20 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		328931F929A22486008D9182 /* UserDefaultsService */ = {
+			isa = PBXGroup;
+			children = (
+				328931F729A2247C008D9182 /* UserDefaultsService.swift */,
+				328931FA29A224B0008D9182 /* UserDefaultsKeys.swift */,
+			);
+			path = UserDefaultsService;
+			sourceTree = "<group>";
+		};
 		32AAD138299E4777003106F5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				32AAD139299E47E3003106F5 /* FireBaseService.swift */,
+				328931F929A22486008D9182 /* UserDefaultsService */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -570,6 +584,7 @@
 				32E0B216297ECA3000EA5A9D /* TextFieldCell.swift in Sources */,
 				32748CA229830EEB002CCCB3 /* MainMoneyCountVC.swift in Sources */,
 				32F8F882298144490043AED3 /* AddNamesCell.swift in Sources */,
+				328931FB29A224B0008D9182 /* UserDefaultsKeys.swift in Sources */,
 				32E0B211297E8D2800EA5A9D /* CreateCountVC.swift in Sources */,
 				327DD5E129910E83009FA313 /* CardExpense.swift in Sources */,
 				326AB91F2976EF46005EB02D /* StartVC.swift in Sources */,
@@ -578,6 +593,7 @@
 				32D45F0A298A8A1100AD6756 /* BalancesVC.swift in Sources */,
 				32C16FBF29967DC600B4EBBE /* PresentationCell.swift in Sources */,
 				327DD5E329910E94009FA313 /* CardExpenseCell.swift in Sources */,
+				328931F829A2247C008D9182 /* UserDefaultsService.swift in Sources */,
 				3287BE6E297A93B1001D3920 /* CustomMoneyCountCell.swift in Sources */,
 				32C16FBC2996429C00B4EBBE /* PresentationVC.swift in Sources */,
 				32737DFC29881CEE00819369 /* ExpensesCell.swift in Sources */,

@@ -12,6 +12,7 @@ final class StartVC: UIViewController {
     // MARK: - Private propertyes
     
     private let service = FireBaseService()
+    private let userDefaultsService = UserDefaultsService()
     private let cellIdentifire = "Title"
     private var moneyCountTitle = ""
     private var moneyCountDiscription = ""
@@ -32,6 +33,7 @@ final class StartVC: UIViewController {
         super.viewDidLoad()
         view.isUserInteractionEnabled = false
         setData()
+        checkSeensPresentation()
         setupUI()
     }
     
@@ -61,8 +63,13 @@ final class StartVC: UIViewController {
         }
     }
     
+    private func checkSeensPresentation() {
+        if !userDefaultsService.getData(forKey: .isWasFirstRunApp) {
+            present(PresentationVC(), animated: true)
+        }
+    }
+    
     private func setupUI() {
-        present(PresentationVC(), animated: true)
         view.backgroundColor = .systemBackground
         view.addSubview(moneyCountTableView)
         view.addSubview(loadingIndicator)
