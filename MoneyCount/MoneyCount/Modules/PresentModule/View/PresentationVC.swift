@@ -11,6 +11,7 @@ final class PresentationVC: UIViewController {
     
     // MARK: - Private propertyes
     
+    private let userDefaultsService = UserDefaultsService()
     private let cellIdentifire = "cellIdentifire"
     private var presentationData: [PresentationModel] = []
     
@@ -25,6 +26,7 @@ final class PresentationVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        userDefaultsService.save(data: true, forKey: .isWasFirstRunApp)
         setData()
         setup()
     }
@@ -106,7 +108,8 @@ final class PresentationVC: UIViewController {
     
     // MARK: - Actions
     
-    @objc private func pressedContinueBtn() {
+    @objc
+    private func pressedContinueBtn() {
         dismiss(animated: true)
     }
 }
