@@ -25,11 +25,20 @@ final class ExpensesCell: UITableViewCell {
         settingsLabels()
         setConstraints()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    
+    // MARK: - Configure
+    
+    func configure(expence: ExpenceModel, name: NameBalanceModel) {
+        titleExpensesLabel.text = expence.title
+        paidNameExpensesLabel.text = name.name
+        dateExpensesLabel.text = expence.date
+        amountExpensesLabel.text = String(expence.amount)
+    }
     
     // MARK: - Private Methods
     
@@ -45,11 +54,6 @@ final class ExpensesCell: UITableViewCell {
         paidNameExpensesLabel.translatesAutoresizingMaskIntoConstraints = false
         dateExpensesLabel.translatesAutoresizingMaskIntoConstraints = false
         amountExpensesLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        titleExpensesLabel.text = "Pomelo"
-        paidNameExpensesLabel.text = "Valeri"
-        dateExpensesLabel.text = "30.01"
-        amountExpensesLabel.text = "10 TL"
         
         titleExpensesLabel.textColor = .tintColor
         
@@ -74,7 +78,7 @@ final class ExpensesCell: UITableViewCell {
             dateExpensesLabel.topAnchor.constraint(equalTo: amountExpensesLabel.bottomAnchor, constant: 8),
             dateExpensesLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             dateExpensesLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-
+            
             amountExpensesLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             amountExpensesLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
         ])

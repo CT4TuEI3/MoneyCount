@@ -107,7 +107,7 @@
 		321CE507298921F300C438CA /* AddExpensModule */ = {
 			isa = PBXGroup;
 			children = (
-				321CE5142989331300C438CA /* AddExpenseEntity.swift */,
+				324051DD29A39DF000B1CE3F /* Entity */,
 				321CE5082989220F00C438CA /* View */,
 				321CE50B2989264F00C438CA /* Cell */,
 			);
@@ -131,6 +131,29 @@
 				321CE5122989328C00C438CA /* NamePaidCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		324051DB29A3971C00B1CE3F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				32AAD13C299E505F003106F5 /* MoneyCountModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		324051DC29A39DCE00B1CE3F /* New Group1 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group1";
+			sourceTree = "<group>";
+		};
+		324051DD29A39DF000B1CE3F /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				321CE5142989331300C438CA /* AddExpenseEntity.swift */,
+			);
+			name = Entity;
 			sourceTree = "<group>";
 		};
 		32530EF9297D5E7100E1662A /* StartModule */ = {
@@ -222,6 +245,7 @@
 				32737DF52987F6E200819369 /* ExpensesModule */,
 				327DD5DD29910E03009FA313 /* CardExpense */,
 				321CE507298921F300C438CA /* AddExpensModule */,
+				324051DC29A39DCE00B1CE3F /* New Group1 */,
 				32D45F07298A899700AD6756 /* BalancesModule */,
 			);
 			path = Modules;
@@ -266,6 +290,7 @@
 		326AB9192976EF46005EB02D /* MoneyCount */ = {
 			isa = PBXGroup;
 			children = (
+				324051DB29A3971C00B1CE3F /* Models */,
 				32530F06297D605500E1662A /* Core */,
 				32AAD138299E4777003106F5 /* Services */,
 				32530F04297D601000E1662A /* Modules */,
@@ -365,7 +390,6 @@
 		32AAD13B299E504B003106F5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				32AAD13C299E505F003106F5 /* MoneyCountModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -432,8 +456,8 @@
 		32E0B214297E9B6600EA5A9D /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				32E0B212297E9B5C00EA5A9D /* SelectCurrencyCell.swift */,
 				32E0B215297ECA3000EA5A9D /* TextFieldCell.swift */,
+				32E0B212297E9B5C00EA5A9D /* SelectCurrencyCell.swift */,
 				32F8F881298144490043AED3 /* AddNamesCell.swift */,
 				32F8F883298196940043AED3 /* NamesCell.swift */,
 			);

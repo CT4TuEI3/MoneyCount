@@ -7,13 +7,14 @@
 
 import UIKit
 
-protocol AmountExpenseCellDelegate {
+protocol AmountExpenseCellDelegate: AnyObject {
     func pressedCurrencyBtn()
+    func amountExpense(amount: Double)
 }
 
 final class AmountExpenseCell: UITableViewCell {
     
-    var delegate: AmountExpenseCellDelegate?
+    weak var delegate: AmountExpenseCellDelegate?
     
     //MARK: UI Elements
     
@@ -52,6 +53,8 @@ final class AmountExpenseCell: UITableViewCell {
     }
     
     private func settingsUIElements() {
+        amountExpenseTF.keyboardType = .decimalPad
+        amountExpenseTF.delegate = self
         currencyShortLabel.text = "RUB"
         currencyAmountBtn.setImage(UIImage(systemName: "chevron.down"), for: .normal)
         currencyAmountBtn.addTarget(self, action: #selector(pressedCurrencyBtn), for: .touchUpInside)
@@ -77,7 +80,19 @@ final class AmountExpenseCell: UITableViewCell {
         ])
     }
     
-    @objc private func pressedCurrencyBtn() {
+    @objc
+    private func pressedCurrencyBtn() {
         delegate?.pressedCurrencyBtn()
+    }
+}
+
+
+// MARK: - UITextFieldDelegate
+
+extension AmountExpenseCell: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard let text = textField.text else { return }
+        guard let amountDouble = Double(text) else { return }
+        delegate?.amountExpense(amount: amountDouble)
     }
 }
