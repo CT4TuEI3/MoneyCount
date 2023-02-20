@@ -31,31 +31,16 @@ final class FireBaseService: FireBaseServiceProtocol {
     // MARK: - Methods
     
     func saveData(moneyCount: MoneyCountModel, _ completion: @escaping (Error?) -> Void) {
-        dataBase.collection("Counts").document("MoneyCounts").setData(["title" : moneyCount.title,
-                                                                 "description": moneyCount.description,
-                                                                 "names": setNames(moneyCount: moneyCount),
-                                                                 "currency": "rub",
-                                                                 "expence": moneyCount.expence]) { error in
-        completion(error)
-        }
+        try? dataBase.collection("Counts").document("MoneyCounts").setData(from: moneyCount, completion: { error in
+            completion(error)
+        })
     }
-
+    
     func getData(completion: @escaping (Result<MoneyCountModel, Error>) -> Void) {
         let docRef = dataBase.collection("Counts").document("MoneyCounts")
         docRef.getDocument(as: MoneyCountModel.self) { result in
             completion(result)
         }
-    }
-
-    
-    // MARK: - Private methods
-    
-    private func setNames(moneyCount: MoneyCountModel) -> [[String: Any]] {
-        var result: [[String: Any]] = []
-        moneyCount.names.forEach {
-            result.append(["name": $0.name, "balance": $0.balance])
-        }
-        return result
     }
 }
 

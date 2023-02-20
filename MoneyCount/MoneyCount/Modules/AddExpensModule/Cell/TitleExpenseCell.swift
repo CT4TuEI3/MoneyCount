@@ -7,7 +7,16 @@
 
 import UIKit
 
+protocol TitleExpenseCellDelegate: AnyObject {
+    func titleExpenseCell(title: String)
+}
+
 final class TitleExpenseCell: UITableViewCell {
+    
+    // MARK: - Properties
+
+    weak var delegate: TitleExpenseCellDelegate?
+    
     
     //MARK: - UI Elements
     
@@ -30,6 +39,7 @@ final class TitleExpenseCell: UITableViewCell {
     
     func configure(placeholder: String) {
         titleExpenseTF.placeholder = placeholder
+        titleExpenseTF.delegate = self
     }
     
     
@@ -51,3 +61,12 @@ final class TitleExpenseCell: UITableViewCell {
     }
 }
 
+
+// MARK: - UITextFieldDelegate
+
+extension TitleExpenseCell: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard let text = textField.text else { return }
+        delegate?.titleExpenseCell(title: text)
+    }
+}

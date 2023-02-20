@@ -8,7 +8,7 @@
 import Foundation
 
 /// Модель MoneyCount
-struct MoneyCountModel: Decodable {
+struct MoneyCountModel: Codable {
     /// Наименоввание MoneyCount
     let title: String
     
@@ -16,17 +16,17 @@ struct MoneyCountModel: Decodable {
     let description: String
     
     /// Имена участвующие в MoneyCount
-    let names: [NameBalanceModel]
+    var names: [NameBalanceModel]
     
     /// Выбранная валюта
     let currency: String
     
     /// Модель расходов
-    let expence: [ExpenceModel]
+    var expence: [ExpenceModel]
 }
 
 /// Модель расходов
-struct ExpenceModel: Decodable {
+struct ExpenceModel: Codable {
     
     /// Название расхода
     let title: String
@@ -42,11 +42,11 @@ struct ExpenceModel: Decodable {
 }
 
 /// Струтура имён и балансов
-struct NameBalanceModel: Decodable {
+struct NameBalanceModel: Codable {
     
     ///Имя пользователя
     let name: String
     
     /// Баланс пользователя
-    let balance: Double
+    var balance: Double
 }

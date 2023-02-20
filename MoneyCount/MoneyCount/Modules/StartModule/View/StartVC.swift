@@ -64,7 +64,7 @@ final class StartVC: UIViewController {
     }
     
     private func checkSeensPresentation() {
-        if !userDefaultsService.getData(forKey: .isWasFirstRunApp) {
+        if !userDefaultsService.getBool(forKey: .isWasFirstRunApp) {
             present(PresentationVC(), animated: true)
         }
     }

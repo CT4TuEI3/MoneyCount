@@ -20,7 +20,9 @@ final class ExpensesVC: UIViewController {
     
     // MARK: - Private propertyes
     
+    private let firebaseService = FireBaseService()
     private let expensesIdentifire = "expensesIdentifire"
+    private var moneyCount: MoneyCountModel?
     
     
     // MARK: - UI Elements
@@ -33,6 +35,16 @@ final class ExpensesVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        firebaseService.getData { [weak self] result in
+            switch result {
+                case .success(let success):
+                    self?.moneyCount = success
+                    self?.expensesTableView.reloadData()
+                    
+                case .failure(let failure):
+                    print(failure)
+            }
+        }
         setupUI()
         searchBarSettings()
         settingsTableView()
@@ -42,6 +54,7 @@ final class ExpensesVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         delegate?.updatedNavBarBtn()
+        expensesTableView.reloadData()
     }
     
     
@@ -94,12 +107,15 @@ extension ExpensesVC: UISearchBarDelegate {
 
 extension ExpensesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        moneyCount?.expence.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let expence = moneyCount?.expence[indexPath.row] else { return UITableViewCell() }
         let cell = tableView.dequeueReusableCell(withIdentifier: expensesIdentifire,
                                                  for: indexPath) as? ExpensesCell
+        cell?.configure(expence: expence,
+                        name: expence.names[indexPath.row])
         return cell ?? UITableViewCell()
     }
     

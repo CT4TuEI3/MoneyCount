@@ -7,7 +7,21 @@
 
 import UIKit
 
+protocol DateExpenseCellDelegate: AnyObject {
+    func dateExpense(date: String)
+}
+
 final class DateExpenseCell: UITableViewCell {
+    
+    // MARK: - Properties
+
+    weak var delegate: DateExpenseCellDelegate?
+    
+    
+    // MARK: - private properties
+
+    private var dateExpense = ""
+    
     
     // MARK: - UI Elements
     
@@ -87,5 +101,6 @@ final class DateExpenseCell: UITableViewCell {
     private func doneAction() {
         getDataFromPicker()
         contentView.endEditing(true)
+        delegate?.dateExpense(date: dateField.text ?? "")
     }
 }

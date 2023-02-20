@@ -14,12 +14,17 @@ final class AddExpenseVC: UIViewController {
     
     //MARK: - Private properties
     
+    private let service = FireBaseService()
     private let titleExpenseIdentifire = "titleExpenseIdentifire"
     private let amountExpenseIdentifire = "amountExpenseIdentifire"
     private let dateExpenseIdentifire = "dateExpenseIdentifire"
     private let paidNameExpenseIdentifire = "paidNameExpenseIdentifire"
     private let sections = AddExpenseSectionType.allCases
-    
+    private var titleExpences = ""
+    private var amountExpense = 0.0
+    private var dateExpense = ""
+    private var paidNameExpanse: [NameBalanceModel] = []
+    private var cuurentMonewyCount: MoneyCountModel?
     
     // MARK: - UI Elements
     
@@ -39,6 +44,7 @@ final class AddExpenseVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getData()
         setupUI()
     }
     
@@ -68,6 +74,32 @@ final class AddExpenseVC: UIViewController {
                                                             action: #selector(pressedAddExpenceBtn))
     }
     
+    private func getData() {
+        service.getData { [weak self] result in
+            switch result {
+                case .success(let data):
+                    self?.cuurentMonewyCount = data
+                case .failure(let error):
+                    let errorAlert = UIAlertController(title: "Eror",
+                                                       message: error.localizedDescription,
+                                                       preferredStyle: .alert )
+                    errorAlert.addAction(UIAlertAction(title: "Cancel", style: .destructive))
+                    self?.present(errorAlert, animated: true)
+            }
+        }
+    }
+    
+    private func sendData() {
+        guard var updatedMoneyCountModdel = cuurentMonewyCount else { return }
+        updatedMoneyCountModdel.expence.insert(ExpenceModel(title: titleExpences,
+                                                            amount: amountExpense,
+                                                            date: dateExpense,
+                                                            names: updatedMoneyCountModdel.names), at: 0)
+        service.saveData(moneyCount: updatedMoneyCountModdel) { error in
+            print(error)
+        }
+        
+    }
     private func setConstraints() {
         NSLayoutConstraint.activate([
             addExpenseTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -79,7 +111,10 @@ final class AddExpenseVC: UIViewController {
     
     
     //MARK: - Actions
-    @objc private func pressedAddExpenceBtn() {
+    
+    @objc
+    private func pressedAddExpenceBtn() {
+        sendData()
         navigationController?.popViewController(animated: true)
     }
 }
@@ -97,7 +132,7 @@ extension AddExpenseVC: UITableViewDelegate, UITableViewDataSource {
         switch sectionType {
             case .title, .amount, .date:
                 return 1
-
+                
             case .name:
                 return names.count
         }
@@ -109,6 +144,7 @@ extension AddExpenseVC: UITableViewDelegate, UITableViewDataSource {
             case .title:
                 let cell = addExpenseTable.dequeueReusableCell(withIdentifier: titleExpenseIdentifire,
                                                                for: indexPath) as? TitleExpenseCell
+                cell?.delegate = self
                 cell?.configure(placeholder: "Title")
                 return cell ?? UITableViewCell()
             case .amount:
@@ -121,6 +157,7 @@ extension AddExpenseVC: UITableViewDelegate, UITableViewDataSource {
             case .date:
                 let cell = addExpenseTable.dequeueReusableCell(withIdentifier: dateExpenseIdentifire,
                                                                for: indexPath) as? DateExpenseCell
+                cell?.delegate = self
                 return cell ?? UITableViewCell()
                 
             case .name:
@@ -162,10 +199,33 @@ extension AddExpenseVC: UITableViewDelegate, UITableViewDataSource {
 }
 
 
-//MARK: - AmountExpenseCellDelegate
+// MARK: - TitleExpenseCellDelegate
+
+extension AddExpenseVC: TitleExpenseCellDelegate {
+    func titleExpenseCell(title: String) {
+        titleExpences = title
+    }
+}
+
+
+// MARK: - AmountExpenseCellDelegate
 
 extension AddExpenseVC: AmountExpenseCellDelegate {
+    func amountExpense(amount: Double) {
+        amountExpense = amount
+    }
+    
     func pressedCurrencyBtn() {
         navigationController?.pushViewController(SelectCurrencyViewController(), animated: true)
     }
 }
+
+
+// MARK: - DateExpenseCellDelegate
+
+extension AddExpenseVC: DateExpenseCellDelegate {
+    func dateExpense(date: String) {
+        dateExpense = date
+    }
+}
+
