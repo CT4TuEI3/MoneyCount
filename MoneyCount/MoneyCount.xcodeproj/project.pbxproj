@@ -141,13 +141,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		324051DC29A39DCE00B1CE3F /* New Group1 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group1";
-			sourceTree = "<group>";
-		};
 		324051DD29A39DF000B1CE3F /* Entity */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,7 +177,6 @@
 		32530EFE297D5F3C00E1662A /* CreateMoneyCountModule */ = {
 			isa = PBXGroup;
 			children = (
-				32AAD13B299E504B003106F5 /* Model */,
 				32F075B52997C34C002B4778 /* Entity */,
 				32530EFF297D5F5E00E1662A /* View */,
 				32E0B214297E9B6600EA5A9D /* Cell */,
@@ -245,7 +237,6 @@
 				32737DF52987F6E200819369 /* ExpensesModule */,
 				327DD5DD29910E03009FA313 /* CardExpense */,
 				321CE507298921F300C438CA /* AddExpensModule */,
-				324051DC29A39DCE00B1CE3F /* New Group1 */,
 				32D45F07298A899700AD6756 /* BalancesModule */,
 			);
 			path = Modules;
@@ -385,13 +376,6 @@
 				328931F929A22486008D9182 /* UserDefaultsService */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		32AAD13B299E504B003106F5 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		32C16FB92996423D00B4EBBE /* PresentModule */ = {

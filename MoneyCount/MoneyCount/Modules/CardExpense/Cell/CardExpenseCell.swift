@@ -27,6 +27,14 @@ final class CardExpenseCell: UITableViewCell {
     }
     
     
+    // MARK: - Configure
+    
+    func configure(name: String, amount: Double) {
+        namePaidLabel.text = name
+        amountLabel.text = String(amount)
+    }
+    
+    
     //MARK: - Private methods
     
     private func setupUI() {

@@ -12,6 +12,10 @@ final class CardExpense: UIViewController {
     // MARK: - Private propertyes
     
     private let namesTVCellIdentifire = "namesTVCellIdentifire"
+    private let titleExpenseEmptyProperty: String
+    private let amountExpenseEmptyProperty: Double
+    private let dateExpenseEmptyProperty: String
+    private let namesEmptyProperty: [NameBalanceModel]
     
     
     // MARK: - UI Elements
@@ -21,6 +25,18 @@ final class CardExpense: UIViewController {
     
     
     // MARK: - Life cycle
+    
+    init(title: String, amountExp: Double, date: String, name: [NameBalanceModel]) {
+        self.titleExpenseEmptyProperty = title
+        self.amountExpenseEmptyProperty = amountExp
+        self.dateExpenseEmptyProperty = date
+        self.namesEmptyProperty = name
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,17 +76,21 @@ final class CardExpense: UIViewController {
 
 extension CardExpense: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        namesEmptyProperty.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: namesTVCellIdentifire,
-                                                 for: indexPath) as? CardExpenseCell ?? UITableViewCell()
-        return cell
+                                                 for: indexPath) as? CardExpenseCell
+        cell?.configure(name: namesEmptyProperty[indexPath.row].name, amount: amountExpenseEmptyProperty)
+        return cell ?? UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        CustomHeader(color: .systemBackground)
+        CustomHeader(color: .systemBackground, title: titleExpenseEmptyProperty,
+                     amount: amountExpenseEmptyProperty,
+                     paidName: namesEmptyProperty.first ?? NameBalanceModel(name: "", balance: 0.0),
+                     date: dateExpenseEmptyProperty)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
