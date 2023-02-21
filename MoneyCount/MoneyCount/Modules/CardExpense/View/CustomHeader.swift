@@ -8,7 +8,12 @@
 import UIKit
 
 final class CustomHeader: UIView {
-
+    
+    private let updateTitleExpense: String
+    private let updateAmountExpense: Double
+    private let updatePaidNameExpense: NameBalanceModel?
+    private let updateDateExpense: String
+    
     // MARK: - UI Elements
     
     private let titleExpenseLabel = UILabel()
@@ -19,8 +24,16 @@ final class CustomHeader: UIView {
     
     
     // MARK: - Life cycle
-
-    init(color: UIColor) {
+    
+    init(color: UIColor,
+         title: String,
+         amount: Double,
+         paidName: NameBalanceModel,
+         date: String) {
+        self.updateTitleExpense = title
+        self.updateAmountExpense = amount
+        self.updatePaidNameExpense = paidName
+        self.updateDateExpense = date
         super.init(frame: .zero)
         self.backgroundColor = color
         setupUI()
@@ -46,10 +59,11 @@ final class CustomHeader: UIView {
     }
     
     private func settingsLabels() {
-        titleExpenseLabel.text = "Abc"
-        amountLabel.text = "500 RUB"
-        paidNameLabel.text = "Alex"
-        dateLabel.text = "6.2.2023"
+        titleExpenseLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        titleExpenseLabel.text = updateTitleExpense
+        amountLabel.text = String(updateAmountExpense)
+        paidNameLabel.text = updatePaidNameExpense?.name
+        dateLabel.text = updateDateExpense
     }
     
     private func setingsSeparatorLine() {
@@ -75,7 +89,7 @@ final class CustomHeader: UIView {
             
             dateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             dateLabel.centerYAnchor.constraint(equalTo: paidNameLabel.centerYAnchor),
-
+            
             separatorLine.leadingAnchor.constraint(equalTo: leadingAnchor),
             separatorLine.trailingAnchor.constraint(equalTo: trailingAnchor),
             separatorLine.bottomAnchor.constraint(equalTo: bottomAnchor),

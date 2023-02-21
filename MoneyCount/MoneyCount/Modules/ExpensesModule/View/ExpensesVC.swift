@@ -120,6 +120,11 @@ extension ExpensesVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(CardExpense(), animated: true)
+        guard let model = moneyCount else { return }
+        navigationController?.pushViewController(CardExpense(title: model.expence[indexPath.row].title,
+                                                             amountExp: model.expence[indexPath.row].amount,
+                                                             date: model.expence[indexPath.row].date,
+                                                             name: model.names ),
+                                                 animated: true)
     }
 }

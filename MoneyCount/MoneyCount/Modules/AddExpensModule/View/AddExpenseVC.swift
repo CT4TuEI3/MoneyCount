@@ -24,7 +24,7 @@ final class AddExpenseVC: UIViewController {
     private var amountExpense = 0.0
     private var dateExpense = ""
     private var paidNameExpanse: [NameBalanceModel] = []
-    private var cuurentMonewyCount: MoneyCountModel?
+    private var currentMoneyCount: MoneyCountModel?
     
     // MARK: - UI Elements
     
@@ -78,7 +78,7 @@ final class AddExpenseVC: UIViewController {
         service.getData { [weak self] result in
             switch result {
                 case .success(let data):
-                    self?.cuurentMonewyCount = data
+                    self?.currentMoneyCount = data
                 case .failure(let error):
                     let errorAlert = UIAlertController(title: "Eror",
                                                        message: error.localizedDescription,
@@ -90,7 +90,7 @@ final class AddExpenseVC: UIViewController {
     }
     
     private func sendData() {
-        guard var updatedMoneyCountModdel = cuurentMonewyCount else { return }
+        guard var updatedMoneyCountModdel = currentMoneyCount else { return }
         updatedMoneyCountModdel.expence.insert(ExpenceModel(title: titleExpences,
                                                             amount: amountExpense,
                                                             date: dateExpense,
