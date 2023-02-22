@@ -92,7 +92,34 @@ final class AmountExpenseCell: UITableViewCell {
 extension AmountExpenseCell: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard let text = textField.text else { return }
-        guard let amountDouble = Double(text) else { return }
-        delegate?.amountExpense(amount: amountDouble)
+        delegate?.amountExpense(amount: text.isEmpty ? 0.0 : (Double(text) ?? 0))
+    }
+    
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        if string.isEmpty { return true }
+        let currentText = textField.text ?? ""
+        let replacementText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        return replacementText.isValidDouble(maxDecimalPlaces: 2)
     }
 }
+
+
+// MARK: - String
+
+extension String {
+    func isValidDouble(maxDecimalPlaces: Int) -> Bool {
+        let formatter = NumberFormatter()
+        formatter.allowsFloats = true
+        let decimalSeparator = formatter.decimalSeparator ?? "."
+        if formatter.number(from: self) != nil {
+            let split = self.components(separatedBy: decimalSeparator)
+            let digits = split.count == 2 ? split.last ?? "" : ""
+            let char = String(digits.filter { digits.contains($0)})
+            return char.count <= maxDecimalPlaces
+        }
+        return false
+    }
+}
+
