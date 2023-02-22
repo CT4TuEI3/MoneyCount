@@ -55,8 +55,17 @@ final class AddExpenseVC: UIViewController {
         title = "Add expense"
         view.backgroundColor = .systemBackground
         view.addSubview(addExpenseTable)
+        settingsNavigationBar()
         settingsTableView()
         setConstraints()
+    }
+    
+    private func settingsNavigationBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"),
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(pressedAddExpenceBtn))
+        navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
     private func settingsTableView() {
@@ -68,10 +77,6 @@ final class AddExpenseVC: UIViewController {
         addExpenseTable.register(AmountExpenseCell.self, forCellReuseIdentifier: amountExpenseIdentifire)
         addExpenseTable.register(DateExpenseCell.self, forCellReuseIdentifier: dateExpenseIdentifire)
         addExpenseTable.register(NamePaidCell.self, forCellReuseIdentifier: paidNameExpenseIdentifire)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"),
-                                                            style: .plain,
-                                                            target: self,
-                                                            action: #selector(pressedAddExpenceBtn))
     }
     
     private func getData() {
@@ -80,11 +85,7 @@ final class AddExpenseVC: UIViewController {
                 case .success(let data):
                     self?.currentMoneyCount = data
                 case .failure(let error):
-                    let errorAlert = UIAlertController(title: "Eror",
-                                                       message: error.localizedDescription,
-                                                       preferredStyle: .alert )
-                    errorAlert.addAction(UIAlertAction(title: "Cancel", style: .destructive))
-                    self?.present(errorAlert, animated: true)
+                    self?.showErrorAlert(error: error)
             }
         }
     }
@@ -95,11 +96,15 @@ final class AddExpenseVC: UIViewController {
                                                             amount: amountExpense,
                                                             date: dateExpense,
                                                             names: updatedMoneyCountModdel.names), at: 0)
-        service.saveData(moneyCount: updatedMoneyCountModdel) { error in
-            print(error)
+        service.saveData(moneyCount: updatedMoneyCountModdel) { [weak self] error in
+            self?.showErrorAlert(error: error)
         }
-        
     }
+    
+    private func isCompletedValues(_ amountExpense: Double, _ titleExpences: String) -> Bool {
+        amountExpense != 0.0 && !titleExpences.isEmpty ? true : false
+    }
+    
     private func setConstraints() {
         NSLayoutConstraint.activate([
             addExpenseTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -204,6 +209,7 @@ extension AddExpenseVC: UITableViewDelegate, UITableViewDataSource {
 extension AddExpenseVC: TitleExpenseCellDelegate {
     func titleExpenseCell(title: String) {
         titleExpences = title
+        navigationItem.rightBarButtonItem?.isEnabled = isCompletedValues(amountExpense, titleExpences)
     }
 }
 
@@ -213,11 +219,13 @@ extension AddExpenseVC: TitleExpenseCellDelegate {
 extension AddExpenseVC: AmountExpenseCellDelegate {
     func amountExpense(amount: Double) {
         amountExpense = amount
+        navigationItem.rightBarButtonItem?.isEnabled = isCompletedValues(amountExpense, titleExpences)
     }
     
     func pressedCurrencyBtn() {
         navigationController?.pushViewController(SelectCurrencyViewController(), animated: true)
     }
+    
 }
 
 

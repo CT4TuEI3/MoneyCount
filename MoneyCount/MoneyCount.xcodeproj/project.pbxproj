@@ -14,6 +14,7 @@
 		321CE5112989318E00C438CA /* DateExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321CE5102989318E00C438CA /* DateExpenseCell.swift */; };
 		321CE5132989328C00C438CA /* NamePaidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321CE5122989328C00C438CA /* NamePaidCell.swift */; };
 		321CE5152989331300C438CA /* AddExpenseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321CE5142989331300C438CA /* AddExpenseEntity.swift */; };
+		322B200C29A6771200B108BB /* UIViewConntrollerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 322B200B29A6771200B108BB /* UIViewConntrollerExtension.swift */; };
 		32530EF6297D4F0700E1662A /* CustomCurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32530EF5297D4F0700E1662A /* CustomCurrencyCell.swift */; };
 		32530EF8297D5BF500E1662A /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32530EF7297D5BF500E1662A /* CurrencyModel.swift */; };
 		326AB91B2976EF46005EB02D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326AB91A2976EF46005EB02D /* AppDelegate.swift */; };
@@ -54,6 +55,7 @@
 		321CE5102989318E00C438CA /* DateExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExpenseCell.swift; sourceTree = "<group>"; };
 		321CE5122989328C00C438CA /* NamePaidCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamePaidCell.swift; sourceTree = "<group>"; };
 		321CE5142989331300C438CA /* AddExpenseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseEntity.swift; sourceTree = "<group>"; };
+		322B200B29A6771200B108BB /* UIViewConntrollerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewConntrollerExtension.swift; sourceTree = "<group>"; };
 		32530EF5297D4F0700E1662A /* CustomCurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCurrencyCell.swift; sourceTree = "<group>"; };
 		32530EF7297D5BF500E1662A /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
 		326AB9172976EF46005EB02D /* MoneyCount.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyCount.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +133,22 @@
 				321CE5122989328C00C438CA /* NamePaidCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		322B200929A676EE00B108BB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				322B200A29A676F600B108BB /* Extensions */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		322B200A29A676F600B108BB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				322B200B29A6771200B108BB /* UIViewConntrollerExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		324051DB29A3971C00B1CE3F /* Models */ = {
@@ -281,6 +299,7 @@
 		326AB9192976EF46005EB02D /* MoneyCount */ = {
 			isa = PBXGroup;
 			children = (
+				322B200929A676EE00B108BB /* Helpers */,
 				324051DB29A3971C00B1CE3F /* Models */,
 				32530F06297D605500E1662A /* Core */,
 				32AAD138299E4777003106F5 /* Services */,
@@ -602,6 +621,7 @@
 				32C16FBF29967DC600B4EBBE /* PresentationCell.swift in Sources */,
 				327DD5E329910E94009FA313 /* CardExpenseCell.swift in Sources */,
 				328931F829A2247C008D9182 /* UserDefaultsService.swift in Sources */,
+				322B200C29A6771200B108BB /* UIViewConntrollerExtension.swift in Sources */,
 				3287BE6E297A93B1001D3920 /* CustomMoneyCountCell.swift in Sources */,
 				32C16FBC2996429C00B4EBBE /* PresentationVC.swift in Sources */,
 				32737DFC29881CEE00819369 /* ExpensesCell.swift in Sources */,
@@ -759,6 +779,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YV72SAKGKB;
@@ -790,6 +811,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = YV72SAKGKB;
