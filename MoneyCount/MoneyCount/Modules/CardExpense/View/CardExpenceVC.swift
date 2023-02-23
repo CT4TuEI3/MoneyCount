@@ -7,15 +7,15 @@
 
 import UIKit
 
-final class CardExpense: UIViewController {
+final class CardExpenceVC: UIViewController {
     
     // MARK: - Private propertyes
     
     private let namesTVCellIdentifire = "namesTVCellIdentifire"
-    private let titleExpenseEmptyProperty: String
-    private let amountExpenseEmptyProperty: Double
-    private let dateExpenseEmptyProperty: String
-    private let namesEmptyProperty: [NameBalanceModel]
+    private let titleExpenceUpdated: String
+    private let amountExpenseUpdated: Double
+    private let dateExpenseUpdated: String
+    private let namesInExpenceUpdated: [NameBalanceModel]
     
     
     // MARK: - UI Elements
@@ -27,10 +27,10 @@ final class CardExpense: UIViewController {
     // MARK: - Life cycle
     
     init(title: String, amountExp: Double, date: String, name: [NameBalanceModel]) {
-        self.titleExpenseEmptyProperty = title
-        self.amountExpenseEmptyProperty = amountExp
-        self.dateExpenseEmptyProperty = date
-        self.namesEmptyProperty = name
+        self.titleExpenceUpdated = title
+        self.amountExpenseUpdated = amountExp
+        self.dateExpenseUpdated = date
+        self.namesInExpenceUpdated = name
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -72,25 +72,25 @@ final class CardExpense: UIViewController {
 }
 
 
-//MARK: - UITableViewDelegate, UITableViewDataSource
+// MARK: - UITableViewDelegate, UITableViewDataSource
 
-extension CardExpense: UITableViewDelegate, UITableViewDataSource {
+extension CardExpenceVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        namesEmptyProperty.count
+        namesInExpenceUpdated.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: namesTVCellIdentifire,
                                                  for: indexPath) as? CardExpenseCell
-        cell?.configure(name: namesEmptyProperty[indexPath.row].name, amount: amountExpenseEmptyProperty)
+        cell?.configure(name: namesInExpenceUpdated[indexPath.row].name, amount: amountExpenseUpdated)
         return cell ?? UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        CustomHeader(color: .systemBackground, title: titleExpenseEmptyProperty,
-                     amount: amountExpenseEmptyProperty,
-                     paidName: namesEmptyProperty.first ?? NameBalanceModel(name: "", balance: 0.0),
-                     date: dateExpenseEmptyProperty)
+        CustomHeader(color: .systemBackground, title: titleExpenceUpdated,
+                     amount: amountExpenseUpdated,
+                     paidName: namesInExpenceUpdated.first ?? NameBalanceModel(name: "", balance: 0.0),
+                     date: dateExpenseUpdated)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

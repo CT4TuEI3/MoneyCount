@@ -66,7 +66,6 @@ final class ExpensesVC: UIViewController {
     }
     
     private func settingsTableView() {
-        expensesTableView.translatesAutoresizingMaskIntoConstraints = false
         expensesTableView.delegate = self
         expensesTableView.dataSource = self
         expensesTableView.keyboardDismissMode = .onDrag
@@ -75,11 +74,12 @@ final class ExpensesVC: UIViewController {
     }
     
     private func searchBarSettings() {
-        expensesSearchBar.translatesAutoresizingMaskIntoConstraints = false
         expensesSearchBar.delegate = self
     }
     
     private func setConstrains() {
+        expensesTableView.translatesAutoresizingMaskIntoConstraints = false
+        expensesSearchBar.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             expensesSearchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             expensesSearchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -121,7 +121,7 @@ extension ExpensesVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let model = moneyCount else { return }
-        navigationController?.pushViewController(CardExpense(title: model.expence[indexPath.row].title,
+        navigationController?.pushViewController(CardExpenceVC(title: model.expence[indexPath.row].title,
                                                              amountExp: model.expence[indexPath.row].amount,
                                                              date: model.expence[indexPath.row].date,
                                                              name: model.names ),

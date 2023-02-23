@@ -40,7 +40,9 @@ final class PresentationVC: UIViewController {
         view.addSubview(welcomeText)
         view.addSubview(presentTableView)
         view.addSubview(continueButton)
-        appIconImage.image = UIImage(systemName: "apps.iphone")
+        appIconImage.image = UIImage(named: "AppIcon")
+        appIconImage.clipsToBounds = true
+        appIconImage.layer.cornerRadius = 24
         textWelcomeSettings()
         tableViewSettings()
         buttonSettings()

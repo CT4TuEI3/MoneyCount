@@ -7,12 +7,12 @@
 
 enum SectionType: Int, CaseIterable {
     
-    /// Секция с названием и описанием
+    /// Section with the title and description MoneyCount
     case title
     
-    /// Секция с валютами
+    /// Currency section
     case currency
     
-    /// Секция имён
+    /// Name section
     case names
 }

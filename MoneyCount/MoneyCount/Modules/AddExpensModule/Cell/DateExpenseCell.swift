@@ -25,7 +25,7 @@ final class DateExpenseCell: UITableViewCell {
     
     // MARK: - UI Elements
     
-    private let dateField = UITextField()
+    private let dateExpenseTextField = UITextField()
     private let dateExpenseDatePicker = UIDatePicker()
     private let datePickerToolBar = UIToolbar()
     
@@ -45,20 +45,18 @@ final class DateExpenseCell: UITableViewCell {
     // MARK: - Private Methods
     
     private func setupUI() {
-        contentView.addSubview(dateField)
+        contentView.addSubview(dateExpenseTextField)
         setConstraints()
         setiingsTextField()
         settingsDatePicker()
     }
     
     private func setiingsTextField() {
-        dateField.translatesAutoresizingMaskIntoConstraints = false
-        dateField.inputView = dateExpenseDatePicker
-        dateField.placeholder = "Pick date"
+        dateExpenseTextField.inputView = dateExpenseDatePicker
+        dateExpenseTextField.placeholder = "Pick date"
     }
     
     private func settingsDatePicker() {
-        dateExpenseDatePicker.translatesAutoresizingMaskIntoConstraints = false
         dateExpenseDatePicker.locale = .current
         dateExpenseDatePicker.datePickerMode = .date
         dateExpenseDatePicker.preferredDatePickerStyle = .wheels
@@ -69,20 +67,22 @@ final class DateExpenseCell: UITableViewCell {
         
         datePickerToolBar.sizeToFit()
         datePickerToolBar.setItems([flexSpace, doneBtn], animated: true)
-        dateField.inputAccessoryView = datePickerToolBar
+        dateExpenseTextField.inputAccessoryView = datePickerToolBar
     }
     
     private func getDataFromPicker() {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yy"
-        dateField.text = formatter.string(from: dateExpenseDatePicker.date)
+        dateExpenseTextField.text = formatter.string(from: dateExpenseDatePicker.date)
     }
     
     private func setConstraints() {
+        dateExpenseTextField.translatesAutoresizingMaskIntoConstraints = false
+        dateExpenseDatePicker.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            dateField.centerYAnchor.constraint(equalTo: centerYAnchor),
-            dateField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            dateField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            dateExpenseTextField.centerYAnchor.constraint(equalTo: centerYAnchor),
+            dateExpenseTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            dateExpenseTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
         ])
     }
     
@@ -101,6 +101,6 @@ final class DateExpenseCell: UITableViewCell {
     private func doneAction() {
         getDataFromPicker()
         contentView.endEditing(true)
-        delegate?.dateExpense(date: dateField.text ?? "")
+        delegate?.dateExpense(date: dateExpenseTextField.text ?? "")
     }
 }

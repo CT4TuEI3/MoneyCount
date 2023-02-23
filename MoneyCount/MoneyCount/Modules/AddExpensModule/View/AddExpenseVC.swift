@@ -12,7 +12,7 @@ final class AddExpenseVC: UIViewController {
     private let names: [NameBalanceModel]
     
     
-    //MARK: - Private properties
+    // MARK: - Private properties
     
     private let service = FireBaseService()
     private let titleExpenseIdentifire = "titleExpenseIdentifire"
@@ -31,7 +31,7 @@ final class AddExpenseVC: UIViewController {
     private let addExpenseTable = UITableView(frame: .zero, style: .grouped)
     
     
-    //MARK: - Lifecycle
+    // MARK: - Lifecycle
     
     init(names: [NameBalanceModel]) {
         self.names = names
@@ -69,7 +69,6 @@ final class AddExpenseVC: UIViewController {
     }
     
     private func settingsTableView() {
-        addExpenseTable.translatesAutoresizingMaskIntoConstraints = false
         addExpenseTable.delegate = self
         addExpenseTable.dataSource = self
         addExpenseTable.keyboardDismissMode = .onDrag
@@ -106,6 +105,7 @@ final class AddExpenseVC: UIViewController {
     }
     
     private func setConstraints() {
+        addExpenseTable.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             addExpenseTable.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             addExpenseTable.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -115,7 +115,7 @@ final class AddExpenseVC: UIViewController {
     }
     
     
-    //MARK: - Actions
+    // MARK: - Actions
     
     @objc
     private func pressedAddExpenceBtn() {
@@ -125,7 +125,7 @@ final class AddExpenseVC: UIViewController {
 }
 
 
-//MARK: - UITableViewDelegate, UITableViewDataSource
+// MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension AddExpenseVC: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {

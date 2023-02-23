@@ -11,14 +11,14 @@ final class MainMoneyCountVC: UITabBarController {
     
     // MARK: - Private propertyes
     
-    private let names: [NameBalanceModel]
+    private let namesUsersOneMoneyCount: [NameBalanceModel]
     private let titleMoneyCount: String
     
     
     // MARK: - Life Cycle
     
     init(names: [NameBalanceModel], titleMoneyCount: String) {
-        self.names = names
+        self.namesUsersOneMoneyCount = names
         self.titleMoneyCount = titleMoneyCount
         super.init(nibName: nil, bundle: nil)
     }
@@ -54,7 +54,7 @@ final class MainMoneyCountVC: UITabBarController {
                                 image: UIImage(systemName: "doc.text"),
                                 selectedImage: nil)
         expensesVC.tabBarItem = item
-        let balancesVC = BalancesVC(names: names)
+        let balancesVC = BalancesVC(names: namesUsersOneMoneyCount)
         balancesVC.delegate = self
         let itemsec = UITabBarItem(title: "Balances",
                                    image: UIImage(systemName: "arrow.left.arrow.right"),
@@ -68,7 +68,7 @@ final class MainMoneyCountVC: UITabBarController {
     
     @objc
     private func pressedAddExpensButton() {
-        navigationController?.pushViewController(AddExpenseVC(names: names), animated: true)
+        navigationController?.pushViewController(AddExpenseVC(names: namesUsersOneMoneyCount), animated: true)
     }
     
     @objc
@@ -83,7 +83,7 @@ final class MainMoneyCountVC: UITabBarController {
 }
 
 
-//MARK: - ExpensesVCDelegate
+// MARK: - ExpensesVCDelegate
 
 extension MainMoneyCountVC: ExpensesVCDelegate {
     func updatedNavBarBtn() {
@@ -95,7 +95,7 @@ extension MainMoneyCountVC: ExpensesVCDelegate {
 }
 
 
-//MARK: - BalancesVCDelegate
+// MARK: - BalancesVCDelegate
 
 extension MainMoneyCountVC: BalancesVCDelegate {
     func updateNavBar() {

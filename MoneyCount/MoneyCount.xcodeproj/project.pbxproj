@@ -25,7 +25,7 @@
 		32737DF82987F72A00819369 /* ExpensesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32737DF72987F72A00819369 /* ExpensesVC.swift */; };
 		32737DFC29881CEE00819369 /* ExpensesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32737DFB29881CEE00819369 /* ExpensesCell.swift */; };
 		32748CA229830EEB002CCCB3 /* MainMoneyCountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32748CA129830EEB002CCCB3 /* MainMoneyCountVC.swift */; };
-		327DD5E129910E83009FA313 /* CardExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327DD5E029910E83009FA313 /* CardExpense.swift */; };
+		327DD5E129910E83009FA313 /* CardExpenceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327DD5E029910E83009FA313 /* CardExpenceVC.swift */; };
 		327DD5E329910E94009FA313 /* CardExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327DD5E229910E94009FA313 /* CardExpenseCell.swift */; };
 		327DD5E529913871009FA313 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327DD5E429913871009FA313 /* CustomHeader.swift */; };
 		3287BE6E297A93B1001D3920 /* CustomMoneyCountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3287BE6D297A93B1001D3920 /* CustomMoneyCountCell.swift */; };
@@ -68,7 +68,7 @@
 		32737DF72987F72A00819369 /* ExpensesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesVC.swift; sourceTree = "<group>"; };
 		32737DFB29881CEE00819369 /* ExpensesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesCell.swift; sourceTree = "<group>"; };
 		32748CA129830EEB002CCCB3 /* MainMoneyCountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMoneyCountVC.swift; sourceTree = "<group>"; };
-		327DD5E029910E83009FA313 /* CardExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardExpense.swift; sourceTree = "<group>"; };
+		327DD5E029910E83009FA313 /* CardExpenceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardExpenceVC.swift; sourceTree = "<group>"; };
 		327DD5E229910E94009FA313 /* CardExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardExpenseCell.swift; sourceTree = "<group>"; };
 		327DD5E429913871009FA313 /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
 		3287BE6D297A93B1001D3920 /* CustomMoneyCountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMoneyCountCell.swift; sourceTree = "<group>"; };
@@ -365,7 +365,7 @@
 		327DD5DE29910E3E009FA313 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				327DD5E029910E83009FA313 /* CardExpense.swift */,
+				327DD5E029910E83009FA313 /* CardExpenceVC.swift */,
 				327DD5E429913871009FA313 /* CustomHeader.swift */,
 			);
 			path = View;
@@ -613,7 +613,7 @@
 				32F8F882298144490043AED3 /* AddNamesCell.swift in Sources */,
 				328931FB29A224B0008D9182 /* UserDefaultsKeys.swift in Sources */,
 				32E0B211297E8D2800EA5A9D /* CreateCountVC.swift in Sources */,
-				327DD5E129910E83009FA313 /* CardExpense.swift in Sources */,
+				327DD5E129910E83009FA313 /* CardExpenceVC.swift in Sources */,
 				326AB91F2976EF46005EB02D /* StartVC.swift in Sources */,
 				32530EF8297D5BF500E1662A /* CurrencyModel.swift in Sources */,
 				321CE50F29892EDB00C438CA /* AmountExpenseCell.swift in Sources */,

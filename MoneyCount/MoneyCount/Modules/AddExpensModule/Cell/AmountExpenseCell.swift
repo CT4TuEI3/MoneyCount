@@ -16,14 +16,14 @@ final class AmountExpenseCell: UITableViewCell {
     
     weak var delegate: AmountExpenseCellDelegate?
     
-    //MARK: UI Elements
+    // MARK: UI Elements
     
     private let amountExpenseTF = UITextField()
     private let currencyAmountBtn = UIButton()
     private let currencyShortLabel = UILabel()
     
     
-    //MARK: - Life Cycle
+    // MARK: - Life Cycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -35,14 +35,14 @@ final class AmountExpenseCell: UITableViewCell {
     }
     
     
-    //MARK: - Configure
+    // MARK: - Configure
     
     func configure(placeholder: String) {
         amountExpenseTF.placeholder = placeholder
     }
     
     
-    //MARK: - Private methods
+    // MARK: - Private methods
     
     private func setupUI() {
         contentView.addSubview(amountExpenseTF)
@@ -79,6 +79,9 @@ final class AmountExpenseCell: UITableViewCell {
             currencyShortLabel.trailingAnchor.constraint(equalTo: currencyAmountBtn.leadingAnchor, constant: -8)
         ])
     }
+    
+    
+    // MARK: - Actions
     
     @objc
     private func pressedCurrencyBtn() {

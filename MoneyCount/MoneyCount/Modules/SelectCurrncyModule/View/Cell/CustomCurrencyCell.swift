@@ -9,13 +9,13 @@ import UIKit
 
 final class CustomCurrencyCell: UITableViewCell {
     
-    //MARK: - UI Elements
+    // MARK: - UI Elements
     
     private let currencyBoldLabel = UILabel()
-     let currencyNormalFullLabel = UILabel()
+    private let currencyNormalFullLabel = UILabel()
     
     
-    //MARK: - Life Cycle
+    // MARK: - Life Cycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -27,7 +27,7 @@ final class CustomCurrencyCell: UITableViewCell {
     }
     
     
-    //MARK: - Configure
+    // MARK: - Configure
     
     func configure(shortName: String, fullName: String) {
         currencyBoldLabel.text = shortName
@@ -35,7 +35,7 @@ final class CustomCurrencyCell: UITableViewCell {
     }
     
     
-    //MARK: - Private methods
+    // MARK: - Private methods
     
     private func setupUI() {
         addSubview(currencyBoldLabel)
@@ -45,12 +45,12 @@ final class CustomCurrencyCell: UITableViewCell {
     }
     
     private func settingsCurrencyBoldLabel() {
-        currencyBoldLabel.translatesAutoresizingMaskIntoConstraints = false
         currencyBoldLabel.font = UIFont.systemFont(ofSize: 14, weight: .bold)
     }
     
     private func setConstraints() {
         currencyNormalFullLabel.translatesAutoresizingMaskIntoConstraints = false
+        currencyBoldLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             currencyBoldLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             currencyBoldLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),

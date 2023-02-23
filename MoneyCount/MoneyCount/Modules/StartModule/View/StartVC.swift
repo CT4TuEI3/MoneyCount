@@ -16,7 +16,7 @@ final class StartVC: UIViewController {
     private let cellIdentifire = "Title"
     private var moneyCountTitle = ""
     private var moneyCountDiscription = ""
-    private var names: [NameBalanceModel] = []
+    private var namesUsersOneMoneyCount: [NameBalanceModel] = []
     
     
     // MARK: - UI Elements
@@ -43,22 +43,17 @@ final class StartVC: UIViewController {
     private func setData() {
         loadingIndicator.startAnimating()
         service.getData { [weak self] result in
+            self?.loadingIndicator.stopAnimating()
             self?.view.isUserInteractionEnabled = true
             self?.rightBarButtonItem.isEnabled = true
             switch result {
                 case .success(let data):
-                    self?.loadingIndicator.stopAnimating()
                     self?.moneyCountTitle = data.title
                     self?.moneyCountDiscription = data.description
-                    self?.names = data.names
+                    self?.namesUsersOneMoneyCount = data.names
                     self?.moneyCountTableView.reloadData()
                 case .failure(let error):
-                    let errorAlert = UIAlertController(title: "Eror",
-                                                       message: error.localizedDescription,
-                                                       preferredStyle: .alert )
-                    errorAlert.addAction(UIAlertAction(title: "Cancel", style: .destructive))
-                    self?.present(errorAlert, animated: true)
-                    print(error)
+                    self?.showErrorAlert(error: error)
             }
         }
     }
@@ -153,7 +148,7 @@ extension StartVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(MainMoneyCountVC(names: names,
+        navigationController?.pushViewController(MainMoneyCountVC(names: namesUsersOneMoneyCount,
                                                                   titleMoneyCount: moneyCountTitle),
                                                  animated: true)
     }

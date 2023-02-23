@@ -20,7 +20,7 @@ final class BalancesVC: UIViewController {
     
     // MARK: - Private propertyes
 
-    private let names: [NameBalanceModel]
+    private let namesBalances: [NameBalanceModel]
     private let balancesCellIddentifire = "balancesCellIddentifire"
     
     
@@ -32,7 +32,7 @@ final class BalancesVC: UIViewController {
     // MARK: - Life cycle
 
     init(names: [NameBalanceModel]) {
-        self.names = names
+        self.namesBalances = names
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -82,13 +82,13 @@ final class BalancesVC: UIViewController {
 
 extension BalancesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        names.count
+        namesBalances.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: balancesCellIddentifire,
                                                  for: indexPath) as? BalacesCell
-        cell?.configure(names: names[indexPath.row].name)
+        cell?.configure(names: namesBalances[indexPath.row].name)
         return cell ?? UITableViewCell()
     }
     

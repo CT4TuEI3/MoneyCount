@@ -14,15 +14,15 @@ protocol TextFieldCellDelegate: AnyObject {
 final class TextFieldCell: UITableViewCell {
     
     weak var delegate: TextFieldCellDelegate?
-    private var title: String = ""
+    private var titleNewMoneyCount: String = ""
     
     
-    //MARK: - UI Elements
+    // MARK: - UI Elements
     
     private let titleMCTextField = UITextField()
     
 
-    //MARK: - Life Cycle
+    // MARK: - Life Cycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -35,16 +35,16 @@ final class TextFieldCell: UITableViewCell {
     }
     
     
-    //MARK: - Configure
+    // MARK: - Configure
     
     func configure(placeholder: String) {
-        title = placeholder
+        titleNewMoneyCount = placeholder
         titleMCTextField.placeholder = placeholder
         titleMCTextField.delegate = self
     }
     
     
-    //MARK: - Private methods
+    // MARK: - Private methods
     
     private func setupUI() {
         contentView.addSubview(titleMCTextField)
@@ -66,6 +66,6 @@ final class TextFieldCell: UITableViewCell {
 extension TextFieldCell: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard let text = textField.text else { return }
-        delegate?.pressedDoneBtn(title: title, text: text)
+        delegate?.pressedDoneBtn(title: titleNewMoneyCount, text: text)
     }
 }

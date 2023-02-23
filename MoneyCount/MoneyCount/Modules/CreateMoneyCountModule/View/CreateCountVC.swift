@@ -28,7 +28,7 @@ final class CreateCountVC: UIViewController {
     private let addNamesIdentifier = "addNamesIdentifier"
     private let nameLabelCellIdentifier = "nameLabelCellIdentifier"
     private let sections = SectionType.allCases
-    private var names: [NameBalanceModel] = []
+    private var namesUsersOneMoneyCount: [NameBalanceModel] = []
     private var titleMoneyCount = ""
     private var discriptionMoneyCount = ""
     private var shortNameCurrency = ""
@@ -63,7 +63,6 @@ final class CreateCountVC: UIViewController {
     }
     
     private func settingsTableView() {
-        table.translatesAutoresizingMaskIntoConstraints = false
         table.keyboardDismissMode = .onDrag
         table.backgroundColor = .systemGray6
         table.delegate = self
@@ -75,6 +74,7 @@ final class CreateCountVC: UIViewController {
     }
     
     private func setConstraints() {
+        table.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             table.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             table.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -86,7 +86,7 @@ final class CreateCountVC: UIViewController {
     private func sendData() {
         service.saveData(moneyCount: MoneyCountModel(title: titleMoneyCount,
                                                      description: discriptionMoneyCount,
-                                                     names: names,
+                                                     names: namesUsersOneMoneyCount,
                                                      currency: shortNameCurrency,
                                                      expence: []), { error in
             if let error = error {
@@ -105,8 +105,8 @@ final class CreateCountVC: UIViewController {
         sendData() 
         delegate?.setInfoNewCount(title: titleMoneyCount,
                                   discription: discriptionMoneyCount,
-                                  names: names)
-        navigationController?.pushViewController(MainMoneyCountVC(names: names,
+                                  names: namesUsersOneMoneyCount)
+        navigationController?.pushViewController(MainMoneyCountVC(names: namesUsersOneMoneyCount,
                                                                   titleMoneyCount: titleMoneyCount),
                                                  animated: true)
     }
@@ -128,7 +128,7 @@ extension CreateCountVC: UITableViewDelegate, UITableViewDataSource {
             case .currency:
                 return 1
             case .names:
-                return names.count + 1
+                return namesUsersOneMoneyCount.count + 1
         }
     }
     
@@ -158,7 +158,7 @@ extension CreateCountVC: UITableViewDelegate, UITableViewDataSource {
                 } else {
                     let cell = tableView.dequeueReusableCell(withIdentifier: nameLabelCellIdentifier,
                                                              for: indexPath) as? NamesCell
-                    cell?.configure(textLabel: names[indexPath.row - 1].name)
+                    cell?.configure(textLabel: namesUsersOneMoneyCount[indexPath.row - 1].name)
                     return cell ?? UITableViewCell()
                 }
         }
@@ -182,11 +182,11 @@ extension CreateCountVC: UITableViewDelegate, UITableViewDataSource {
                    commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            names.remove(at: indexPath.row - 1)
+            namesUsersOneMoneyCount.remove(at: indexPath.row - 1)
             tableView.beginUpdates()
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
-            if !titleMoneyCount.isEmpty && !names.isEmpty {
+            if !titleMoneyCount.isEmpty && !namesUsersOneMoneyCount.isEmpty {
                 navigationItem.rightBarButtonItem?.isEnabled = true
             } else {
                 navigationItem.rightBarButtonItem?.isEnabled = false
@@ -219,9 +219,9 @@ extension CreateCountVC: UITableViewDelegate, UITableViewDataSource {
 
 extension CreateCountVC: AddNamesCellDelegate {
     func pressedAddNamesButton(name: String) {
-        names.append(NameBalanceModel(name: name, balance: 0.0))
+        namesUsersOneMoneyCount.append(NameBalanceModel(name: name, balance: 0.0))
         table.beginUpdates()
-        table.insertRows(at: [IndexPath(row: names.count,
+        table.insertRows(at: [IndexPath(row: namesUsersOneMoneyCount.count,
                                         section: SectionType.names.rawValue)],
                          with: .top)
         table.endUpdates()
@@ -243,7 +243,7 @@ extension CreateCountVC: TextFieldCellDelegate {
         } else {
             discriptionMoneyCount = text
         }
-        if titleMoneyCount.count != 0 && names.count != 0 {
+        if titleMoneyCount.count != 0 && namesUsersOneMoneyCount.count != 0 {
             navigationItem.rightBarButtonItem?.isEnabled = true
         } else {
             navigationItem.rightBarButtonItem?.isEnabled = false

@@ -9,6 +9,6 @@ import Foundation
 
 enum UserDefaultsKeys: String {
     
-    ///Первый запуск приложения
+    /// First run of the application
     case isWasFirstRunApp
 }

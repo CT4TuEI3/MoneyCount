@@ -9,14 +9,14 @@ import UIKit
 
 final class CustomMoneyCountCell: UITableViewCell {
     
-    //MARK: - UI Elements
+    // MARK: - UI Elements
     
     private let nameLabel = UILabel()
     private let secondLabel = UILabel()
     private let cellImage = UIImageView(image: UIImage(systemName: "chevron.forward"))
     
     
-    //MARK: - Life Cycle
+    // MARK: - Life Cycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -28,7 +28,7 @@ final class CustomMoneyCountCell: UITableViewCell {
     }
     
     
-    //MARK: - Configure
+    // MARK: - Configure
     
     func configure(title: String, discription: String) {
         nameLabel.text = title
@@ -36,29 +36,25 @@ final class CustomMoneyCountCell: UITableViewCell {
     }
     
     
-    //MARK: - Private methods
+    // MARK: - Private methods
     
     private func setupUI() {
         addSubview(nameLabel)
         addSubview(secondLabel)
         addSubview(cellImage)
-        settingsLabel()
         secondSettingsLabe()
         setConstraints()
         
     }
-    
-    private func settingsLabel() {
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
+
     private func secondSettingsLabe() {
-        secondLabel.translatesAutoresizingMaskIntoConstraints = false
         secondLabel.font = UIFont.systemFont(ofSize: 12)
         secondLabel.textColor = .gray
     }
     
     private func setConstraints() {
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        secondLabel.translatesAutoresizingMaskIntoConstraints = false
         cellImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
