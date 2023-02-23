@@ -12,7 +12,6 @@ final class NamePaidCell: UITableViewCell {
     // MARK: - UI Elements
     
     private let namePaidLabel = UILabel()
-    private let checkMark = UITableViewCell.AccessoryType.checkmark
     
     
     // MARK: - Life cycle

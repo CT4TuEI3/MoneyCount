@@ -11,12 +11,12 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 protocol FireBaseServiceProtocol {
-    /// Отправляет данные в базу данных
-    /// - Parameter moneyCount: Сохраняемая модель
-    /// - Parameter completion: Ошибка
+    /// Sending data to a database
+    /// - Parameter moneyCount: Saving model
+    /// - Parameter completion: Error
     func saveData(moneyCount: MoneyCountModel, _ completion: @escaping (Error?) -> Void)
     
-    /// Получение данных из базы данных
+    /// Retrieve data from the database
     func getData(completion: @escaping (Result<MoneyCountModel, Error>) -> Void)
 }
 

@@ -9,8 +9,13 @@ import UIKit
 
 final class NamesCell: UITableViewCell {
     
+    // MARK: - Private property
+    
     private let nameLabel = UILabel()
     
+    
+    // MARK: - Life Cycle
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -25,17 +30,15 @@ final class NamesCell: UITableViewCell {
     }
 
     
+    // MARK: - Private method
+    
     private func setupUI() {
         contentView.addSubview(nameLabel)
-        settings()
         setConstraint()
     }
     
-    private func settings() {
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
     private func setConstraint() {
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16)

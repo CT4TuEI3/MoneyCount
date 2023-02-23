@@ -16,13 +16,13 @@ final class AddNamesCell: UITableViewCell {
     weak var delegate: AddNamesCellDelegate?
     
     
-    //MARK: - UI Elements
+    // MARK: - UI Elements
     
     private let addNameTextField = UITextField()
     private let addNameButton = UIButton()
     
     
-    //MARK: - Life Cycle
+    // MARK: - Life Cycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -34,14 +34,14 @@ final class AddNamesCell: UITableViewCell {
     }
     
     
-    //MARK: - Configure
+    // MARK: - Configure
     
     func configure(placeholder: String) {
         addNameTextField.placeholder = placeholder
     }
     
     
-    //MARK: - Private methods
+    // MARK: - Private methods
     
     private func setupUI() {
         contentView.addSubview(addNameTextField)
@@ -51,13 +51,13 @@ final class AddNamesCell: UITableViewCell {
     }
     
     private func settings() {
-        addNameTextField.translatesAutoresizingMaskIntoConstraints = false
-        addNameButton.translatesAutoresizingMaskIntoConstraints = false
         addNameButton.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
         addNameButton.addTarget(self, action: #selector(didPressedBtn), for: .touchUpInside)
     }
     
     private func setConstraints() {
+        addNameTextField.translatesAutoresizingMaskIntoConstraints = false
+        addNameButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             addNameTextField.centerYAnchor.constraint(equalTo: centerYAnchor),
             addNameTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
@@ -71,7 +71,11 @@ final class AddNamesCell: UITableViewCell {
         ])
     }
     
-    @objc private func didPressedBtn() {
+    
+    // MARK: Actions
+    
+    @objc
+    private func didPressedBtn() {
         guard let name = addNameTextField.text?.replacingOccurrences(of: " ", with: ""),
                 name.count != 0 else { return }
         delegate?.pressedAddNamesButton(name: name)

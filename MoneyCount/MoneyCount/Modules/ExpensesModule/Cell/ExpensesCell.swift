@@ -9,15 +9,15 @@ import UIKit
 
 final class ExpensesCell: UITableViewCell {
     
-    //MARK: - UI Elements
+    // MARK: - UI Elements
     
     private let titleExpensesLabel = UILabel()
-    private let paidNameExpensesLabel = UILabel()
+    private let nameWhoPaidExpense = UILabel()
     private let dateExpensesLabel = UILabel()
     private let amountExpensesLabel = UILabel()
     
     
-    //MARK: - Life cycle
+    // MARK: - Life cycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -35,7 +35,7 @@ final class ExpensesCell: UITableViewCell {
     
     func configure(expence: ExpenceModel, name: NameBalanceModel) {
         titleExpensesLabel.text = expence.title
-        paidNameExpensesLabel.text = name.name
+        nameWhoPaidExpense.text = name.name
         dateExpensesLabel.text = expence.date
         amountExpensesLabel.text = String(expence.amount)
     }
@@ -44,21 +44,21 @@ final class ExpensesCell: UITableViewCell {
     
     private func setupUI() {
         addSubview(titleExpensesLabel)
-        addSubview(paidNameExpensesLabel)
+        addSubview(nameWhoPaidExpense)
         addSubview(dateExpensesLabel)
         addSubview(amountExpensesLabel)
     }
     
     private func settingsLabels() {
         titleExpensesLabel.translatesAutoresizingMaskIntoConstraints = false
-        paidNameExpensesLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameWhoPaidExpense.translatesAutoresizingMaskIntoConstraints = false
         dateExpensesLabel.translatesAutoresizingMaskIntoConstraints = false
         amountExpensesLabel.translatesAutoresizingMaskIntoConstraints = false
         
         titleExpensesLabel.textColor = .tintColor
         
-        paidNameExpensesLabel.font = UIFont.systemFont(ofSize: 16)
-        paidNameExpensesLabel.textColor = .gray
+        nameWhoPaidExpense.font = UIFont.systemFont(ofSize: 16)
+        nameWhoPaidExpense.textColor = .gray
         
         dateExpensesLabel.font = UIFont.systemFont(ofSize: 16)
         dateExpensesLabel.textColor = .gray
@@ -71,9 +71,9 @@ final class ExpensesCell: UITableViewCell {
             titleExpensesLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             titleExpensesLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             
-            paidNameExpensesLabel.topAnchor.constraint(equalTo: titleExpensesLabel.bottomAnchor, constant: 8),
-            paidNameExpensesLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            paidNameExpensesLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            nameWhoPaidExpense.topAnchor.constraint(equalTo: titleExpensesLabel.bottomAnchor, constant: 8),
+            nameWhoPaidExpense.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            nameWhoPaidExpense.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             
             dateExpensesLabel.topAnchor.constraint(equalTo: amountExpensesLabel.bottomAnchor, constant: 8),
             dateExpensesLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),

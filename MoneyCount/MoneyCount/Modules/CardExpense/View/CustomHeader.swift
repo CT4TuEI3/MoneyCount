@@ -17,9 +17,9 @@ final class CustomHeader: UIView {
     // MARK: - UI Elements
     
     private let titleExpenseLabel = UILabel()
-    private let amountLabel = UILabel()
-    private let paidNameLabel = UILabel()
-    private let dateLabel = UILabel()
+    private let amountExpenceLabel = UILabel()
+    private let nameWhoPaidExpenseLabel = UILabel()
+    private let dateExpenseLabel = UILabel()
     private let separatorLine = UIImageView()
     
     
@@ -48,9 +48,9 @@ final class CustomHeader: UIView {
     
     private func setupUI() {
         addSubview(titleExpenseLabel)
-        addSubview(amountLabel)
-        addSubview(paidNameLabel)
-        addSubview(dateLabel)
+        addSubview(amountExpenceLabel)
+        addSubview(nameWhoPaidExpenseLabel)
+        addSubview(dateExpenseLabel)
         addSubview(separatorLine)
         
         settingsLabels()
@@ -61,9 +61,9 @@ final class CustomHeader: UIView {
     private func settingsLabels() {
         titleExpenseLabel.font = UIFont.boldSystemFont(ofSize: 18)
         titleExpenseLabel.text = updateTitleExpense
-        amountLabel.text = String(updateAmountExpense)
-        paidNameLabel.text = updatePaidNameExpense?.name
-        dateLabel.text = updateDateExpense
+        amountExpenceLabel.text = String(updateAmountExpense)
+        nameWhoPaidExpenseLabel.text = updatePaidNameExpense?.name
+        dateExpenseLabel.text = updateDateExpense
     }
     
     private func setingsSeparatorLine() {
@@ -72,23 +72,23 @@ final class CustomHeader: UIView {
     
     private func setConstraints() {
         titleExpenseLabel.translatesAutoresizingMaskIntoConstraints = false
-        amountLabel.translatesAutoresizingMaskIntoConstraints = false
-        paidNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        amountExpenceLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameWhoPaidExpenseLabel.translatesAutoresizingMaskIntoConstraints = false
+        dateExpenseLabel.translatesAutoresizingMaskIntoConstraints = false
         separatorLine.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             titleExpenseLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             titleExpenseLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             
-            amountLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            amountLabel.topAnchor.constraint(equalTo: titleExpenseLabel.bottomAnchor, constant: 8),
+            amountExpenceLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            amountExpenceLabel.topAnchor.constraint(equalTo: titleExpenseLabel.bottomAnchor, constant: 8),
             
-            paidNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            paidNameLabel.bottomAnchor.constraint(equalTo: separatorLine.topAnchor, constant: -16),
+            nameWhoPaidExpenseLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            nameWhoPaidExpenseLabel.bottomAnchor.constraint(equalTo: separatorLine.topAnchor, constant: -16),
             
-            dateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            dateLabel.centerYAnchor.constraint(equalTo: paidNameLabel.centerYAnchor),
+            dateExpenseLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            dateExpenseLabel.centerYAnchor.constraint(equalTo: nameWhoPaidExpenseLabel.centerYAnchor),
             
             separatorLine.leadingAnchor.constraint(equalTo: leadingAnchor),
             separatorLine.trailingAnchor.constraint(equalTo: trailingAnchor),

@@ -9,13 +9,13 @@ import UIKit
 
 final class CardExpenseCell: UITableViewCell {
     
-    //MARK: - UI Elements
+    // MARK: - UI Elements
     
     private let namePaidLabel = UILabel()
     private let amountLabel = UILabel()
     
     
-    //MARK: - Life Cycle
+    // MARK: - Life Cycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -35,7 +35,7 @@ final class CardExpenseCell: UITableViewCell {
     }
     
     
-    //MARK: - Private methods
+    // MARK: - Private methods
     
     private func setupUI() {
         addSubview(namePaidLabel)

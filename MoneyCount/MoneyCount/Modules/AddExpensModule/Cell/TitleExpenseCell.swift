@@ -18,12 +18,12 @@ final class TitleExpenseCell: UITableViewCell {
     weak var delegate: TitleExpenseCellDelegate?
     
     
-    //MARK: - UI Elements
+    // MARK: - UI Elements
     
     private let titleExpenseTF = UITextField()
     
     
-    //MARK: - Life Cycle
+    // MARK: - Life Cycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -35,7 +35,7 @@ final class TitleExpenseCell: UITableViewCell {
     }
     
     
-    //MARK: - Configure
+    // MARK: - Configure
     
     func configure(placeholder: String) {
         titleExpenseTF.placeholder = placeholder
@@ -43,7 +43,7 @@ final class TitleExpenseCell: UITableViewCell {
     }
     
     
-    //MARK: - Private methods
+    // MARK: - Private methods
     
     private func setupUI() {
         contentView.addSubview(titleExpenseTF)

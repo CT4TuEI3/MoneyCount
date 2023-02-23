@@ -67,7 +67,6 @@ final class SelectCurrencyViewController: UIViewController {
     
     private func settingsSearchbar() {
         filtredData = currencyArray
-        searchBarCurrency.translatesAutoresizingMaskIntoConstraints = false
         searchBarCurrency.delegate = self
     }
     
@@ -75,10 +74,11 @@ final class SelectCurrencyViewController: UIViewController {
         currencyTableView.dataSource = self
         currencyTableView.delegate = self
         currencyTableView.register(CustomCurrencyCell.self, forCellReuseIdentifier: currencyCellIdentifier)
-        currencyTableView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func setConstraints() {
+        searchBarCurrency.translatesAutoresizingMaskIntoConstraints = false
+        currencyTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             searchBarCurrency.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             searchBarCurrency.leadingAnchor.constraint(equalTo: view.leadingAnchor),

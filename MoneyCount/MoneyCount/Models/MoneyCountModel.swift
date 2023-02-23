@@ -7,46 +7,46 @@
 
 import Foundation
 
-/// Модель MoneyCount
+/// The moneyCount model storing the data of users, their balance and expenses
 struct MoneyCountModel: Codable {
-    /// Наименоввание MoneyCount
+    /// Title MoneyCount
     let title: String
     
-    ///  Описание MoneyCount
+    ///  Description MoneyCount
     let description: String
     
-    /// Имена участвующие в MoneyCount
+    /// Names of all MoneyCount members
     var names: [NameBalanceModel]
     
-    /// Выбранная валюта
+    /// Base currency MoneyCount
     let currency: String
     
-    /// Модель расходов
+    /// MoneyCount expenditure model
     var expence: [ExpenceModel]
 }
 
-/// Модель расходов
+/// MoneyCount user spending model
 struct ExpenceModel: Codable {
     
-    /// Название расхода
+    /// Name of expense
     let title: String
     
-    /// Сумма расхода
+    /// Amount of expense
     let amount: Double
     
-    /// Дата расхода
+    /// Date of expense
     let date: String
     
-    /// Имена в расходе
+    /// Users participating in the expense
     let names: [NameBalanceModel]
 }
 
-/// Струтура имён и балансов
+/// Structure of users and their balances
 struct NameBalanceModel: Codable {
     
-    ///Имя пользователя
+    /// Username
     let name: String
     
-    /// Баланс пользователя
+    /// User balance
     var balance: Double
 }

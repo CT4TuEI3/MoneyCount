@@ -15,7 +15,7 @@ final class BalacesCell: UITableViewCell {
     private let amountLabel = UILabel()
     
     
-    //MARK: - Life Cycle
+    // MARK: - Life Cycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -39,20 +39,9 @@ final class BalacesCell: UITableViewCell {
     private func setupUI() {
         addSubview(namesLabel)
         addSubview(amountLabel)
-        settingsNameLabel()
-        settingsAmountLabel()
         settingsConstrains()
     }
-    
-    private func settingsNameLabel() {
-        namesLabel.text = ""
-    }
-    
-    private func settingsAmountLabel() {
-        amountLabel.text = ""
-    }
-
-    
+        
     private func settingsConstrains() {
         namesLabel.translatesAutoresizingMaskIntoConstraints = false
         amountLabel.translatesAutoresizingMaskIntoConstraints = false
