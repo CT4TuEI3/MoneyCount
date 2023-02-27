@@ -48,7 +48,7 @@ final class MainMoneyCountVC: UITabBarController {
     private func settingsTabBar() {
         tabBar.backgroundColor = .systemBackground
         tabBar.barStyle = .default
-        let expensesVC = ExpensesVC()
+        let expensesVC = ExpensesVC(docTitle: titleMoneyCount)
         expensesVC.delegate = self
         let item = UITabBarItem(title: "Expenses",
                                 image: UIImage(systemName: "doc.text"),
@@ -68,7 +68,9 @@ final class MainMoneyCountVC: UITabBarController {
     
     @objc
     private func pressedAddExpensButton() {
-        navigationController?.pushViewController(AddExpenseVC(names: namesUsersOneMoneyCount), animated: true)
+        navigationController?.pushViewController(AddExpenseVC(names: namesUsersOneMoneyCount,
+                                                              titleMoneyCount: titleMoneyCount),
+                                                 animated: true)
     }
     
     @objc

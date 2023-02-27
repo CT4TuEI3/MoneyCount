@@ -20,6 +20,7 @@ final class AddExpenseVC: UIViewController {
     private let dateExpenseIdentifire = "dateExpenseIdentifire"
     private let paidNameExpenseIdentifire = "paidNameExpenseIdentifire"
     private let sections = AddExpenseSectionType.allCases
+    private let titleMoneyCountForDoc: String
     private var titleExpences = ""
     private var amountExpense = 0.0
     private var dateExpense = ""
@@ -33,8 +34,9 @@ final class AddExpenseVC: UIViewController {
     
     // MARK: - Lifecycle
     
-    init(names: [NameBalanceModel]) {
+    init(names: [NameBalanceModel], titleMoneyCount: String) {
         self.names = names
+        self.titleMoneyCountForDoc = titleMoneyCount
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -79,7 +81,7 @@ final class AddExpenseVC: UIViewController {
     }
     
     private func getData() {
-        service.getData { [weak self] result in
+        service.getData(docTitle: titleMoneyCountForDoc) { [weak self] result in
             switch result {
                 case .success(let data):
                     self?.currentMoneyCount = data
@@ -95,7 +97,7 @@ final class AddExpenseVC: UIViewController {
                                                             amount: amountExpense,
                                                             date: dateExpense,
                                                             names: updatedMoneyCountModdel.names), at: 0)
-        service.saveData(moneyCount: updatedMoneyCountModdel) { [weak self] error in
+        service.saveData(moneyCount: updatedMoneyCountModdel, docTitle: titleMoneyCountForDoc) { [weak self] error in
             self?.showErrorAlert(error: error)
         }
     }

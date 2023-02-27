@@ -12,7 +12,7 @@ extension UIViewController {
     /// - Parameters:
     ///   - title: Title alert
     ///   - error: Error text
-    func showErrorAlert(title: String? = "Eror", error: Error?) {
+    func showErrorAlert(title: String? = "Error", error: Error?) {
         let errorAlert = UIAlertController(title: title,
                                            message: error?.localizedDescription,
                                            preferredStyle: .alert )

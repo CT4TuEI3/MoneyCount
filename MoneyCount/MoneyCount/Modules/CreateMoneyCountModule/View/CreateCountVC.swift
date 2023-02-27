@@ -16,9 +16,9 @@ protocol CreateCountVCDelegate: AnyObject {
 final class CreateCountVC: UIViewController {
     
     // MARK: - Properties
-
+    
     weak var delegate: CreateCountVCDelegate?
-
+    
     
     // MARK: - Private properties
     
@@ -88,12 +88,8 @@ final class CreateCountVC: UIViewController {
                                                      description: discriptionMoneyCount,
                                                      names: namesUsersOneMoneyCount,
                                                      currency: shortNameCurrency,
-                                                     expence: []), { error in
-            if let error = error {
-                print("Error writing document: \(error)")
-            } else {
-                print("Document successfully written!")
-            }
+                                                     expence: []), docTitle: titleMoneyCount, { [weak self] error in
+            self?.showErrorAlert(error: error)
         })
     }
     
