@@ -17,6 +17,7 @@ final class StartVC: UIViewController {
     private var moneyCountTitle = ""
     private var moneyCountDiscription = ""
     private var namesUsersOneMoneyCount: [NameBalanceModel] = []
+    private var moneyCountsModels: [MoneyCountModel] = []
     
     
     // MARK: - UI Elements
@@ -24,7 +25,7 @@ final class StartVC: UIViewController {
     private let moneyCountTableView = UITableView()
     private let mainButton = UIButton()
     private let loadingIndicator = UIActivityIndicatorView(style: .medium)
-    private let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    private let createAndJoinAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
     private var rightBarButtonItem = UIBarButtonItem()
     
     // MARK: - Life Cycle
@@ -32,7 +33,7 @@ final class StartVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.isUserInteractionEnabled = false
-        setData()
+        getAllDocs()
         checkSeensPresentation()
         setupUI()
     }
@@ -40,21 +41,19 @@ final class StartVC: UIViewController {
     
     // MARK: - Private methods
     
-    private func setData() {
+    private func getAllDocs() {
         loadingIndicator.startAnimating()
-        service.getData { [weak self] result in
+        service.getAllDocs { [weak self] counts, error in
+            guard let counts = counts, error == nil else {
+                self?.showErrorAlert(error: error)
+                return
+            }
+            
             self?.loadingIndicator.stopAnimating()
             self?.view.isUserInteractionEnabled = true
             self?.rightBarButtonItem.isEnabled = true
-            switch result {
-                case .success(let data):
-                    self?.moneyCountTitle = data.title
-                    self?.moneyCountDiscription = data.description
-                    self?.namesUsersOneMoneyCount = data.names
-                    self?.moneyCountTableView.reloadData()
-                case .failure(let error):
-                    self?.showErrorAlert(error: error)
-            }
+            self?.moneyCountsModels = counts
+            self?.moneyCountTableView.reloadData()
         }
     }
     
@@ -94,15 +93,15 @@ final class StartVC: UIViewController {
     }
     
     private func settingsAlert() {
-        alert.addAction(UIAlertAction(title: "Create", style: .default, handler: { [weak self] _ in
+        createAndJoinAlert.addAction(UIAlertAction(title: "Create", style: .default, handler: { [weak self] _ in
             self?.pressedCreateButton()
         }))
         
-        alert.addAction(UIAlertAction(title: "Join", style: .default, handler: { _ in
+        createAndJoinAlert.addAction(UIAlertAction(title: "Join", style: .default, handler: { _ in
             print("Join")
         }))
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        createAndJoinAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
     }
     
     private func pressedCreateButton() {
@@ -129,7 +128,7 @@ final class StartVC: UIViewController {
     
     @objc
     private func pressedPlusButton() {
-        present(alert, animated: true)
+        present(createAndJoinAlert, animated: true)
     }
 }
 
@@ -138,18 +137,19 @@ final class StartVC: UIViewController {
 
 extension StartVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return moneyCountsModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifire, for: indexPath) as? CustomMoneyCountCell
-        cell?.configure(title: moneyCountTitle, discription: moneyCountDiscription)
+        cell?.configure(title: moneyCountsModels[indexPath.row].title, discription: moneyCountsModels[indexPath.row].description)
         return cell ?? UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(MainMoneyCountVC(names: namesUsersOneMoneyCount,
-                                                                  titleMoneyCount: moneyCountTitle),
+        print(moneyCountsModels[indexPath.row].names)
+        navigationController?.pushViewController(MainMoneyCountVC(names: moneyCountsModels[indexPath.row].names,
+                                                                  titleMoneyCount: moneyCountsModels[indexPath.row].title),
                                                  animated: true)
     }
 }
