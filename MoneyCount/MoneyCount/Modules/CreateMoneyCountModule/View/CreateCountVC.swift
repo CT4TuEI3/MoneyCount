@@ -10,7 +10,7 @@ import FirebaseCore
 import FirebaseFirestore
 
 protocol CreateCountVCDelegate: AnyObject {
-    func setInfoNewCount(title: String, discription: String, names: [NameBalanceModel])
+    func updatedExpenses()
 }
 
 final class CreateCountVC: UIViewController {
@@ -98,12 +98,10 @@ final class CreateCountVC: UIViewController {
     
     @objc
     private func pressedDoneButton() {
-        sendData() 
-        delegate?.setInfoNewCount(title: titleMoneyCount,
-                                  discription: discriptionMoneyCount,
-                                  names: namesUsersOneMoneyCount)
+        sendData()
+        delegate?.updatedExpenses()
         navigationController?.pushViewController(MainMoneyCountVC(names: namesUsersOneMoneyCount,
-                                                                  titleMoneyCount: titleMoneyCount),
+                                                                  titleMoneyCount: titleMoneyCount, currency: shortNameCurrency),
                                                  animated: true)
     }
 }

@@ -37,7 +37,8 @@ final class AmountExpenseCell: UITableViewCell {
     
     // MARK: - Configure
     
-    func configure(placeholder: String) {
+    func configure(placeholder: String, shortName: String) {
+        currencyShortLabel.text = shortName
         amountExpenseTF.placeholder = placeholder
     }
     
@@ -55,7 +56,6 @@ final class AmountExpenseCell: UITableViewCell {
     private func settingsUIElements() {
         amountExpenseTF.keyboardType = .decimalPad
         amountExpenseTF.delegate = self
-        currencyShortLabel.text = "RUB"
         currencyAmountBtn.setImage(UIImage(systemName: "chevron.down"), for: .normal)
         currencyAmountBtn.addTarget(self, action: #selector(pressedCurrencyBtn), for: .touchUpInside)
     }
