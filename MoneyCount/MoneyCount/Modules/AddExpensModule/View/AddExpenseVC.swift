@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol AddExpenseVCDDelegate: AnyObject {
+    func updatedExpenses()
+}
+
 final class AddExpenseVC: UIViewController {
     
-    private let names: [NameBalanceModel]
+    // MARK: - Internal propertyes
+    
+    weak var delegate: AddExpenseVCDDelegate?
     
     
     // MARK: - Private properties
@@ -26,6 +32,9 @@ final class AddExpenseVC: UIViewController {
     private var dateExpense = ""
     private var paidNameExpanse: [NameBalanceModel] = []
     private var currentMoneyCount: MoneyCountModel?
+    private let names: [NameBalanceModel]
+    private var currency: String
+    
     
     // MARK: - UI Elements
     
@@ -34,8 +43,9 @@ final class AddExpenseVC: UIViewController {
     
     // MARK: - Lifecycle
     
-    init(names: [NameBalanceModel], titleMoneyCount: String) {
+    init(names: [NameBalanceModel], currency: String, titleMoneyCount: String) {
         self.names = names
+        self.currency = currency
         self.titleMoneyCountForDoc = titleMoneyCount
         super.init(nibName: nil, bundle: nil)
     }
@@ -46,7 +56,6 @@ final class AddExpenseVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getData()
         setupUI()
     }
     
@@ -80,17 +89,6 @@ final class AddExpenseVC: UIViewController {
         addExpenseTable.register(NamePaidCell.self, forCellReuseIdentifier: paidNameExpenseIdentifire)
     }
     
-    private func getData() {
-        service.getData(docTitle: titleMoneyCountForDoc) { [weak self] result in
-            switch result {
-                case .success(let data):
-                    self?.currentMoneyCount = data
-                case .failure(let error):
-                    self?.showErrorAlert(error: error)
-            }
-        }
-    }
-    
     private func sendData() {
         guard var updatedMoneyCountModdel = currentMoneyCount else { return }
         updatedMoneyCountModdel.expence.insert(ExpenceModel(title: titleExpences,
@@ -122,6 +120,7 @@ final class AddExpenseVC: UIViewController {
     @objc
     private func pressedAddExpenceBtn() {
         sendData()
+        delegate?.updatedExpenses()
         navigationController?.popViewController(animated: true)
     }
 }
@@ -157,7 +156,7 @@ extension AddExpenseVC: UITableViewDelegate, UITableViewDataSource {
             case .amount:
                 let cell = addExpenseTable.dequeueReusableCell(withIdentifier: amountExpenseIdentifire,
                                                                for: indexPath) as? AmountExpenseCell
-                cell?.configure(placeholder: "Amount")
+                cell?.configure(placeholder: "Amount", shortName: currency)
                 cell?.delegate = self
                 return cell ?? UITableViewCell()
                 
@@ -225,7 +224,9 @@ extension AddExpenseVC: AmountExpenseCellDelegate {
     }
     
     func pressedCurrencyBtn() {
-        navigationController?.pushViewController(SelectCurrencyViewController(), animated: true)
+        let vc = SelectCurrencyViewController()
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }
@@ -239,3 +240,12 @@ extension AddExpenseVC: DateExpenseCellDelegate {
     }
 }
 
+
+// MARK: - SelectCurrencyViewControllerDelegate
+
+extension AddExpenseVC: SelectCurrencyViewControllerDelegate {
+    func selectedCurrency(_ curency: CurrencyModel) {
+        currency = curency.shortName
+        addExpenseTable.reloadData()
+    }
+}

@@ -13,11 +13,14 @@ final class MainMoneyCountVC: UITabBarController {
     
     private let namesUsersOneMoneyCount: [NameBalanceModel]
     private let titleMoneyCount: String
+    private var isNeedUpdated = false
+    private var currencyMC: String
     
     
     // MARK: - Life Cycle
     
-    init(names: [NameBalanceModel], titleMoneyCount: String) {
+    init(names: [NameBalanceModel], titleMoneyCount: String, currency: String) {
+        self.currencyMC = currency
         self.namesUsersOneMoneyCount = names
         self.titleMoneyCount = titleMoneyCount
         super.init(nibName: nil, bundle: nil)
@@ -68,9 +71,11 @@ final class MainMoneyCountVC: UITabBarController {
     
     @objc
     private func pressedAddExpensButton() {
-        navigationController?.pushViewController(AddExpenseVC(names: namesUsersOneMoneyCount,
-                                                              titleMoneyCount: titleMoneyCount),
-                                                 animated: true)
+        let vc = AddExpenseVC(names: namesUsersOneMoneyCount,
+                              currency: currencyMC,
+                              titleMoneyCount: titleMoneyCount)
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc
@@ -88,6 +93,11 @@ final class MainMoneyCountVC: UITabBarController {
 // MARK: - ExpensesVCDelegate
 
 extension MainMoneyCountVC: ExpensesVCDelegate {
+    func isNeedUpdateddData(_ completion: @escaping (Bool) -> Void) {
+        completion(isNeedUpdated)
+        isNeedUpdated = false
+    }
+    
     func updatedNavBarBtn() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"),
                                                             style: .plain,
@@ -105,5 +115,14 @@ extension MainMoneyCountVC: BalancesVCDelegate {
                                                             style: .plain,
                                                             target: self,
                                                             action: #selector(pressedBtnBalance))
+    }
+}
+
+
+// MARK: - AddExpenseVCDDelegate
+
+extension MainMoneyCountVC: AddExpenseVCDDelegate {
+    func updatedExpenses() {
+        isNeedUpdated = true
     }
 }

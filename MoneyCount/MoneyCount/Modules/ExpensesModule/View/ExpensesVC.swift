@@ -9,6 +9,7 @@ import UIKit
 
 protocol ExpensesVCDelegate: AnyObject {
     func updatedNavBarBtn()
+    func isNeedUpdateddData(_ completion: @escaping (Bool) -> Void)
 }
 
 final class ExpensesVC: UIViewController {
@@ -30,9 +31,11 @@ final class ExpensesVC: UIViewController {
     
     private let expensesTableView = UITableView()
     private let expensesSearchBar = UISearchBar()
+    private let updateDataActivityIndicator = UIActivityIndicatorView(style: .medium)
     
     
     // MARK: - Life cycle
+    
     init(docTitle: String) {
         self.titleDocumentDdataBase = docTitle
         super.init(nibName: nil, bundle: nil)
@@ -63,13 +66,31 @@ final class ExpensesVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         delegate?.updatedNavBarBtn()
-        expensesTableView.reloadData()
+        delegate?.isNeedUpdateddData({ [weak self] isNeedUpddated in
+            guard let self = self else { return }
+            if isNeedUpddated {
+                self.updateDataActivityIndicator.startAnimating()
+                self.firebaseService.getData(docTitle: self.titleDocumentDdataBase) { [weak self] result in
+                    self?.updateDataActivityIndicator.stopAnimating()
+                    switch result {
+                        case .success(let success):
+                            self?.moneyCount = success
+                            self?.expensesTableView.reloadData()
+                            
+                        case .failure(let failure):
+                            self?.showErrorAlert(error: failure)
+                    }
+                }
+                self.expensesTableView.reloadData()
+            }
+        })
     }
     
     
     // MARK: - Private Methods
     
     private func setupUI() {
+        view.addSubview(updateDataActivityIndicator)
         view.addSubview(expensesTableView)
         view.addSubview(expensesSearchBar)
     }
@@ -131,9 +152,9 @@ extension ExpensesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let model = moneyCount else { return }
         navigationController?.pushViewController(CardExpenceVC(title: model.expence[indexPath.row].title,
-                                                             amountExp: model.expence[indexPath.row].amount,
-                                                             date: model.expence[indexPath.row].date,
-                                                             name: model.names ),
+                                                               amountExp: model.expence[indexPath.row].amount,
+                                                               date: model.expence[indexPath.row].date,
+                                                               name: model.names ),
                                                  animated: true)
     }
 }

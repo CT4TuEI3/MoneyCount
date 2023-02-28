@@ -106,6 +106,7 @@ final class StartVC: UIViewController {
     
     private func pressedCreateButton() {
         let vc = CreateCountVC()
+        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -149,7 +150,24 @@ extension StartVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(moneyCountsModels[indexPath.row].names)
         navigationController?.pushViewController(MainMoneyCountVC(names: moneyCountsModels[indexPath.row].names,
-                                                                  titleMoneyCount: moneyCountsModels[indexPath.row].title),
+                                                                  titleMoneyCount: moneyCountsModels[indexPath.row].title,
+                                                                  currency: moneyCountsModels[indexPath.row].currency),
                                                  animated: true)
+    }
+}
+
+
+// MARK: - CreateCountVCDelegate
+
+extension StartVC: CreateCountVCDelegate {
+    func updatedExpenses() {
+        service.getAllDocs { [weak self] counts, error in
+            guard let counts = counts, error == nil else {
+                self?.showErrorAlert(error: error)
+                return
+            }
+            self?.moneyCountsModels = counts
+            self?.moneyCountTableView.reloadData()
+        }
     }
 }
