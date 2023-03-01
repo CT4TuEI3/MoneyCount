@@ -56,6 +56,7 @@ final class AddExpenseVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getData()
         setupUI()
     }
     
@@ -87,6 +88,17 @@ final class AddExpenseVC: UIViewController {
         addExpenseTable.register(AmountExpenseCell.self, forCellReuseIdentifier: amountExpenseIdentifire)
         addExpenseTable.register(DateExpenseCell.self, forCellReuseIdentifier: dateExpenseIdentifire)
         addExpenseTable.register(NamePaidCell.self, forCellReuseIdentifier: paidNameExpenseIdentifire)
+    }
+    
+    private func getData() {
+        service.getData(docTitle: titleMoneyCountForDoc) { [weak self] result in
+            switch result {
+                case .success(let data):
+                    self?.currentMoneyCount = data
+                case .failure(let error):
+                    self?.showErrorAlert(error: error)
+            }
+        }
     }
     
     private func sendData() {
