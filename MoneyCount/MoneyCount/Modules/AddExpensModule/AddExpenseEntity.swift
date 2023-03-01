@@ -5,7 +5,7 @@
 //  Created by Алексей on 31.01.2023.
 //
 
-enum AddExpenseSectionType: CaseIterable {
+enum AddExpenseSectionType: Int, CaseIterable {
     /// Name of expense
     case title
     
@@ -17,4 +17,15 @@ enum AddExpenseSectionType: CaseIterable {
     
     /// Name of payer
     case name
+}
+
+struct UsersInExpenses {
+    /// Name of expense
+    let name: String
+    
+    /// Balance user
+    var balance: Double
+    
+    /// Selected status user
+    var state: Bool
 }

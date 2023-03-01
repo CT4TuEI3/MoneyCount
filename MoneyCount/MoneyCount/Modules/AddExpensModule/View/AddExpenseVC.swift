@@ -34,6 +34,7 @@ final class AddExpenseVC: UIViewController {
     private var currentMoneyCount: MoneyCountModel?
     private let names: [NameBalanceModel]
     private var currency: String
+    private var selectedUsersExpense: [UsersInExpenses] = []
     
     
     // MARK: - UI Elements
@@ -70,6 +71,7 @@ final class AddExpenseVC: UIViewController {
         settingsNavigationBar()
         settingsTableView()
         setConstraints()
+        checkStateExpence()
     }
     
     private func settingsNavigationBar() {
@@ -78,6 +80,12 @@ final class AddExpenseVC: UIViewController {
                                                             target: self,
                                                             action: #selector(pressedAddExpenceBtn))
         navigationItem.rightBarButtonItem?.isEnabled = false
+    }
+    
+    private func checkStateExpence() {
+        names.forEach {
+            selectedUsersExpense.append(UsersInExpenses(name: $0.name, balance: $0.balance, state: true))
+        }
     }
     
     private func settingsTableView() {
@@ -116,6 +124,31 @@ final class AddExpenseVC: UIViewController {
         amountExpense != 0.0 && !titleExpences.isEmpty ? true : false
     }
     
+    private func updateStatusUsersExpense() {
+        addExpenseTable.reloadSections(IndexSet(integer: AddExpenseSectionType.name.rawValue), with: .automatic)
+    }
+    
+    private func setAmmount(forName: Int) -> Double {
+        var result = 0.0
+        var selectedCount = 0
+        
+        if !selectedUsersExpense[forName].state {
+            return 0.0
+        }
+        
+        for i in 0..<selectedUsersExpense.count {
+            if !selectedUsersExpense[i].state {
+                result = 0.0
+            } else {
+                selectedCount += 1
+            }
+            
+        }
+        result = amountExpense / Double(selectedCount)
+        return result
+    }
+    
+    
     private func setConstraints() {
         addExpenseTable.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -152,7 +185,7 @@ extension AddExpenseVC: UITableViewDelegate, UITableViewDataSource {
                 return 1
                 
             case .name:
-                return names.count
+                return selectedUsersExpense.count
         }
     }
     
@@ -181,7 +214,8 @@ extension AddExpenseVC: UITableViewDelegate, UITableViewDataSource {
             case .name:
                 let cell = addExpenseTable.dequeueReusableCell(withIdentifier: paidNameExpenseIdentifire,
                                                                for: indexPath) as? NamePaidCell
-                cell?.configure(textLabel: names[indexPath.row].name)
+                cell?.accessoryType = selectedUsersExpense[indexPath.row].state ? .checkmark : .none
+                cell?.configure(textLabel: selectedUsersExpense[indexPath.row].name, amountLabel: setAmmount(forName: indexPath.row))
                 return cell ?? UITableViewCell()
         }
     }
@@ -189,18 +223,27 @@ extension AddExpenseVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellForSection = sections[indexPath.section]
         if cellForSection == .name {
-            if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.checkmark {
+            if selectedUsersExpense[indexPath.row].state {
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
+                selectedUsersExpense[indexPath.row].state = false
             } else {
                 tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+                selectedUsersExpense[indexPath.row].state = true
             }
+            updateStatusUsersExpense()
         }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = UIView()
-        header.backgroundColor = .systemGray6
-        return header
+        if section != AddExpenseSectionType.name.rawValue {
+            let header = UIView()
+            header.backgroundColor = .systemGray6
+            return header
+        } else {
+            let headerView = CustomSettingsHeadder(forSection: section, color: .red)
+            headerView.delegate = self
+            return headerView
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -232,6 +275,11 @@ extension AddExpenseVC: TitleExpenseCellDelegate {
 extension AddExpenseVC: AmountExpenseCellDelegate {
     func amountExpense(amount: Double) {
         amountExpense = amount
+        for i in 0..<selectedUsersExpense.count {
+            if selectedUsersExpense[i].state {
+                addExpenseTable.reloadRows(at: [IndexPath(row: i, section: AddExpenseSectionType.name.rawValue)], with: .automatic)
+            }
+        }
         navigationItem.rightBarButtonItem?.isEnabled = isCompletedValues(amountExpense, titleExpences)
     }
     
@@ -259,5 +307,14 @@ extension AddExpenseVC: SelectCurrencyViewControllerDelegate {
     func selectedCurrency(_ curency: CurrencyModel) {
         currency = curency.shortName
         addExpenseTable.reloadData()
+    }
+}
+
+
+// MARK: - CustomSettingsHeadderDelegate
+
+extension AddExpenseVC: CustomSettingsHeadderDelegate {
+    func isAllSelected(forSection: Int) {
+        
     }
 }
