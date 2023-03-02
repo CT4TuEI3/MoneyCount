@@ -84,7 +84,15 @@ final class AddExpenseVC: UIViewController {
     
     private func checkStateExpence() {
         names.forEach {
-            selectedUsersExpense.append(UsersInExpenses(name: $0.name, balance: $0.balance, state: true))
+            selectedUsersExpense.append(UsersInExpenses(name: $0.name,
+                                                        balance: $0.balance,
+                                                        state: true))
+        }
+    }
+    
+    private func calculateBalance() {
+        for i in 0..<selectedUsersExpense.count {
+            selectedUsersExpense[i].balance = setAmmount(forName: i)
         }
     }
     
@@ -110,12 +118,19 @@ final class AddExpenseVC: UIViewController {
     }
     
     private func sendData() {
+        var updateNames: [NameBalanceModel] = []
+        for i in 0..<selectedUsersExpense.count {
+            calculateBalance()
+            updateNames.append(NameBalanceModel(name: selectedUsersExpense[i].name,
+                                                balance: selectedUsersExpense[i].balance))
+        }
         guard var updatedMoneyCountModdel = currentMoneyCount else { return }
         updatedMoneyCountModdel.expence.insert(ExpenceModel(title: titleExpences,
                                                             amount: amountExpense,
                                                             date: dateExpense,
-                                                            names: updatedMoneyCountModdel.names), at: 0)
-        service.saveData(moneyCount: updatedMoneyCountModdel, docTitle: titleMoneyCountForDoc) { [weak self] error in
+                                                            names: updateNames), at: 0)
+        service.saveData(moneyCount: updatedMoneyCountModdel,
+                         docTitle: titleMoneyCountForDoc) { [weak self] error in
             self?.showErrorAlert(error: error)
         }
     }
@@ -125,7 +140,8 @@ final class AddExpenseVC: UIViewController {
     }
     
     private func updateStatusUsersExpense() {
-        addExpenseTable.reloadSections(IndexSet(integer: AddExpenseSectionType.name.rawValue), with: .automatic)
+        addExpenseTable.reloadSections(IndexSet(integer: AddExpenseSectionType.name.rawValue),
+                                       with: .automatic)
     }
     
     private func setAmmount(forName: Int) -> Double {
@@ -145,6 +161,7 @@ final class AddExpenseVC: UIViewController {
             
         }
         result = amountExpense / Double(selectedCount)
+        result = (round(result * 100) / 100.0)
         return result
     }
     
@@ -215,7 +232,8 @@ extension AddExpenseVC: UITableViewDelegate, UITableViewDataSource {
                 let cell = addExpenseTable.dequeueReusableCell(withIdentifier: paidNameExpenseIdentifire,
                                                                for: indexPath) as? NamePaidCell
                 cell?.accessoryType = selectedUsersExpense[indexPath.row].state ? .checkmark : .none
-                cell?.configure(textLabel: selectedUsersExpense[indexPath.row].name, amountLabel: setAmmount(forName: indexPath.row))
+                cell?.configure(textLabel: selectedUsersExpense[indexPath.row].name,
+                                amountLabel: setAmmount(forName: indexPath.row))
                 return cell ?? UITableViewCell()
         }
     }
@@ -275,9 +293,12 @@ extension AddExpenseVC: TitleExpenseCellDelegate {
 extension AddExpenseVC: AmountExpenseCellDelegate {
     func amountExpense(amount: Double) {
         amountExpense = amount
+        calculateBalance()
         for i in 0..<selectedUsersExpense.count {
             if selectedUsersExpense[i].state {
-                addExpenseTable.reloadRows(at: [IndexPath(row: i, section: AddExpenseSectionType.name.rawValue)], with: .automatic)
+                addExpenseTable.reloadRows(at: [IndexPath(row: i,
+                                                          section: AddExpenseSectionType.name.rawValue)],
+                                           with: .automatic)
             }
         }
         navigationItem.rightBarButtonItem?.isEnabled = isCompletedValues(amountExpense, titleExpences)
