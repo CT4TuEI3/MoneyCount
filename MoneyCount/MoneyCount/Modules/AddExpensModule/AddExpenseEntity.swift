@@ -15,6 +15,9 @@ enum AddExpenseSectionType: Int, CaseIterable {
     /// Date of expense
     case date
     
+    /// Name paid expense
+    case paidBy
+    
     /// Name of payer
     case name
 }

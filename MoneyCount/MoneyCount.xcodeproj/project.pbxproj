@@ -26,6 +26,7 @@
 		32737DF82987F72A00819369 /* ExpensesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32737DF72987F72A00819369 /* ExpensesVC.swift */; };
 		32737DFC29881CEE00819369 /* ExpensesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32737DFB29881CEE00819369 /* ExpensesCell.swift */; };
 		32748CA229830EEB002CCCB3 /* MainMoneyCountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32748CA129830EEB002CCCB3 /* MainMoneyCountVC.swift */; };
+		327C97F829B21235007793EC /* PaidByCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327C97F729B21235007793EC /* PaidByCell.swift */; };
 		327DD5E129910E83009FA313 /* CardExpenceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327DD5E029910E83009FA313 /* CardExpenceVC.swift */; };
 		327DD5E329910E94009FA313 /* CardExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327DD5E229910E94009FA313 /* CardExpenseCell.swift */; };
 		327DD5E529913871009FA313 /* CustomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327DD5E429913871009FA313 /* CustomHeader.swift */; };
@@ -70,6 +71,7 @@
 		32737DF72987F72A00819369 /* ExpensesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesVC.swift; sourceTree = "<group>"; };
 		32737DFB29881CEE00819369 /* ExpensesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesCell.swift; sourceTree = "<group>"; };
 		32748CA129830EEB002CCCB3 /* MainMoneyCountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMoneyCountVC.swift; sourceTree = "<group>"; };
+		327C97F729B21235007793EC /* PaidByCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidByCell.swift; sourceTree = "<group>"; };
 		327DD5E029910E83009FA313 /* CardExpenceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardExpenceVC.swift; sourceTree = "<group>"; };
 		327DD5E229910E94009FA313 /* CardExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardExpenseCell.swift; sourceTree = "<group>"; };
 		327DD5E429913871009FA313 /* CustomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeader.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				321CE50C2989285F00C438CA /* TitleExpenseCell.swift */,
 				321CE50E29892EDB00C438CA /* AmountExpenseCell.swift */,
 				321CE5102989318E00C438CA /* DateExpenseCell.swift */,
+				327C97F729B21235007793EC /* PaidByCell.swift */,
 				321CE5122989328C00C438CA /* NamePaidCell.swift */,
 			);
 			path = Cell;
@@ -623,6 +626,7 @@
 				32D45F0A298A8A1100AD6756 /* BalancesVC.swift in Sources */,
 				32C16FBF29967DC600B4EBBE /* PresentationCell.swift in Sources */,
 				327DD5E329910E94009FA313 /* CardExpenseCell.swift in Sources */,
+				327C97F829B21235007793EC /* PaidByCell.swift in Sources */,
 				328931F829A2247C008D9182 /* UserDefaultsService.swift in Sources */,
 				322B200C29A6771200B108BB /* UIViewConntrollerExtension.swift in Sources */,
 				3202E3BD29AF60D300FF05BB /* CustomSettingsHeadder.swift in Sources */,
