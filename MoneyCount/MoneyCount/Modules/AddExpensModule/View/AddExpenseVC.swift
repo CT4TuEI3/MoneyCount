@@ -21,20 +21,25 @@ final class AddExpenseVC: UIViewController {
     // MARK: - Private properties
     
     private let service = FireBaseService()
-    private let titleExpenseIdentifire = "titleExpenseIdentifire"
-    private let amountExpenseIdentifire = "amountExpenseIdentifire"
-    private let dateExpenseIdentifire = "dateExpenseIdentifire"
-    private let paidNameExpenseIdentifire = "paidNameExpenseIdentifire"
     private let sections = AddExpenseSectionType.allCases
+
     private let titleMoneyCountForDoc: String
+    private var currentMoneyCount: MoneyCountModel?
+    private let names: [NameBalanceModel]
+    private var currency: String
+
     private var titleExpences = ""
     private var amountExpense = 0.0
     private var dateExpense = ""
     private var paidNameExpanse: [NameBalanceModel] = []
-    private var currentMoneyCount: MoneyCountModel?
-    private let names: [NameBalanceModel]
-    private var currency: String
+    private var selectedPaidName = ""
     private var selectedUsersExpense: [UsersInExpenses] = []
+
+    private let titleExpenseIdentifire = "titleExpenseIdentifire"
+    private let amountExpenseIdentifire = "amountExpenseIdentifire"
+    private let dateExpenseIdentifire = "dateExpenseIdentifire"
+    private let paidByExpenseIdentifire = "paidByExpenseIdentifire"
+    private let paidNameExpenseIdentifire = "paidNameExpenseIdentifire"
     
     
     // MARK: - UI Elements
@@ -103,6 +108,7 @@ final class AddExpenseVC: UIViewController {
         addExpenseTable.register(TitleExpenseCell.self, forCellReuseIdentifier: titleExpenseIdentifire)
         addExpenseTable.register(AmountExpenseCell.self, forCellReuseIdentifier: amountExpenseIdentifire)
         addExpenseTable.register(DateExpenseCell.self, forCellReuseIdentifier: dateExpenseIdentifire)
+        addExpenseTable.register(PaidByCell.self, forCellReuseIdentifier: paidByExpenseIdentifire)
         addExpenseTable.register(NamePaidCell.self, forCellReuseIdentifier: paidNameExpenseIdentifire)
     }
     
@@ -135,8 +141,10 @@ final class AddExpenseVC: UIViewController {
         }
     }
     
-    private func isCompletedValues(_ amountExpense: Double, _ titleExpences: String) -> Bool {
-        amountExpense != 0.0 && !titleExpences.isEmpty ? true : false
+    private func isCompletedValues(_ amountExpense: Double,
+                                   _ titleExpences: String,
+                                   _ selectedPaidName: String) -> Bool {
+        amountExpense != 0.0 && !titleExpences.isEmpty && !selectedPaidName.isEmpty ? true : false
     }
     
     private func updateStatusUsersExpense() {
@@ -198,7 +206,7 @@ extension AddExpenseVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionType = sections[section]
         switch sectionType {
-            case .title, .amount, .date:
+            case .title, .amount, .date, .paidBy:
                 return 1
                 
             case .name:
@@ -225,6 +233,13 @@ extension AddExpenseVC: UITableViewDelegate, UITableViewDataSource {
             case .date:
                 let cell = addExpenseTable.dequeueReusableCell(withIdentifier: dateExpenseIdentifire,
                                                                for: indexPath) as? DateExpenseCell
+                cell?.delegate = self
+                return cell ?? UITableViewCell()
+                
+            case .paidBy:
+                let cell = addExpenseTable.dequeueReusableCell(withIdentifier: paidByExpenseIdentifire,
+                                                               for: indexPath) as? PaidByCell
+                cell?.configure(names: names)
                 cell?.delegate = self
                 return cell ?? UITableViewCell()
                 
@@ -283,7 +298,9 @@ extension AddExpenseVC: UITableViewDelegate, UITableViewDataSource {
 extension AddExpenseVC: TitleExpenseCellDelegate {
     func titleExpenseCell(title: String) {
         titleExpences = title
-        navigationItem.rightBarButtonItem?.isEnabled = isCompletedValues(amountExpense, titleExpences)
+        navigationItem.rightBarButtonItem?.isEnabled = isCompletedValues(amountExpense,
+                                                                         titleExpences,
+                                                                         selectedPaidName)
     }
 }
 
@@ -301,7 +318,9 @@ extension AddExpenseVC: AmountExpenseCellDelegate {
                                            with: .automatic)
             }
         }
-        navigationItem.rightBarButtonItem?.isEnabled = isCompletedValues(amountExpense, titleExpences)
+        navigationItem.rightBarButtonItem?.isEnabled = isCompletedValues(amountExpense,
+                                                                         titleExpences,
+                                                                         selectedPaidName)
     }
     
     func pressedCurrencyBtn() {
@@ -337,5 +356,17 @@ extension AddExpenseVC: SelectCurrencyViewControllerDelegate {
 extension AddExpenseVC: CustomSettingsHeadderDelegate {
     func isAllSelected(forSection: Int) {
         
+    }
+}
+
+
+// MARK: - PaidByCellDelegate
+
+extension AddExpenseVC: PaidByCellDelegate {
+    func selectedPaidName(selectedName: String) {
+        self.selectedPaidName = selectedName
+        navigationItem.rightBarButtonItem?.isEnabled = isCompletedValues(amountExpense,
+                                                                         titleExpences,
+                                                                         selectedPaidName)
     }
 }
